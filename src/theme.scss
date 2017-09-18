@@ -9,8 +9,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$gametrade-app-primary: mat-palette($mat-teal);
-$gametrade-app-accent:  mat-palette($mat-yellow, A200, A100, A400);
+$gametrade-app-primary: mat-palette($mat-deep-purple);
+$gametrade-app-accent:  mat-palette($mat-teal);
 
 // The warn palette is optional (defaults to red).
 $gametrade-app-warn:    mat-palette($mat-red);

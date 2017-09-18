@@ -1,0 +1,17 @@
+<h2 md-dialog-title>Utilize seu e-mail</h2>
+
+<md-dialog-content>
+  <form fxLayout="row" fxLayoutWrap="wrap">
+    <md-form-field fxFlex="100">
+      <input mdInput placeholder="E-mail">
+    </md-form-field>
+
+    <md-form-field fxFlex="100">
+      <input mdInput placeholder="Senha" type="password">
+    </md-form-field>
+  </form>
+</md-dialog-content>
+
+<md-dialog-actions>
+	<button md-raised-button (click)="login()"></button>
+</md-dialog-actions>
