@@ -1,0 +1,13 @@
+<h2 class="mat-headline">Jogos mais buscados</h2>
+
+<div class="most-searched-container" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+  <md-card class="most-searched" *ngFor="let game of mostSearchedGames" fxFlex="calc(25% - (16px * 4))">
+    <img md-card-image src="{{game.thumbnail}}" alt="{{game.name}} thumbnail">
+    <md-card-content>
+      <md-card-title>{{game.name}}</md-card-title>
+      <p class="mat-body-2">Proprietário: {{game.owner}}</p>
+      <p class="mat-body-1">{{game.description}}</p>
+      <p class="mat-caption">Classificação: {{game.rating}}</p>
+    </md-card-content>
+  </md-card>
+</div>

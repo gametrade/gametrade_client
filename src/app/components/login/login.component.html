@@ -2,16 +2,20 @@
 
 <md-dialog-content>
   <form fxLayout="row" fxLayoutWrap="wrap">
-    <md-form-field fxFlex="100">
+    <md-form-field color="accent" fxFlex="100">
       <input mdInput placeholder="E-mail">
     </md-form-field>
 
-    <md-form-field fxFlex="100">
+    <md-form-field color="accent" fxFlex="100">
       <input mdInput placeholder="Senha" type="password">
     </md-form-field>
-  </form>
-</md-dialog-content>
 
-<md-dialog-actions>
-	<button md-raised-button (click)="login()"></button>
-</md-dialog-actions>
+    <div class="row" fxFlex="100">
+      <button md-raised-button class="full-width" color="primary" (click)="login()">ENTRAR</button>
+    </div>
+  </form>
+
+  <div class="text-separator">
+    <p>ou</p>
+  </div>
+</md-dialog-content>

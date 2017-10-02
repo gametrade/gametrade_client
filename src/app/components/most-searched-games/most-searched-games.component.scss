@@ -1,0 +1,23 @@
+@import "../../../styles.scss";
+$card-width: 250px;
+
+.most-searched-container {
+  min-width: $card-width * 4;
+  
+  .most-searched {
+    background-color: #fff;
+    border-radius: 3px;
+    min-width: $card-width;
+    @include box_shadow();
+    img {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+    .content {
+      padding: 16px;
+    }
+    .actions {
+      padding: 8px;
+    }
+  }
+}

@@ -1,88 +1,70 @@
 @import '~@angular/material/theming';
 @import 'src/theme.scss';
 @import '~styles.scss';
-
-$container-gutter: 24px;
-$content-gutter: 24px;
-
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .gt-logo {
-    color: mat-color($gametrade-app-accent);
-    font-size: 1.5em;
-    flex: 1 1 10%;
-    
-    a:before {
-        content: 'GT';
-
-        @media screen and (min-width: 840px) {
-            & {
-                content: 'Gametrade';
-            }
-        }
+  color: mat-color($gametrade-app-accent);
+  font-size: 1.5em;
+  flex: 1 1 10%;
+  a:before {
+    content: 'GT';
+    @media screen and (min-width: 840px) {
+      & {
+        content: 'Gametrade';
+      }
     }
+  }
 }
 
 .gt-main-container {
-    background-color: #FFFFFF;
-    margin: $container-gutter;
-    padding: $content-gutter;
-    @include box_shadow();
+  padding: $gutter-3;
 }
 
 .gt-toolbar {
-    background-color: white;
-    border-bottom: 1px solid #D8D8D8;
-    color: mat-color($gametrade-app-accent);
+  background-color: white;
+  border-bottom: 1px solid #D8D8D8;
+  color: mat-color($gametrade-app-accent);
 }
 
 .mat-toolbar {
-    padding: 0 #{$container-gutter};
-
-    .search {
-        flex: 1 1 auto;
-    }
-
-    .space {
-        flex: 1 1 auto;
-    }
-
-    .actions {
-        font-size: 16px;
-        height: 100%;
-
-        a {
-            padding: 8px;
-            margin: 0 8px;
-            text-transform: uppercase;
-            transition: all .125s;
-
-            &:first-child {
-                margin-left: 0;
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            &:hover {
-                &:first-child {
-                    color: #fff;
-                    background-color: #2196F3;
-                }
-
-                &:nth-child(2) {
-                    color: #fff;
-                    background-color: #E91E63;
-                }
-
-                &:last-child {
-                    color: #fff;
-                    background-color: #FF5722;
-                }
-            }
+  padding: 0 #{$gutter-3};
+  .search {
+    flex: 1 1 auto;
+  }
+  .space {
+    flex: 1 1 auto;
+  }
+  .actions {
+    font-size: 16px;
+    height: 100%;
+    a {
+      padding: $gutter-1;
+      margin: 0 $gutter-1;
+      text-transform: uppercase;
+      transition: all .125s;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        &:first-child {
+          color: #fff;
+          background-color: #2196F3;
         }
+        &:nth-child(2) {
+          color: #fff;
+          background-color: #E91E63;
+        }
+        &:last-child {
+          color: #fff;
+          background-color: #FF5722;
+        }
+      }
     }
+  }
 }

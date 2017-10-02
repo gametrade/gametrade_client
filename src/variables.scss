@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@import 'theme.scss';
+
+$gutter-1: 8px;
+$gutter-2: 16px;
+$gutter-3: 24px;
+$gutter-4: 32px;
+
+$primary-color: mat-color($gametrade-app-primary);
+$accent-color: mat-color($gametrade-app-accent);
+
+$primary-text-color: #FFFFFF;
+$accent-text-color: #FFFFFF;
+
+$text-color: rgba(0, 0, 0, .84);
+$secondary-text-color: rgba(0, 0, 0, .37);
