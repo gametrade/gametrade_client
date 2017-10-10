@@ -22,9 +22,10 @@ import { GtFooterComponent } from './components/gt-footer/gt-footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { AppRoutingModule } from "./app.routing";
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, MostSearchedGamesComponent, GtFooterComponent, NotFoundComponent],
+    declarations: [AppComponent, LoginComponent, MostSearchedGamesComponent, GtFooterComponent, NotFoundComponent, HomeComponent],
     imports: [
         BrowserModule,
         CommonModule,

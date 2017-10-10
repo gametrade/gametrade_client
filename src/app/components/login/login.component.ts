@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserService } from '../../services/user/user.service';
 
 @Component({
     selector: 'gt-login',
@@ -8,12 +10,16 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
 })
 export class LoginComponent implements OnInit {
 
-    constructor(public dialogRef: MdDialogRef<LoginComponent>, @Inject(MD_DIALOG_DATA) public data: any) { }
+    constructor(private userService: UserService, private router: Router) { }
 
     ngOnInit() {
     }
 
-    close() {
-        this.dialogRef.close();
+    sendLogin() {
+        this.userService.postLogin().subscribe(
+            success => {
+                this.router.navigate(['/home']);
+            }
+        )
     }
 }

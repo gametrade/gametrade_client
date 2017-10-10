@@ -1,4 +1,4 @@
-import { MdButtonModule, MdCardModule, MdInputModule, MdToolbarModule, MdDialogModule } from "@angular/material";
+import { MdButtonModule, MdCardModule, MdInputModule, MdToolbarModule, MdDialogModule, MdDialogRef } from "@angular/material";
 
 export let MATERIAL_MODULES = [
     MdButtonModule,

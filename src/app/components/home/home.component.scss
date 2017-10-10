@@ -1,12 +1,6 @@
 @import '~@angular/material/theming';
 @import 'src/theme.scss';
 @import '~styles.scss';
-.login-wrapper {
-  @extend .full-width;
-  background-color: lighten(#E0F2F1, 0%);
-  height: calc(100% - 65px);
-}
-
 .gt-logo {
   color: mat-color($gametrade-app-accent);
   font-size: 1.5em;
@@ -19,6 +13,10 @@
       }
     }
   }
+}
+
+.gt-main-container {
+  padding: $gutter-3;
 }
 
 .gt-toolbar {

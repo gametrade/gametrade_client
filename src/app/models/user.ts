@@ -1,13 +1,8 @@
 export class User {
 
-    /**
-     *
-     */
     constructor(
-        public name: string,
-        public photo: string,
-        public email: string
-    ) {
-        
-    }
+        public name: string = undefined,
+        public photo: string = undefined,
+        public email: string = undefined
+    ) { }
 }

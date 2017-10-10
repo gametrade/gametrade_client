@@ -1,0 +1,25 @@
+<md-toolbar class="gt-toolbar">
+  <span class="gt-logo">
+    <a routerLink="/"></a>
+  </span>
+
+  <div class="space"></div>
+
+  <div class="actions" fxLayout="row" fxLayoutAlign="space-around center">
+    <a fxFlex routerLink="/help">Ajuda</a>
+    <a fxFlex *ngIf="!userService.current_user" routerLink="/sign-up">Cadastre-se</a>
+    <a fxFlex *ngIf="!userService.current_user" routerLink="/login">Entrar</a>
+    <a fxFlex *ngIf="userService.current_user" (click)="userService.deleteLogin()">Sair</a>
+  </div>
+</md-toolbar>
+
+<div class="gt-main-container">
+  <h1 class="mat-display-1">
+    Gametrade
+  </h1>
+
+
+  <most-searched-games></most-searched-games>
+</div>
+
+<gt-footer></gt-footer>
