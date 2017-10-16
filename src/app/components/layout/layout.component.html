@@ -1,0 +1,24 @@
+<ng-container>
+  <mat-toolbar class="gt-toolbar">
+    <span class="gt-logo">
+      <a routerLink="/"></a>
+    </span>
+
+    <div class="space"></div>
+
+    <div class="actions" fxLayout="row" fxLayoutAlign="space-around center">
+      <a fxFlex routerLink="/help">Ajuda</a>
+      <a fxFlex *ngIf="!userService.current_user" routerLink="/sign-up">Cadastre-se</a>
+      <a fxFlex *ngIf="!userService.current_user" routerLink="/login">Entrar</a>
+      
+      <a fxFlex *ngIf="userService.current_user" routerLink="">Olá, {{userService.current_user.name}}</a>
+      <!-- <img width="32" height="32" [src]="userService.current_user.photo" alt=""> -->
+      <a fxFlex *ngIf="userService.current_user" routerLink="/games">Meus jogos</a>
+      <a fxFlex *ngIf="userService.current_user" (click)="userService.deleteLogin()">Sair</a>
+    </div>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+
+  <gametrade-footer></gametrade-footer>
+</ng-container>

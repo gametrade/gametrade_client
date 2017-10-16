@@ -1,0 +1,22 @@
+@import '~variables.scss';
+
+:host {
+    $color: $light-gray;
+    cursor: pointer;
+    color: $color;
+
+    transition: color .175s ease-in;
+    
+    $position: $gutter-2;
+    top: $position;
+    right: $position;
+    position: absolute;
+    
+    $size: $gutter-3;
+    height: $size;
+    width: $size;
+
+    &:hover {
+        color: lighten($color, 50%);
+    }
+}

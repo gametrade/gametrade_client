@@ -14,3 +14,9 @@ $accent-text-color: #FFFFFF;
 
 $text-color: rgba(0, 0, 0, .84);
 $secondary-text-color: rgba(0, 0, 0, .37);
+
+$gray: #607D8B;
+$light-gray: lighten($gray, 20%);
+$dark-gray: darken($gray, 20%);
+
+$font-family: 'Josefin Sans', 'Roboto', sans-serif;

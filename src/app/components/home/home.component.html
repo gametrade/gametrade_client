@@ -1,25 +1,17 @@
-<md-toolbar class="gt-toolbar">
-  <span class="gt-logo">
-    <a routerLink="/"></a>
-  </span>
+<div class="jumbotron container" *ngIf="hasInfo">
+    <h1 class="mat-display-2">
+      Gametrade
+    </h1>
 
-  <div class="space"></div>
+    <div>
+        <p>O Gametrade é uma plataforma em que você jogador pode reservar jogos de mesa oferecidos por outros jogadores.</p>
+        <p>
+            Mas para você que está do outro lado do jogo, e gostaria de fazer um dinheirinho com eles, é possível disponibilizá-los 
+            para que qualquer pessoa possa reservá-los.
+        </p>
+    </div>
 
-  <div class="actions" fxLayout="row" fxLayoutAlign="space-around center">
-    <a fxFlex routerLink="/help">Ajuda</a>
-    <a fxFlex *ngIf="!userService.current_user" routerLink="/sign-up">Cadastre-se</a>
-    <a fxFlex *ngIf="!userService.current_user" routerLink="/login">Entrar</a>
-    <a fxFlex *ngIf="userService.current_user" (click)="userService.deleteLogin()">Sair</a>
-  </div>
-</md-toolbar>
-
-<div class="gt-main-container">
-  <h1 class="mat-display-1">
-    Gametrade
-  </h1>
-
-
-  <most-searched-games></most-searched-games>
+    <gametrade-closeable (onClose)="closeInfo()"></gametrade-closeable>
 </div>
 
-<gt-footer></gt-footer>
+<most-searched-games></most-searched-games>

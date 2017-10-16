@@ -4,20 +4,20 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 
-@include mat-core();
+$custom-typography: mat-typography-config( $font-family: "Josefin Sans");
+
+@include mat-core($custom-typography);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-
 $gametrade-app-primary: mat-palette($mat-deep-purple);
-$gametrade-app-accent : mat-palette($mat-teal);
-
+$gametrade-app-accent: mat-palette($mat-teal);
 // The warn palette is optional (defaults to red).
-$gametrade-app-warn : mat-palette($mat-red);
-
+$gametrade-app-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
-$gametrade-app-theme: mat-light-theme($gametrade-app-primary, $gametrade-app-accent, $gametrade-app-warn);
-
+$gametrade-app-theme: mat-light-theme($gametrade-app-primary,
+$gametrade-app-accent,
+$gametrade-app-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user/user.service';
 
 @Component({
-    selector: 'app-home',
+    selector: 'gametrade-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    private hasInfo: boolean;
+    
+    constructor() { }
 
-    constructor(private userService: UserService) { }
+    ngOnInit() {
+        let localHasInfo = JSON.parse(localStorage.getItem('hasInfo'));
+        this.hasInfo = (localHasInfo !== undefined && localHasInfo !== null) ? localHasInfo : true;
+    }
 
-    ngOnInit() { 
-        console.log(this.userService.current_user)
+    closeInfo() {
+        this.hasInfo = false;
+        localStorage.setItem('hasInfo', JSON.stringify(false));
     }
 }

@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './services/user/user.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-    constructor() { }
+    constructor(private userService: UserService) { }
+
+    ngOnInit() {
+        this.userService.current_user = JSON.parse(localStorage.getItem('current_user'));
+    }
 }

@@ -1,8 +1,9 @@
 @import '../../../styles.scss';
 
-.gt-footer-container {
+.gametrade-footer {
     background-color: $primary-color;
     color: $primary-text-color;
-    width: 100%;
+    
     min-height: 300px;
+    margin-bottom: 0;
 }
