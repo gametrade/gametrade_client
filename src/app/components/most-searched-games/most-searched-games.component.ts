@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./most-searched-games.component.scss']
 })
 export class MostSearchedGamesComponent implements OnInit {
-    private mostSearchedGames: Array<any> = [
+    public mostSearchedGames: Array<any> = [
         {
             name: "Arcadia",
             players: [4, 8],

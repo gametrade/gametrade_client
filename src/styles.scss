@@ -1,6 +1,5 @@
 // Imports
 @import 'variables.scss';
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600');
 
 /* ************************************************************************************************************************************** */
 
@@ -28,7 +27,7 @@ a:visited {
 }
 
 .mat-form-field {
-    margin-bottom: $gutter-1;
+  margin-bottom: $gutter-1;
 }
 
 // Reset and Base settings
@@ -100,6 +99,11 @@ a:visited {
   &:after {
     margin-left: 8px;
   }
+}
+
+.underline {
+    display: inline-block;
+    border-bottom: 3px solid $primary-color;
 }
 
 // Utilities

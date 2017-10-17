@@ -8,7 +8,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class LayoutComponent implements OnInit {
 
-    constructor(private userService: UserService) { }
+    constructor(public userService: UserService) { }
 
     ngOnInit() { }
 }

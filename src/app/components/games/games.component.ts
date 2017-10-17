@@ -7,7 +7,7 @@ import { GamesService } from '../../services/games/games.service';
     styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-    private games: Array<any>;
+    public games: Array<any>;
 
     constructor(private gamesService: GamesService, private cd: ChangeDetectorRef) { }
 
@@ -24,5 +24,9 @@ export class GamesComponent implements OnInit {
                 console.log(error);
             }
         );
+    }
+
+    newGame() {
+        
     }
 }

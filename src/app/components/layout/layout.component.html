@@ -6,7 +6,7 @@
 
     <div class="space"></div>
 
-    <div class="actions" fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="actions" fxLayout="row" fxLayoutAlign="space-around center" fxHide.lt-sm="true">
       <a fxFlex routerLink="/help">Ajuda</a>
       <a fxFlex *ngIf="!userService.current_user" routerLink="/sign-up">Cadastre-se</a>
       <a fxFlex *ngIf="!userService.current_user" routerLink="/login">Entrar</a>
