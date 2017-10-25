@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { User } from "../../models/user";
+import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class UserService {
     postLogin(email, password): Observable<boolean> {
         this.current_user = new User(
             'Renan',
-            '"https://s3.amazonaws.com/uifaces/faces/twitter/iamjdeleon/128.jpg"',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/iamjdeleon/128.jpg',
             email
         );
 

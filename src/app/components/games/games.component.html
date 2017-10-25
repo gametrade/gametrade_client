@@ -1,9 +1,9 @@
-<div class="container">
+<div class='container'>
     <h2>Lista de jogos</h2>
     
-    <p *ngFor="let game of games">
+    <p *ngFor='let game of games'>
         {{game.name}} - {{game.type}}
     </p>
     
-    <button mat-raised-button color="primary" (click)="newGame()">Novo jogo</button>
+    <button mat-raised-button color='primary' (click)='newGame()'>Novo jogo</button>
 </div>

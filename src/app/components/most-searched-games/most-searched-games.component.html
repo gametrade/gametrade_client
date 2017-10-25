@@ -1,15 +1,9 @@
-<div class="container">
-    <h2 class="mat-headline underline">Jogos mais buscados</h2>
-    
-    <div class="most-searched-container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start" fxLayoutGap="24px" fxLayoutGap.gt-sm="16px">
-      <mat-card class="most-searched" *ngFor="let game of mostSearchedGames" fxFlex.gt-sm="calc(25% - (16px * 2))">
-        <img mat-card-image src="{{game.thumbnail}}" alt="{{game.name}} thumbnail">
-        <mat-card-content>
-          <mat-card-title>{{game.name}}</mat-card-title>
-          <p class="mat-body-2">Proprietário: {{game.owner}}</p>
-          <p fxHide.lt-md="true" class="mat-body-1">{{game.description}}</p>
-          <p class="mat-caption">Classificação: {{game.rating}}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+<div class='container'>
+  <h2 class='mat-headline underline'>Jogos mais buscados</h2>
+
+  <div class='most-searched-container' fxLayout='column' fxLayout.gt-sm='row' fxLayoutAlign.gt-sm='start' fxLayoutGap='24px'
+    fxLayoutGap.gt-sm='16px'>
+    <gametrade-game-card *ngFor='let game of mostSearchedGames' [game]='game' fxFlex.gt-sm='calc(25% - (16px * 2))'>
+    </gametrade-game-card>
+  </div>
 </div>

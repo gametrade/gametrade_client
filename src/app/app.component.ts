@@ -1,5 +1,10 @@
+//#region Imports
 import { Component, OnInit } from '@angular/core';
+
+// Services
 import { UserService } from './services/user/user.service';
+
+//#endregion
 
 @Component({
     selector: 'app-root',

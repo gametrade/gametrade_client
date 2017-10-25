@@ -1,0 +1,38 @@
+@import '~styles.scss';
+
+.game-card {
+    background-color: #fff;
+    border-radius: 3px;
+
+    @media screen and (max-width: 959px) {
+        margin-bottom: $gutter-3;
+    }
+
+    @include box_shadow();
+
+    .mat-card-image {
+        margin-top: $gutter-2;
+    }
+    
+    .content {
+      padding: $gutter-2;
+    }
+    
+    .actions {
+      padding: $gutter-1;
+    }
+
+    .mat-caption {
+        mat-icon {
+            $size: 20px;
+
+            width: $size;
+            height: $size;
+            margin-right: $gutter-1;
+
+            .material-icons {
+                font-size: $size;
+            }
+        }
+    }
+  }

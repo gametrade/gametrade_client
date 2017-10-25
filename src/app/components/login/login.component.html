@@ -1,45 +1,36 @@
-<mat-toolbar class="gametrade-toolbar">
-  <span class="gametrade-logo">
-    <a routerLink="/"></a>
+<mat-toolbar class='gametrade-toolbar'>
+  <span class='gametrade-logo'>
+    <a routerLink='/'></a>
   </span>
 </mat-toolbar>
 
-<div class="back-button" (click)="goBack()" fxLayout="row" fxLayoutAlign="center center">
+<div class='back-button' (click)='goBack()' fxLayout='row' fxLayoutAlign='center center'>
   <mat-icon>
-    <i class="material-icons">arrow_back</i>
+    <i class='material-icons'>arrow_back</i>
   </mat-icon>
 </div>
 
-<div class="login-wrapper full-width" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card fxFlex="90" fxFlex.gt-xs="60" fxFlex.gt-sm="30">
+<div class='login-wrapper full-width' fxLayout='row' fxLayoutAlign='center center'>
+  <mat-card fxFlex='90' fxFlex.gt-xs='60' fxFlex.gt-sm='30'>
     <mat-card-title>Entre com seu e-mail</mat-card-title>
 
     <mat-card-content>
-      <form [formGroup]="loginForm" fxLayout="row" fxLayoutWrap="wrap">
-        <mat-form-field color="accent" fxFlex="100">
-          <input matInput formControlName="email" placeholder="E-mail" autofocus>
-          <mat-error *ngIf="!loginForm.controls.email.valid">{{checkErrors('email')}}</mat-error>
+      <form [formGroup]='loginForm' fxLayout='row' fxLayoutWrap='wrap'>
+        <mat-form-field color='accent' fxFlex='100'>
+          <input matInput formControlName='email' placeholder='E-mail' autofocus>
+          <mat-error *ngIf='!loginForm.controls.email.valid'>{{checkErrors('email')}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field color="accent" fxFlex="100">
-          <input matInput formControlName="password" placeholder="Senha" type="password">
-          <mat-error *ngIf="!loginForm.controls.password.valid">{{checkErrors('password')}}</mat-error>
+        <mat-form-field color='accent' fxFlex='100'>
+          <input matInput formControlName='password' placeholder='Senha' type='password'>
+          <mat-error *ngIf='!loginForm.controls.password.valid'>{{checkErrors('password')}}</mat-error>
         </mat-form-field>
 
-        <div class="row" fxFlex="100" fxLayout="row">
-          <button fxFlex="100" mat-raised-button color="accent" [disabled]="(!loginForm.dirty || !loginForm.valid)" (click)="sendLogin()">ENTRAR</button>
+        <div class='row' fxFlex='100' fxLayout='row'>
+          <button fxFlex='100' mat-raised-button color='accent' [disabled]='(!loginForm.dirty || !loginForm.valid)' (click)='sendLogin()'>ENTRAR</button>
         </div>
 
-        <div class="separator"></div>
-
-        <div class="row" fxFlex="100" fxLayout="row" fxLayoutGap="8px">
-          <button fxFlex="10" class="social-button facebook" mat-raised-button>
-            <img src="https://cdn0.iconfinder.com/data/icons/social-flat-rounded-rects/512/facebook-256.png" alt="Facebook">
-          </button>
-          <button fxFlex="10" class="social-button google" mat-raised-button>
-            <img src="https://maxcdn.icons8.com/Share/icon/color/Logos//google_plus1600.png" alt="Google">
-          </button>
-        </div>
+        <div class='separator'></div>
       </form>
     </mat-card-content>
   </mat-card>
