@@ -1,31 +1,213 @@
+//#region Imports
+// Core
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+// Services
+import { Angular2TokenService } from 'angular2-token';
+
+// Models
+import { Game, InsertedGame } from '../../models/game';
+
+//#endregion
+
 @Injectable()
-export class GamesService {
+export class GameService {
 
-    constructor() { }
+    constructor(private tokenHttp: Angular2TokenService) { }
 
-    getGames(): Observable<any> {
+    getMyGames(): Observable<Array<Game>> {
         return Observable.of(
             [
-                { 
-                    name: 'Viletônia',
-                    type: 'RPG'
+                <Game>{
+                    id: '1',
+                    name: 'Arcadia',
+                    players: [4, 8],
+                    owner: {
+                        name: 'Jorge',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.4,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
                 },
-                { 
+                <Game>{
+                    id: '2',
+                    name: 'Krosmaster',
+                    players: [3, 6],
+                    owner: {
+                        name: 'Erik',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.8,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '3',
+                    name: 'Truco do Odinha',
+                    players: [2, 4],
+                    owner: {
+                        name: 'Odair',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.9,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '4',
                     name: 'Banco imobiliário',
-                    type: 'Tabuleiro'
-                },
-                { 
-                    name: 'Yu-gi-oh!',
-                    type: 'Cartas'
-                },
-                { 
-                    name: 'Dawn of Josheta',
-                    type: 'Miniatures'
+                    players: [2, 8],
+                    owner: {
+                        name: 'Caioba',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 5.0,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
                 }
             ]
+        );
+    }
+
+    getRecommendedGames(): Observable<Array<Game>> {
+        return Observable.of(
+            [
+                <Game>{
+                    id: '1',
+                    name: 'Arcadia',
+                    players: [4, 8],
+                    owner: {
+                        name: 'Jorge',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.4,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '2',
+                    name: 'Krosmaster',
+                    players: [3, 6],
+                    owner: {
+                        name: 'Erik',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.8,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '3',
+                    name: 'Truco do Odinha',
+                    players: [2, 4],
+                    owner: {
+                        name: 'Odair',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.9,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '4',
+                    name: 'Banco imobiliário',
+                    players: [2, 8],
+                    owner: {
+                        name: 'Caioba',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 5.0,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                }
+            ]
+        );
+    }
+
+    getMostSearchedGames(): Observable<Array<Game>> {
+        return Observable.of(
+            [
+                <Game>{
+                    id: '1',
+                    name: 'Arcadia',
+                    players: [4, 8],
+                    owner: {
+                        name: 'Jorge',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.4,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '2',
+                    name: 'Krosmaster',
+                    players: [3, 6],
+                    owner: {
+                        name: 'Erik',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.8,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '3',
+                    name: 'Truco do Odinha',
+                    players: [2, 4],
+                    owner: {
+                        name: 'Odair',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 4.9,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                },
+                <Game>{
+                    id: '4',
+                    name: 'Banco imobiliário',
+                    players: [2, 8],
+                    owner: {
+                        name: 'Caioba',
+                        email: 'jorgeta@bololo.com',
+                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
+                    },
+                    rating: 5.0,
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
+                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                }
+            ]
+        );
+    }
+
+    newGame(): Observable<InsertedGame> {
+        return Observable.of(
+            <InsertedGame>{ id: '999' }
         );
     }
 }

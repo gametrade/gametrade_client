@@ -14,4 +14,6 @@
     <gametrade-closeable (onClose)='closeInfo()'></gametrade-closeable>
 </div>
 
-<most-searched-games></most-searched-games>
+<gametrade-recommended-games *ngIf="userService.current_user"></gametrade-recommended-games>
+
+<gametrade-most-searched-games></gametrade-most-searched-games>

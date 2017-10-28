@@ -1,32 +1,41 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { GamesService } from '../../services/games/games.service';
+import { GameService } from '../../services/games/games.service';
+import { Game, InsertedGame } from '../../models/game';
 
 @Component({
-    selector: 'app-games',
+    selector: 'gametrade-games',
     templateUrl: './games.component.html',
     styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-    public games: Array<any>;
+    public games: Array<Game>;
 
-    constructor(private gamesService: GamesService, private cd: ChangeDetectorRef) { }
+    constructor(private gameService: GameService, private cd: ChangeDetectorRef) { }
 
     ngOnInit() {
-        this.getGames();
+        this.getMyGames();
     }
 
-    getGames() {
-        this.gamesService.getGames().subscribe(
-            games => {
+    getMyGames() {
+        this.gameService.getMyGames().subscribe(
+            (games: Array<Game>) => {
                 this.games = games;
             },
-            error => {
+            (error: Error) => {
                 console.log(error);
             }
         );
     }
 
     newGame() {
-        
+       this.gameService.newGame().subscribe(
+           (insertedGame: InsertedGame) => {
+               console.log(insertedGame);
+           },
+           (error: Error) => {
+               console.log(error);
+           }
+       );
+        return null;
     }
 }

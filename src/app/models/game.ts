@@ -25,3 +25,7 @@ export class Game {
     description: string = undefined;
     thumbnail: string = undefined;
 }
+
+export class InsertedGame {
+    id: string = undefined;
+}

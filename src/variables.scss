@@ -1,14 +1,22 @@
+// Imports
 @import '~@angular/material/theming';
 @import 'theme.scss';
 
+// Gutter size
 $gutter-1: 8px;
 $gutter-2: 16px;
 $gutter-3: 24px;
 $gutter-4: 32px;
 
+// Base colors
 $primary-color: mat-color($gametrade-app-primary);
 $accent-color: mat-color($gametrade-app-accent);
 
+// Lighter colors
+$primary-color-lighter: #EDE7F6;
+$accent-color-lighter: #E0F2F1;
+
+// Base text colors
 $primary-text-color: #FFFFFF;
 $accent-text-color: #FFFFFF;
 

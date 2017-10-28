@@ -1,71 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/game';
+import { GameService } from '../../services/games/games.service';
 
 @Component({
-    selector: 'most-searched-games',
+    selector: 'gametrade-most-searched-games',
     templateUrl: './most-searched-games.component.html',
     styleUrls: ['./most-searched-games.component.scss']
 })
 export class MostSearchedGamesComponent implements OnInit {
-    public mostSearchedGames: Array<Game>; 
+    public most_searched_games: Array<Game>;
 
-    constructor() { }
+    constructor(private gameService: GameService) { }
 
     ngOnInit() {
-        this.mostSearchedGames = [
-            <Game> {
-                id: '1',
-                name: 'Arcadia',
-                players: [4, 8],
-                owner: {
-                    name: 'Jorge',
-                    email: 'jorgeta@bololo.com',
-                    photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                },
-                rating: 4.4,
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.',
-                thumbnail: 'http://lorempixel.com/800/450/nature/'
+        this.gameService.getMostSearchedGames().subscribe(
+            (mostSearchedGames: Array<Game>) => {
+                this.most_searched_games = mostSearchedGames;
             },
-            <Game> {
-                id: '2',
-                name: 'Krosmaster',
-                players: [3, 6],
-                owner: {
-                    name: 'Erik',
-                    email: 'jorgeta@bololo.com',
-                    photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                },
-                rating: 4.8,
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.',
-                thumbnail: 'http://lorempixel.com/800/450/nature/'
-            },
-            <Game> {
-                id: '3',
-                name: 'Truco do Odinha',
-                players: [2, 4],
-                owner: {
-                    name: 'Odair',
-                    email: 'jorgeta@bololo.com',
-                    photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                },
-                rating: 4.9,
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.',
-                thumbnail: 'http://lorempixel.com/800/450/nature/'
-            },
-            <Game> {
-                id: '4',
-                name: 'Banco imobiliário',
-                players: [2, 8],
-                owner: {
-                    name: 'Caioba',
-                    email: 'jorgeta@bololo.com',
-                    photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                },
-                rating: 5.0,
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.',
-                thumbnail: 'http://lorempixel.com/800/450/nature/'
+            (error: Error) => {
+                console.log(error);
             }
-        ];
+        );
     }
-
 }

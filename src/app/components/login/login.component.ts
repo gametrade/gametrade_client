@@ -5,7 +5,7 @@ import { UserService } from '../../services/user/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'gt-login',
+    selector: 'gametrade-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
@@ -27,28 +27,36 @@ export class LoginComponent implements OnInit {
     }
 
     sendLogin() {
-        let formValue = this.loginForm.value;
+        const formValue = this.loginForm.value;
 
         this.userService.postLogin(formValue.email, formValue.password).subscribe(
             (success: boolean) => {
-                if (success)
+                if (success) {
                     this.router.navigate(['/home']);
+                }
             }
-        )
+        );
     }
 
     checkErrors(formControlName: string): string {
-        let formControl = this.loginForm.get(formControlName);
+        const formControl = this.loginForm.get(formControlName);
 
         if (formControl.errors) {
             if (formControl.errors.required) {
-                if (formControlName === 'email') return 'É necessário informar o e-mail.';
-                else return 'É necessário informar a senha.';
+                if (formControlName === 'email') {
+                    return 'É necessário informar o e-mail.';
+                } else {
+                    return 'É necessário informar a senha.';
+                }
             }
 
-            if (formControl.errors.email) return 'É necessário informar um e-mail válido.'
-            if (formControl.errors.minLength) return 'A senha é muito curta.'
-        };
+            if (formControl.errors.email) {
+                return 'É necessário informar um e-mail válido.';
+            }
+            if (formControl.errors.minLength) {
+                return 'A senha é muito curta.';
+            }
+        }
     }
 
     goBack() {

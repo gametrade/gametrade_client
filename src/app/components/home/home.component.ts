@@ -1,4 +1,11 @@
+//#region Imports
+// Core
 import { Component, OnInit } from '@angular/core';
+
+// Services
+import { UserService } from '../../services/user/user.service';
+
+//#endregion
 
 @Component({
     selector: 'gametrade-home',
@@ -7,14 +14,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
     public hasInfo: boolean;
-    
-    constructor() { }
+
+    constructor(private userService: UserService) { }
 
     ngOnInit() {
-        let localHasInfo = JSON.parse(localStorage.getItem('hasInfo'));
+        const localHasInfo = JSON.parse(localStorage.getItem('hasInfo'));
         this.hasInfo = (localHasInfo !== undefined && localHasInfo !== null) ? localHasInfo : true;
     }
 
+    // Função que fecha o jumbotron de informações
     closeInfo() {
         this.hasInfo = false;
         localStorage.setItem('hasInfo', JSON.stringify(false));

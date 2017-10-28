@@ -1,28 +1,13 @@
 # Gametrade
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+Gametrade é uma plataforma para reserva e aluguel de jogos de mesa como RPGs, TCG e miniaturas.
 
-## Development server
+A aplicação cliente é desenvolvida utilizando Angular, consumindo uma [API REST](https://github.com/gametrade/gametrade_api),
+desenvolvida em Ruby com o framework Rails.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Os pacotes utilizados são:
+- [Angular CLI](https://github.com/angular/angular-cli): Interface de linha de comando para aplicações Angular; 
+- [Angular Material](https://github.com/angular/material2): componentes de [Material Design](https://material.io) para Angular 2;
+- [Md2](https://github.com/Promact/md2): outros componentes de Material Design para Angular 2;
+- [Flex layout](https://github.com/angular/flex-layout): API para implementação de layout [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes);
+- [Angular 2 Token](https://github.com/neroniaky/angular2-token): serviço de autenticação baseado em token;
