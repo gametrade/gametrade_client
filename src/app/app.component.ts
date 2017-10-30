@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
     //#region Constructor
     constructor(private userService: UserService, private tokenService: Angular2TokenService) {
         this.tokenService.init({
-            apiPath: 'http://localhost:3000/api/v1',
-            signInRedirect: '/',
+            apiPath: 'https://afternoon-sands-74647.herokuapp.com/',
+            signInRedirect: '/login',
             globalOptions: {
                 headers: {
                     'Content-Type': 'application/json',

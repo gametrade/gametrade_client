@@ -28,7 +28,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.4,
+                    rating: 4.43,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -42,7 +42,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.8,
+                    rating: 4.83,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -56,7 +56,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.9,
+                    rating: 4.93,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -70,7 +70,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 5.0,
+                    rating: 5.03,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -91,7 +91,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.4,
+                    rating: 4.43,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -105,7 +105,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.8,
+                    rating: 4.83,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -119,7 +119,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.9,
+                    rating: 4.93,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -133,7 +133,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 5.0,
+                    rating: 3.27,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -142,7 +142,7 @@ export class GameService {
         );
     }
 
-    getMostSearchedGames(): Observable<Array<Game>> {
+    getMostAccessedGames(): Observable<Array<Game>> {
         return Observable.of(
             [
                 <Game>{
@@ -154,7 +154,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.4,
+                    rating: 4.43,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -168,7 +168,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.8,
+                    rating: 4.83,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -182,7 +182,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 4.9,
+                    rating: 4.93,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'
@@ -196,7 +196,7 @@ export class GameService {
                         email: 'jorgeta@bololo.com',
                         photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
                     },
-                    rating: 5.0,
+                    rating: 3.03,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
                     thumbnail: 'http://lorempixel.com/800/450/nature/'

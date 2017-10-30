@@ -27,13 +27,13 @@
                 </mat-form-field>
 
                 <div class='row' fxFlex='100' fxLayout='row'>
-                    <button fxFlex='100' mat-raised-button color='accent' [disabled]='(!loginForm.dirty || !loginForm.valid)' (click)='sendLogin()'>ENTRAR</button>
+                    <button fxFlex='100' mat-raised-button color='accent' [disabled]='(!loginForm.dirty || !loginForm.valid)' (click)='signIn()'>ENTRAR</button>
                 </div>
 
                 <div class='separator'></div>
 
                 <div class='row' fxFlex='100' fxLayout='row' fxLayoutGap="16px">
-                    <a routerLink="/forgot-password" fxFlex='calc(65% - 8px)' mat-button color='primary' (click)='forgotPassword()'>ESQUECI MINHA SENHA</a>
+                    <a routerLink="/forgot-password" fxFlex='calc(65% - 8px)' mat-button color='primary'>ESQUECI MINHA SENHA</a>
                 </div>
             </form>
         </mat-card-content>

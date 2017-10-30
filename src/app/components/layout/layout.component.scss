@@ -3,24 +3,18 @@
 @import '~styles.scss';
 
 .mat-toolbar.gt-toolbar {
-    // background-color: white;
-    border-bottom: 3px solid $accent-color;
-    // color: mat-color($gametrade-app-accent);
+    background-color: $primary-color;
+    border-bottom: 1px solid #D8D8D8;
+    color: $primary-text-color;
     padding: 0 $gutter-3;
 
     .gt-logo {
-        // color: mat-color($gametrade-app-accent);
-        font-size: 1.5em;
         flex: 1 1 10%;
 
-        a:before {
-            content: 'GT';
-
-            @media screen and (min-width: 840px) {
-                & {
-                    content: 'Gametrade';
-                }
-            }
+        a {
+            $size: 32px;
+            font-size: $size;
+            line-height: $size;
         }
     }
 
@@ -37,6 +31,7 @@
         height: 100%;
 
         a {
+            border-radius: 3px;
             padding: $gutter-1;
             margin: 0 $gutter-1;
             text-transform: uppercase;
@@ -51,25 +46,8 @@
             }
 
             &:hover {
-                &:nth-child(1) {
-                    color: #fff;
-                    background-color: #2196F3;
-                }
-
-                &:nth-child(2) {
-                    color: #fff;
-                    background-color: #E91E63;
-                }
-
-                &:nth-child(3) {
-                    color: #fff;
-                    background-color: #FF5722;
-                }
-
-                &:nth-child(4) {
-                    color: #fff;
-                    background-color: #9C27B0;
-                }
+                color: $primary-color;
+                background-color: $primary-text-color;
             }
         }
     }

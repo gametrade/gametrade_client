@@ -1,24 +1,11 @@
 <mat-card class='game-card'>
-  <mat-card-header>
-    <mat-card-title>{{game.owner.name}}</mat-card-title>
+    <img mat-card-image src='{{game.thumbnail}}' alt='{{game.name}} thumbnail'>
 
-    <img src='{{game.owner.photo}}' alt='' mat-card-avatar>
-  </mat-card-header>
+    <mat-card-content>
+        <mat-card-title>{{game.name}}</mat-card-title>
 
-  <img mat-card-image src='{{game.thumbnail}}' alt='{{game.name}} thumbnail'>
+        <p fxHide.lt-md='true' class='mat-body-1'>{{game.description}}</p>
 
-  <mat-card-content>
-    <mat-card-title>{{game.name}}</mat-card-title>
-    <p fxHide.lt-md='true' class='mat-body-1'>{{game.description}}</p>
-    <div class='mat-caption' fxLayout='row' fxLayoutAlign='start center'>
-      <mat-icon>
-        <i class='material-icons'>star</i>
-      </mat-icon>
-      <span>{{game.rating}}</span>
-    </div>
-  </mat-card-content>
-
-  <mat-card-actions>
-      <button (click)='readMore()' mat-button>Ver detalhes</button>
-  </mat-card-actions>
+        <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+    </mat-card-content>
 </mat-card>

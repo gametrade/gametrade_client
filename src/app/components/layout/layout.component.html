@@ -1,24 +1,29 @@
 <ng-container>
-  <mat-toolbar class='gt-toolbar' color="primary">
-    <span class='gt-logo'>
-      <a routerLink='/'></a>
-    </span>
+    <mat-toolbar class='gt-toolbar'>
+        <div class='gt-logo'>
+            <a fxHide fxShow.gt-sm="true" routerLink='/'>Gametrade</a>
+            <a fxHide fxShow.lt-md="true" routerLink='/'>GT</a>
+        </div>
 
-    <div class='space'></div>
+        <div class='space'></div>
 
-    <div class='actions' fxLayout='row' fxLayoutAlign='space-around center' fxHide.lt-sm='true'>
-      <a fxFlex routerLink='/help'>Ajuda</a>
-      <a fxFlex *ngIf='!userService.current_user' routerLink='/sign-up'>Cadastre-se</a>
-      <a fxFlex *ngIf='!userService.current_user' routerLink='/login'>Entrar</a>
-      
-      <a fxFlex *ngIf='userService.current_user' routerLink=''>Olá, {{userService.current_user.name}}</a>
-      <!-- <img width='32' height='32' [src]='userService.current_user.photo' alt=''> -->
-      <a fxFlex *ngIf='userService.current_user' routerLink='/games'>Meus jogos</a>
-      <a fxFlex *ngIf='userService.current_user' (click)='userService.deleteLogin()'>Sair</a>
-    </div>
-  </mat-toolbar>
+        <div class='actions' fxLayout='row' fxLayoutAlign='space-around center' fxHide.lt-sm='true'>
+            <a fxFlex routerLink='/help'>Ajuda</a>
 
-  <router-outlet></router-outlet>
+            <div class="anonymous-area">
+                <a fxFlex *ngIf='!userService.current_user' routerLink='/sign-up'>Cadastre-se</a>
+                <a fxFlex *ngIf='!userService.current_user' routerLink='/login'>Entrar</a>
+            </div>
 
-  <gametrade-footer></gametrade-footer>
+            <div class="user-area">
+                <a fxFlex *ngIf='userService.current_user' routerLink=''>Olá, {{userService.current_user.name}}</a>
+                <a fxFlex *ngIf='userService.current_user' routerLink='/games'>Meus jogos</a>
+                <a fxFlex *ngIf='userService.current_user' (click)='tokenService.signOut()'>Sair</a>
+            </div>
+        </div>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+    <gametrade-footer></gametrade-footer>
 </ng-container>

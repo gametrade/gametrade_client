@@ -5,10 +5,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+
+// Layout Modules
 import { Md2DatepickerModule, MdNativeDateModule } from 'md2';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpModule } from '@angular/http';
 import { Angular2TokenService } from 'angular2-token';
+
+// Style Modules
+import { DragScrollModule } from 'angular2-drag-scroll';
+import { StarRatingModule } from 'angular-star-rating';
 
 // Material import
 import { MATERIAL_MODULES } from './shared/material/material';
@@ -27,7 +33,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GamesComponent } from './components/games/games.component';
 
 // Information Components
-import { MostSearchedGamesComponent } from './components/most-searched-games/most-searched-games.component';
+import { MostAccessedGamesComponent } from './components/most-accessed-games/most-accessed-games.component';
 import { RecommendedGamesComponent } from './components/recommended-games/recommended-games.component';
 
 // Layout Components
@@ -37,6 +43,7 @@ import { GametradeFooterComponent } from './components/gametrade-footer/gametrad
 // Shared Components
 import { CloseableComponent } from './shared/components/closeable/closeable.component';
 import { GameCardComponent } from './shared/components/game-card/game-card.component';
+import { SearchFieldComponent } from './shared/components/search-field/search-field.component';
 
 //#endregion
 
@@ -49,10 +56,11 @@ import { GameCardComponent } from './shared/components/game-card/game-card.compo
         GamesComponent,
         NotFoundComponent,
         GametradeFooterComponent,
-        MostSearchedGamesComponent,
+        MostAccessedGamesComponent,
         RecommendedGamesComponent,
         CloseableComponent,
-        GameCardComponent
+        GameCardComponent,
+        SearchFieldComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +72,8 @@ import { GameCardComponent } from './shared/components/game-card/game-card.compo
         AppRoutingModule,
         HttpModule,
         ReactiveFormsModule,
+        DragScrollModule,
+        StarRatingModule.forRoot(),
         MATERIAL_MODULES
     ],
     entryComponents: [LoginComponent],

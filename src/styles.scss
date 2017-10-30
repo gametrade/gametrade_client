@@ -1,6 +1,6 @@
 // Imports
 @import 'variables.scss';
-
+@import "~angular-star-rating/assets/scss/star-rating";
 
 /* ************************************************************************************************************************************** */
 
@@ -15,7 +15,7 @@ body {
 }
 
 body {
-    background-color: $primary-color-lighter;
+    background-color: #F7F7F7;
 }
 
 a,

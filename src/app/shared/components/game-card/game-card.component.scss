@@ -8,31 +8,26 @@
         margin-bottom: $gutter-3;
     }
 
+    &:hover {
+        @include box_shadow(3);
+    }
+
     @include box_shadow();
 
-    .mat-card-image {
-        margin-top: $gutter-2;
-    }
-    
     .content {
-      padding: $gutter-2;
+        padding: $gutter-2;
+    }
+
+    .actions {
+        padding: $gutter-1;
     }
     
-    .actions {
-      padding: $gutter-1;
+    .mat-card-image {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
     }
+}
 
-    .mat-caption {
-        mat-icon {
-            $size: 20px;
-
-            width: $size;
-            height: $size;
-            margin-right: $gutter-1;
-
-            .material-icons {
-                font-size: $size;
-            }
-        }
-    }
-  }
+:host /deep/ .rating {
+    outline: none;
+}

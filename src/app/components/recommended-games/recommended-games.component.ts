@@ -9,7 +9,7 @@ import { GameService } from '../../services/games/games.service';
 })
 export class RecommendedGamesComponent implements OnInit {
 
-    private recommended_games: Array<Game>;
+    public recommended_games: Array<Game>;
 
     constructor(private gameService: GameService) { }
 

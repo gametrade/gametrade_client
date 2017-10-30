@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
     selector: 'gametrade-login',
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
 
     public loginForm: FormGroup;
 
-    constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) {
+    constructor(
+        private tokenService: Angular2TokenService,
+        private userService: UserService,
+        private router: Router,
+        private formBuilder: FormBuilder) {
         this.loginForm = this.formBuilder.group(
             {
                 email: [null, Validators.compose([Validators.required, Validators.email])],
@@ -26,14 +31,16 @@ export class LoginComponent implements OnInit {
         this.userService.current_user = JSON.parse(localStorage.getItem('current_user'));
     }
 
-    sendLogin() {
+    signIn() {
         const formValue = this.loginForm.value;
 
-        this.userService.postLogin(formValue.email, formValue.password).subscribe(
-            (success: boolean) => {
-                if (success) {
-                    this.router.navigate(['/home']);
-                }
+        this.tokenService.signIn(formValue).subscribe(
+            (res) => {
+                const url = localStorage.getItem('redirectTo') || '/home';
+                this.router.navigateByUrl(url);
+            },
+            (error: Error) => {
+                console.log(error);
             }
         );
     }

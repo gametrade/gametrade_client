@@ -15,7 +15,7 @@ import { UserService } from '../../services/user/user.service';
 export class HomeComponent implements OnInit {
     public hasInfo: boolean;
 
-    constructor(private userService: UserService) { }
+    constructor(public userService: UserService) { }
 
     ngOnInit() {
         const localHasInfo = JSON.parse(localStorage.getItem('hasInfo'));

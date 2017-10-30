@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MostSearchedGamesComponent } from './most-searched-games.component';
+import { MostAccessedGamesComponent } from './most-accessed-games.component';
 
-describe('MostSearchedGamesComponent', () => {
-  let component: MostSearchedGamesComponent;
-  let fixture: ComponentFixture<MostSearchedGamesComponent>;
+describe('MostAccessedGamesComponent', () => {
+  let component: MostAccessedGamesComponent;
+  let fixture: ComponentFixture<MostAccessedGamesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MostSearchedGamesComponent ]
+      declarations: [ MostAccessedGamesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostSearchedGamesComponent);
+    fixture = TestBed.createComponent(MostAccessedGamesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
