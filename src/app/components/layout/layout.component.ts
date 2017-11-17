@@ -1,5 +1,19 @@
+//#region Imports
+// Angular
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user/user.service';
+import { Angular2TokenService } from 'angular2-token';
+import { FormControl } from '@angular/forms';
+
+// RxJS
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/from';
+
+// Services
+import { GameService } from '../../services/games/games.service';
+import { Game } from '../../models/game';
+
+//#endregion
 
 @Component({
     selector: 'gametrade-layout',
@@ -8,7 +22,30 @@ import { UserService } from '../../services/user/user.service';
 })
 export class LayoutComponent implements OnInit {
 
-    constructor(public userService: UserService) { }
+    searchText: FormControl = new FormControl();
+    filteredOptions: any;
 
-    ngOnInit() { }
+    constructor(
+        public tokenService: Angular2TokenService,
+        private gameService: GameService) { }
+
+    ngOnInit() {
+        this.filteredOptions = this.searchText.valueChanges
+            .startWith(null)
+            .switchMap(txt => this.filter(txt));
+    }
+
+    filter(val: string) {
+        return val ? this.getGames(val) : Observable.from([]);
+    }
+
+    extractData(games: Game[]) {
+        return games.map(
+            (game: Game) => game.name
+        );
+    }
+
+    getGames(name: string) {
+        return this.gameService.getGames(name).map(this.extractData);
+    }
 }

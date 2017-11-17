@@ -1,49 +1,75 @@
 //#region Imports
-// Core Modules
+
+//#region  Core Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
-// Layout Modules
+//#endregion
+
+//#region Layout Modules
 import { Md2DatepickerModule, MdNativeDateModule } from 'md2';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Angular2TokenService } from 'angular2-token';
 
-// Style Modules
-import { DragScrollModule } from 'angular2-drag-scroll';
+//#endregion
+
+//#region Style Modules
 import { StarRatingModule } from 'angular-star-rating';
 
-// Material import
+//#endregion
+
+//#region Material import
 import { MATERIAL_MODULES } from './shared/material/material';
 
-// Services
+//#endregion
+
+//#region Services
 import { SERVICES } from './services/services';
 
-// Routes
+//#endregion
+
+//#region Routes
 import { AppRoutingModule } from './routes/app.routing';
 
-// Pages Components
+//#endregion
+
+//#region Pages Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { GamesComponent } from './components/games/games.component';
 
-// Information Components
+//#endregion
+
+//#region User Components
+import { LoginComponent } from './components/user/login/login.component';
+import { SignUpComponent } from './components/user/sign-up/sign-up.component';
+
+//#endregion
+
+//#region Information Components
 import { MostAccessedGamesComponent } from './components/most-accessed-games/most-accessed-games.component';
 import { RecommendedGamesComponent } from './components/recommended-games/recommended-games.component';
 
-// Layout Components
+//#endregion
+
+//#region Layout Components
 import { LayoutComponent } from './components/layout/layout.component';
 import { GametradeFooterComponent } from './components/gametrade-footer/gametrade-footer.component';
 
-// Shared Components
+//#endregion
+
+//#region Shared Components
 import { CloseableComponent } from './shared/components/closeable/closeable.component';
 import { GameCardComponent } from './shared/components/game-card/game-card.component';
 import { SearchFieldComponent } from './shared/components/search-field/search-field.component';
+import { GameDetailsComponent } from './components/games/game-details/game-details.component';
+import { LoadingOverlayComponent } from './shared/components/loading-overlay/loading-overlay.component';
+import { CustomImageComponent } from './shared/components/custom-image/custom-image.component';
 
 //#endregion
 
@@ -52,6 +78,7 @@ import { SearchFieldComponent } from './shared/components/search-field/search-fi
         AppComponent,
         LayoutComponent,
         LoginComponent,
+        SignUpComponent,
         HomeComponent,
         GamesComponent,
         NotFoundComponent,
@@ -60,7 +87,10 @@ import { SearchFieldComponent } from './shared/components/search-field/search-fi
         RecommendedGamesComponent,
         CloseableComponent,
         GameCardComponent,
-        SearchFieldComponent
+        SearchFieldComponent,
+        GameDetailsComponent,
+        LoadingOverlayComponent,
+        CustomImageComponent
     ],
     imports: [
         BrowserModule,
@@ -72,7 +102,7 @@ import { SearchFieldComponent } from './shared/components/search-field/search-fi
         AppRoutingModule,
         HttpModule,
         ReactiveFormsModule,
-        DragScrollModule,
+        FormsModule,
         StarRatingModule.forRoot(),
         MATERIAL_MODULES
     ],

@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./game-card.component.scss']
 })
 export class GameCardComponent implements OnInit {
-    @Input('game') game: Game
-    
+    @Input('game') game: Game;
+
     constructor(private router: Router) { }
 
     ngOnInit() {
@@ -17,6 +17,6 @@ export class GameCardComponent implements OnInit {
 
     // Navigates to the game page
     readMore() {
-        this.router.navigate([`/games/${this.game.id}`]);
+        this.router.navigate(['/games', this.game.id]);
     }
 }

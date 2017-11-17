@@ -1,8 +1,19 @@
 export class User {
+    uid: string;
+    name: string;
+    photo: string;
+    email: string;
+}
 
-    constructor(
-        public name: string = undefined,
-        public photo: string = undefined,
-        public email: string = undefined
-    ) { }
+export class SignUpForm {
+    email: string;
+    passwords: {
+        password: string,
+        passwordConfirmation: string
+    };
+}
+
+export class LoginForm {
+    email: string;
+    password: string;
 }

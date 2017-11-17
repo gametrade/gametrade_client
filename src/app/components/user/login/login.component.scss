@@ -1,18 +1,18 @@
 @import '~styles.scss';
 
 .login-wrapper {
-    background-color: $accent-color-lighter;
+    background-color: $primary-color-lighter;
     height: calc(100% - 65px);
 }
 
 .mat-toolbar.gametrade-toolbar {
     background-color: white;
     border-bottom: 1px solid #D8D8D8;
-    color: $accent-color;
+    color: $primary-color;
     padding: 0 $gutter-3;
 
     .gametrade-logo {
-        color: $accent-color;
+        color: $primary-color;
         font-size: 1.5em;
         flex: 1 1 10%;
 

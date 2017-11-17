@@ -3,23 +3,70 @@
 @import '~styles.scss';
 
 .mat-toolbar.gt-toolbar {
-    background-color: $primary-color;
-    border-bottom: 1px solid #D8D8D8;
-    color: $primary-text-color;
+    background-color: $bg-color;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .34);
+    color: $primary-color;
     padding: 0 $gutter-3;
+    position: fixed;
+    z-index: 99;
 
     .gt-logo {
-        flex: 1 1 10%;
+        margin-right: $gutter-3;
 
         a {
             $size: 32px;
             font-size: $size;
             line-height: $size;
+
+            position: relative;
+            top: 5px;
         }
     }
 
     .search {
         flex: 1 1 auto;
+
+        md-icon {
+            color: lighten($text-color, 10%);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 24px;
+            margin-left: 8px;
+        }
+
+        input {
+            border: none;
+            border-radius: 3px;
+            background-color: transparent;
+            color: $text-color;
+            
+            font-size: 16px;
+            
+            padding: $gutter-1;
+            padding-left: 40px;
+
+            width: 100%;
+            transition: all .175s;
+
+            &:hover {
+                @include box_shadow();
+            }
+
+            &:focus {
+                border-bottom: 1px solid rgba($gray, .14);
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+                outline: none;
+                @include box_shadow(2);
+            }
+
+            &:hover,
+            &:focus {
+                background-color: white;
+            }
+        }
     }
 
     .space {
@@ -51,4 +98,10 @@
             }
         }
     }
+}
+
+.main-content {
+    position: fixed;
+    top: 64px;
+    width: 100%;
 }

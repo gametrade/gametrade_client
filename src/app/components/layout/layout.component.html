@@ -1,29 +1,43 @@
 <ng-container>
     <mat-toolbar class='gt-toolbar'>
         <div class='gt-logo'>
-            <a fxHide fxShow.gt-sm="true" routerLink='/'>Gametrade</a>
-            <a fxHide fxShow.lt-md="true" routerLink='/'>GT</a>
+            <!-- <a fxHide fxShow.gt-sm="true" routerLink='/'>Gametrade</a> -->
+            <a routerLink='/'>GT</a>
+            <!--fxHide fxShow.lt-md="true"-->
         </div>
 
-        <div class='space'></div>
+        <div class='search'>
+            <md-icon>
+                <i class="material-icons">search</i>
+            </md-icon>
+            <input type="text" [formControl]="searchText" [matAutocomplete]="auto" placeholder="Tente 'Arcadia'">
+
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{ option }}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+
+        <div class="space"></div>
 
         <div class='actions' fxLayout='row' fxLayoutAlign='space-around center' fxHide.lt-sm='true'>
             <a fxFlex routerLink='/help'>Ajuda</a>
 
             <div class="anonymous-area">
-                <a fxFlex *ngIf='!userService.current_user' routerLink='/sign-up'>Cadastre-se</a>
-                <a fxFlex *ngIf='!userService.current_user' routerLink='/login'>Entrar</a>
+                <a fxFlex *ngIf='!tokenService.userSignedIn()' routerLink='/sign-up'>Cadastre-se</a>
+                <a fxFlex *ngIf='!tokenService.userSignedIn()' routerLink='/login'>Entrar</a>
             </div>
 
             <div class="user-area">
-                <a fxFlex *ngIf='userService.current_user' routerLink=''>Olá, {{userService.current_user.name}}</a>
-                <a fxFlex *ngIf='userService.current_user' routerLink='/games'>Meus jogos</a>
-                <a fxFlex *ngIf='userService.current_user' (click)='tokenService.signOut()'>Sair</a>
+                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink=''>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
+                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/games'>Meus jogos</a>
+                <a fxFlex *ngIf='tokenService.userSignedIn()' (click)='tokenService.signOut()'>Sair</a>
             </div>
         </div>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
-
-    <gametrade-footer></gametrade-footer>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
 </ng-container>

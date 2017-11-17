@@ -1,9 +1,11 @@
 @import '../../../styles.scss';
 
 .gametrade-footer {
-    background-color: $primary-color;
-    color: $primary-text-color;
-    
+    background-color: white;
+    color: $text-color;
+
+    box-shadow: 0 -1px 8px rgba($primary-color, .14);
+
     min-height: 150px;
 
     margin-bottom: 0;

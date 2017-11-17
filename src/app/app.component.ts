@@ -3,7 +3,6 @@
 import { Component, OnInit } from '@angular/core';
 
 // Services
-import { UserService } from './services/user/user.service';
 import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
@@ -16,7 +15,7 @@ import { Angular2TokenService } from 'angular2-token';
 export class AppComponent implements OnInit {
 
     //#region Constructor
-    constructor(private userService: UserService, private tokenService: Angular2TokenService) {
+    constructor(private tokenService: Angular2TokenService) {
         this.tokenService.init({
             apiPath: 'https://afternoon-sands-74647.herokuapp.com/',
             signInRedirect: '/login',
@@ -33,7 +32,9 @@ export class AppComponent implements OnInit {
 
     //#region OnInit
     ngOnInit() {
-        this.userService.current_user = JSON.parse(localStorage.getItem('current_user'));
+        if (this.tokenService.userSignedIn()) {
+            this.tokenService.validateToken();
+        }
     }
 
     //#endregion

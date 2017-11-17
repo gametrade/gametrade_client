@@ -1,0 +1,24 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+
+    .spinner-container {
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 3px 8px 5px rgba(0, 0, 0, .34);
+
+        $size: 150px;
+        height: $size;
+        width: $size;
+    }
+}

@@ -1,10 +1,8 @@
-<mat-card class='game-card'>
-    <img mat-card-image src='{{game.thumbnail}}' alt='{{game.name}} thumbnail'>
+<mat-card class='game-card' (click)="readMore()">
+    <gametrade-custom-image [src]='game.thumbnail' [alt]='game.name'></gametrade-custom-image>
 
     <mat-card-content>
         <mat-card-title>{{game.name}}</mat-card-title>
-
-        <p fxHide.lt-md='true' class='mat-body-1'>{{game.description}}</p>
 
         <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
     </mat-card-content>

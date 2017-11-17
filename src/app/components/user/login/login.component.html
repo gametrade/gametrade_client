@@ -1,3 +1,5 @@
+<gametrade-loading-overlay></gametrade-loading-overlay>
+
 <mat-toolbar class='gametrade-toolbar'>
     <span class='gametrade-logo'>
     <a routerLink='/'></a>
@@ -15,7 +17,7 @@
         <mat-card-title>Entre com seu e-mail</mat-card-title>
 
         <mat-card-content>
-            <form [formGroup]='loginForm' fxLayout='row' fxLayoutWrap='wrap'>
+            <form [formGroup]='loginForm' (ngSubmit)="onSubmit(loginForm)" fxLayout='row' fxLayoutWrap='wrap'>
                 <mat-form-field color='accent' fxFlex='100'>
                     <input matInput formControlName='email' placeholder='E-mail' autofocus>
                     <mat-error *ngIf='!loginForm.controls.email.valid'>{{checkErrors('email')}}</mat-error>
@@ -27,7 +29,7 @@
                 </mat-form-field>
 
                 <div class='row' fxFlex='100' fxLayout='row'>
-                    <button fxFlex='100' mat-raised-button color='accent' [disabled]='(!loginForm.dirty || !loginForm.valid)' (click)='signIn()'>ENTRAR</button>
+                    <button type="submit" fxFlex='100' mat-raised-button color='accent' [disabled]='(!loginForm.dirty || !loginForm.valid)'>ENTRAR</button>
                 </div>
 
                 <div class='separator'></div>

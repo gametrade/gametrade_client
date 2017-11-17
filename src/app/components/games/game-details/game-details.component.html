@@ -1,0 +1,18 @@
+<div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}"></div>
+
+<div class="container">
+    <h1 class="underline">{{game.name}}</h1>
+
+    <div fxLayout='row' fxLayoutGap="16px">
+
+        <div class="owner" fxFlex="calc(40% - 8px)">
+            <p class="mat-headline">{{game.owner.name}}</p>
+        </div>
+    </div>
+
+    <p class='mat-body-1'>
+        {{game.description}}
+    </p>
+
+    <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+</div>

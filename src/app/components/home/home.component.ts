@@ -3,7 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Services
-import { UserService } from '../../services/user/user.service';
+import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
 
@@ -15,7 +15,7 @@ import { UserService } from '../../services/user/user.service';
 export class HomeComponent implements OnInit {
     public hasInfo: boolean;
 
-    constructor(public userService: UserService) { }
+    constructor(public tokenService: Angular2TokenService) { }
 
     ngOnInit() {
         const localHasInfo = JSON.parse(localStorage.getItem('hasInfo'));

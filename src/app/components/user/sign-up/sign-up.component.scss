@@ -1,0 +1,98 @@
+@import '~styles.scss';
+
+.sign-up-wrapper {
+    background-color: $primary-color-lighter;
+    height: calc(100% - 65px);
+}
+
+.mat-toolbar.gametrade-toolbar {
+    background-color: white;
+    border-bottom: 1px solid #D8D8D8;
+    color: $primary-color;
+    padding: 0 $gutter-3;
+
+    .gametrade-logo {
+        color: $primary-color;
+        font-size: 1.5em;
+        flex: 1 1 10%;
+
+        a:before {
+            content: 'GT';
+
+            @media screen and (min-width: 840px) {
+                & {
+                    content: 'Gametrade';
+                }
+            }
+        }
+    }
+
+    .search {
+        flex: 1 1 auto;
+    }
+
+    .space {
+        flex: 1 1 auto;
+    }
+
+    .actions {
+        font-size: 16px;
+        height: 100%;
+
+        a {
+            padding: $gutter-1;
+            margin: 0 $gutter-1;
+            text-transform: uppercase;
+            transition: all .125s;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                &:first-child {
+                    color: #fff;
+                    background-color: #2196F3;
+                }
+
+                &:nth-child(2) {
+                    color: #fff;
+                    background-color: #E91E63;
+                }
+
+                &:last-child {
+                    color: #fff;
+                    background-color: #FF5722;
+                }
+            }
+        }
+    }
+}
+
+.back-button {
+    $size: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    height: $size;
+    width: $size;
+    position: absolute;
+
+    top: 50%;
+    left: (33% / 2);
+
+    transition: background-color .175s ease-in;
+    transform: translate(-50%, -50%);
+
+    mat-icon {
+        height: 24px;
+        width: 24px;
+    }
+
+    &:hover {
+        background-color: $light-gray;
+    }
+}
