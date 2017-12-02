@@ -38,4 +38,9 @@
 
 :host /deep/ .rating {
     outline: none;
+    display: inline-block;
+
+    .star-container {
+        margin: 0;
+    }
 }
