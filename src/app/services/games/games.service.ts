@@ -25,7 +25,7 @@ const games: Game[] = [
         rating: 4.43,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/nature/'
+        thumbnail: 'http://via.placeholder.com/800x450'
     },
     <Game>{
         id: '2',
@@ -39,7 +39,7 @@ const games: Game[] = [
         rating: 4.83,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/transport/'
+        thumbnail: 'http://via.placeholder.com/800x450'
     },
     <Game>{
         id: '3',
@@ -53,7 +53,7 @@ const games: Game[] = [
         rating: 4.93,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/nightlife/'
+        thumbnail: 'http://via.placeholder.com/800x450'
     },
     <Game>{
         id: '4',
@@ -67,7 +67,7 @@ const games: Game[] = [
         rating: 5.03,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/people/'
+        thumbnail: 'http://via.placeholder.com/800x450'
     }
 ];
 
@@ -103,7 +103,7 @@ export class GameService {
                     rating: 4.43,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '2',
@@ -117,7 +117,7 @@ export class GameService {
                     rating: 4.83,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '3',
@@ -131,7 +131,7 @@ export class GameService {
                     rating: 4.93,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '4',
@@ -145,7 +145,7 @@ export class GameService {
                     rating: 3.27,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 }
             ]
         );
@@ -166,7 +166,7 @@ export class GameService {
                     rating: 4.43,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '2',
@@ -180,7 +180,7 @@ export class GameService {
                     rating: 4.83,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '3',
@@ -194,7 +194,7 @@ export class GameService {
                     rating: 4.93,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 },
                 <Game>{
                     id: '4',
@@ -208,7 +208,7 @@ export class GameService {
                     rating: 3.03,
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
+                    thumbnail: 'http://via.placeholder.com/800x450'
                 }
             ]
         );

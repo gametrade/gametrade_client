@@ -1,0 +1,19 @@
+@import '~styles.scss';
+
+.category-card {
+    $size: 150px;
+    background-color: white;
+    height: $size * 1.75;
+    width: $size;
+    
+    .category-icon {
+        width: $size;
+        height: $size;
+    }
+
+    .category-name {
+        font-size: 3em;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}

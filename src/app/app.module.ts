@@ -70,6 +70,8 @@ import { SearchFieldComponent } from './shared/components/search-field/search-fi
 import { GameDetailsComponent } from './components/games/game-details/game-details.component';
 import { LoadingOverlayComponent } from './shared/components/loading-overlay/loading-overlay.component';
 import { CustomImageComponent } from './shared/components/custom-image/custom-image.component';
+import { CategoryCardComponent } from './shared/components/category-card/category-card.component';
+import { CategoryListComponent } from './components/home/category-list/category-list.component';
 
 //#endregion
 
@@ -90,7 +92,9 @@ import { CustomImageComponent } from './shared/components/custom-image/custom-im
         SearchFieldComponent,
         GameDetailsComponent,
         LoadingOverlayComponent,
-        CustomImageComponent
+        CustomImageComponent,
+        CategoryCardComponent,
+        CategoryListComponent
     ],
     imports: [
         BrowserModule,
