@@ -17,7 +17,7 @@ export class CategoryService {
 
     getCategory(id?: number): Observable<Category[]> {
         return Observable.of(categories.filter(
-            (category: Category) => category.id === id
+            (category: Category) => id ? category.id === id : true
         ));
     }
 }

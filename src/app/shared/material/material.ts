@@ -4,7 +4,8 @@ import {
     MatInputModule,
     MatToolbarModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
 } from '@angular/material';
 
 export let MATERIAL_MODULES = [
@@ -13,5 +14,6 @@ export let MATERIAL_MODULES = [
     MatInputModule,
     MatToolbarModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
 ];

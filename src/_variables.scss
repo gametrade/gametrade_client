@@ -1,6 +1,7 @@
 // Imports
 @import '~@angular/material/theming';
 @import 'theme.scss';
+@import url('https://fonts.googleapis.com/css?family=Handlee');
 
 // Gutter size
 $gutter-1: 8px;
@@ -27,6 +28,6 @@ $gray: #607D8B;
 $light-gray: lighten($gray, 20%);
 $dark-gray: darken($gray, 20%);
 
-$font-family: 'Josefin Sans', 'Roboto', sans-serif;
+$font-family: 'Handlee', 'Josefin Sans', 'Roboto', sans-serif;
 
 $bg-color: #FAFAFA;
