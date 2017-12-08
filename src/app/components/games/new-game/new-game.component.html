@@ -1,0 +1,55 @@
+<div class="container new-game-form">
+    <h2 class="mat-headline underline-block">
+        Vamos cadastrar um novo jogo?
+    </h2>
+
+    <mat-horizontal-stepper [linear]="true">
+        <mat-step [stepControl]="newGameForm">
+            <ng-template mdStepLabel>Informações básicas</ng-template>
+            <form [formGroup]="newGameForm" fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
+
+                <mat-form-field fxFlex="100">
+                    <input matInput placeholder="Nome" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <textarea matInput placeholder="Descrição" cols="30" rows="5" formControlName="description"></textarea>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <mat-select placeholder="Tipo" formControlName="game_kind_id">
+                        <mat-option *ngFor="let kind of game_kinds; let i = index" [value]="kind.id || i">
+                            {{kind.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <mat-select placeholder="Categoria" formControlName="category_id">
+                        <mat-option *ngFor="let category of categories; let i = index" [value]="category.id || i">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                {{newGameForm.value | json}}
+
+                <div>
+                    <button mat-button mdStepperNext>Salvar e adicionar fotos</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [optional]="true">
+
+        </mat-step>
+
+        <mat-step>
+            <ng-template mdStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+                <button mat-button mdStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

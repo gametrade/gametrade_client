@@ -1,14 +1,15 @@
 //#region Imports
+
 // Core
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 // Services
-import { Angular2TokenService } from 'angular2-token';
+import { BaseService } from '../base-service/base.service';
 
 // Models
-import { Game, InsertedGame } from '../../models/game';
+import { Game, InsertedGame, GamePayload } from '../../models/game';
 
 //#endregion
 
@@ -74,18 +75,14 @@ const games: Game[] = [
 @Injectable()
 export class GameService {
 
-    constructor(private tokenHttp: Angular2TokenService) { }
+    constructor(private baseService: BaseService) { }
 
-    getMyGames(): Observable<Array<Game>> {
-        return Observable.of(games);
+    getMyGames(): Observable<Game[]> {
+        return this.baseService.GET<Game[]>(`games.json`);
     }
 
     getGames(name: string): Observable<Game[]> {
-        return Observable.of(games).map(
-            (gameList: Game[]) =>
-                gameList.filter((game: Game) =>
-                    game.name.includes(name))
-        );
+        return this.baseService.GET<Game[]>(`games.json?q[name_cont]=${name}`);
     }
 
     getRecommendedGames(): Observable<Array<Game>> {
@@ -151,7 +148,7 @@ export class GameService {
         );
     }
 
-    getMostAccessedGames(): Observable<Array<Game>> {
+    getMostRecentGames(): Observable<Array<Game>> {
         return Observable.of(
             [
                 <Game>{
@@ -215,12 +212,11 @@ export class GameService {
     }
 
     getGame(id: string): Observable<Game> {
-        return Observable.of(games.find((game: Game) => game.id === id));
+        return this.baseService.GET<Game>(`games/${id}.json`);
     }
 
-    newGame(): Observable<InsertedGame> {
-        return Observable.of(
-            <InsertedGame>{ id: '999' }
-        );
+    newGame(newGame: GamePayload): Observable<InsertedGame> {
+        newGame.user_id = this.baseService.currentUser.id;
+        return this.baseService.POST<InsertedGame>('games.json', newGame);
     }
 }

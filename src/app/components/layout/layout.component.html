@@ -12,9 +12,9 @@
             </mat-icon>
             <input type="text" [formControl]="searchText" [matAutocomplete]="auto" placeholder="Tente 'Arcadia'">
 
-            <mat-autocomplete #auto="matAutocomplete">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="gameSelected($event)">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{ option }}
+                    {{ option.name }}
                 </mat-option>
             </mat-autocomplete>
         </div>

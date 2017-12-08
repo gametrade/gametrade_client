@@ -109,6 +109,12 @@ a:visited {
     border-bottom: 3px solid #80CBC4;
 }
 
+.underline-block {
+    @extend .underline;
+
+    display: block;
+}
+
 .captioned-headline {
     margin-bottom: $gutter-3;
 

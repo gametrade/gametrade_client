@@ -35,8 +35,8 @@ export class GameDetailsComponent implements OnInit {
         this.route.params.subscribe(
             param => {
                 this.gameService.getGame(param.id).subscribe(
-                    (game: Game) => {
-                        this.game = game;
+                    (game: any) => {
+                        this.game = game.game;
                     }
                 );
             }

@@ -41,7 +41,7 @@ import { AppRoutingModule } from './routes/app.routing';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { GamesComponent } from './components/games/games.component';
+import { MyGamesComponent } from './components/games/my-games.component';
 
 //#endregion
 
@@ -52,7 +52,7 @@ import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 //#endregion
 
 //#region Information Components
-import { MostAccessedGamesComponent } from './components/most-accessed-games/most-accessed-games.component';
+import { MostRecentGamesComponent } from './components/most-recent-games/most-recent-games.component';
 import { RecommendedGamesComponent } from './components/recommended-games/recommended-games.component';
 
 //#endregion
@@ -72,6 +72,10 @@ import { LoadingOverlayComponent } from './shared/components/loading-overlay/loa
 import { CustomImageComponent } from './shared/components/custom-image/custom-image.component';
 import { CategoryCardComponent } from './shared/components/category-card/category-card.component';
 import { CategoryListComponent } from './components/home/category-list/category-list.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { CategoryComponent } from './components/category/category.component';
+import { NewGameComponent } from './components/games/new-game/new-game.component';
 
 //#endregion
 
@@ -82,10 +86,10 @@ import { CategoryListComponent } from './components/home/category-list/category-
         LoginComponent,
         SignUpComponent,
         HomeComponent,
-        GamesComponent,
+        MyGamesComponent,
         NotFoundComponent,
         GametradeFooterComponent,
-        MostAccessedGamesComponent,
+        MostRecentGamesComponent,
         RecommendedGamesComponent,
         CloseableComponent,
         GameCardComponent,
@@ -94,7 +98,11 @@ import { CategoryListComponent } from './components/home/category-list/category-
         LoadingOverlayComponent,
         CustomImageComponent,
         CategoryCardComponent,
-        CategoryListComponent
+        CategoryListComponent,
+        ProfileComponent,
+        ReservationComponent,
+        CategoryComponent,
+        NewGameComponent
     ],
     imports: [
         BrowserModule,

@@ -12,6 +12,7 @@ import 'rxjs/add/observable/from';
 // Services
 import { GameService } from '../../services/games/games.service';
 import { Game } from '../../models/game';
+import { Router } from '@angular/router';
 
 //#endregion
 
@@ -27,7 +28,8 @@ export class LayoutComponent implements OnInit {
 
     constructor(
         public tokenService: Angular2TokenService,
-        private gameService: GameService) { }
+        private gameService: GameService,
+        private router: Router) { }
 
     ngOnInit() {
         this.filteredOptions = this.searchText.valueChanges
@@ -39,13 +41,11 @@ export class LayoutComponent implements OnInit {
         return val ? this.getGames(val) : Observable.from([]);
     }
 
-    extractData(games: Game[]) {
-        return games.map(
-            (game: Game) => game.name
-        );
+    getGames(name: string) {
+        return this.gameService.getGames(name);
     }
 
-    getGames(name: string) {
-        return this.gameService.getGames(name).map(this.extractData);
+    gameSelected(event: any) {
+        this.router.navigate(['games', event.option.value.game.id]);
     }
 }

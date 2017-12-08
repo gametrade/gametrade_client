@@ -3,11 +3,11 @@ import { GameService } from '../../services/games/games.service';
 import { Game, InsertedGame } from '../../models/game';
 
 @Component({
-    selector: 'gametrade-games',
-    templateUrl: './games.component.html',
-    styleUrls: ['./games.component.scss']
+    selector: 'gametrade-my-games',
+    templateUrl: './my-games.component.html',
+    styleUrls: ['./my-games.component.scss']
 })
-export class GamesComponent implements OnInit {
+export class MyGamesComponent implements OnInit {
     public games: Array<Game>;
 
     constructor(private gameService: GameService, private cd: ChangeDetectorRef) { }
@@ -25,17 +25,5 @@ export class GamesComponent implements OnInit {
                 console.log(error);
             }
         );
-    }
-
-    newGame() {
-       this.gameService.newGame().subscribe(
-           (insertedGame: InsertedGame) => {
-               console.log(insertedGame);
-           },
-           (error: Error) => {
-               console.log(error);
-           }
-       );
-        return null;
     }
 }

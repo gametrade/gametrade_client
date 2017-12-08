@@ -1,0 +1,10 @@
+.new-game-form {
+
+    margin: 0 auto;
+    width: 50%;
+
+    mat-horizontal-stepper {
+        border-top: 3px solid #009688;
+        box-shadow: 0 1px 5px 2px rgba(0, 0, 0, .14);
+    }
+}
