@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/from';
 
 // Services
@@ -34,6 +35,7 @@ export class LayoutComponent implements OnInit {
     ngOnInit() {
         this.filteredOptions = this.searchText.valueChanges
             .startWith(null)
+            .debounceTime(500)
             .switchMap(txt => this.filter(txt));
     }
 
@@ -47,5 +49,10 @@ export class LayoutComponent implements OnInit {
 
     gameSelected(event: any) {
         this.router.navigate(['games', event.option.value.game.id]);
+    }
+
+    signOut() {
+        this.tokenService.signOut();
+        this.router.navigate(['home']);
     }
 }

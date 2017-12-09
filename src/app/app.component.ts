@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
         this.tokenService.init({
             apiPath: 'https://afternoon-sands-74647.herokuapp.com',
             signInRedirect: '/login',
+            signInStoredUrlStorageKey: 'redirectTo' ,
             globalOptions: {
                 headers: {
                     'Content-Type': 'application/json',

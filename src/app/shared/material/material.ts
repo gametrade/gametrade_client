@@ -7,7 +7,11 @@ import {
     MatProgressSpinnerModule,
     MatIconModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 } from '@angular/material';
 
 export let MATERIAL_MODULES = [
@@ -19,5 +23,9 @@ export let MATERIAL_MODULES = [
     MatProgressSpinnerModule,
     MatIconModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 ];

@@ -1,3 +1,5 @@
+@import '~styles.scss';
+
 .new-game-form {
 
     margin: 0 auto;
@@ -6,5 +8,15 @@
     mat-horizontal-stepper {
         border-top: 3px solid #009688;
         box-shadow: 0 1px 5px 2px rgba(0, 0, 0, .14);
+    }
+
+    .md2-datepicker-value {
+        font-family: 'Handlee;'
+    }
+}
+
+:host /deep/ {
+    .mat-step-header:hover {
+        background-color: transparent;
     }
 }

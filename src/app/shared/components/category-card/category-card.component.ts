@@ -5,6 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Category } from '../../../models/category';
+import { Router } from '@angular/router';
 
 //#endregion
 
@@ -20,9 +21,13 @@ export class CategoryCardComponent implements OnInit {
 
     //#endregion
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     ngOnInit() {
     }
 
+    // Navigates to the game page
+    readMore() {
+        this.router.navigate(['/games', this.category.id]);
+    }
 }

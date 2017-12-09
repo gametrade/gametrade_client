@@ -43,7 +43,7 @@ export class BaseService {
 
     POST<T>(url: string, body: any, options: any = null) {
         this.isLoading = true;
-        return this.tokenService.post(`${url}.json`, body, options)
+        return this.tokenService.post(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
                 return error;
@@ -56,7 +56,7 @@ export class BaseService {
 
     DELETE(url: string, options: any = null) {
         this.isLoading = true;
-        return this.tokenService.delete(`${url}.json`, options)
+        return this.tokenService.delete(`${url}`, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
                 return error;
@@ -69,7 +69,7 @@ export class BaseService {
 
     PUT(url: string, body: any, options: any = null) {
         this.isLoading = true;
-        return this.tokenService.put(`${url}.json`, body, options)
+        return this.tokenService.put(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
                 return error;
@@ -82,7 +82,7 @@ export class BaseService {
 
     PATCH(url: string, body: any, options: any = null) {
         this.isLoading = true;
-        return this.tokenService.patch(`${url}.json`, body, options)
+        return this.tokenService.patch(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
                 return error;

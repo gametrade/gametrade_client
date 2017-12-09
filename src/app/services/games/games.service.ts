@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import { BaseService } from '../base-service/base.service';
 
 // Models
-import { Game, InsertedGame, GamePayload } from '../../models/game';
+import { Game, InsertedGame, GamePayload, PhotoPayload } from '../../models/game';
 
 //#endregion
 
@@ -218,5 +218,9 @@ export class GameService {
     newGame(newGame: GamePayload): Observable<InsertedGame> {
         newGame.user_id = this.baseService.currentUser.id;
         return this.baseService.POST<InsertedGame>('games.json', newGame);
+    }
+
+    patchPhoto(photos: PhotoPayload, game_id: number) {
+        return this.baseService.PATCH(`games/${game_id}.json`, photos);
     }
 }

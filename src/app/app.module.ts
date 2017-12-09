@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 //#endregion
 
@@ -121,7 +122,8 @@ import { NewGameComponent } from './components/games/new-game/new-game.component
     entryComponents: [LoginComponent],
     providers: [
         SERVICES,
-        Angular2TokenService
+        Angular2TokenService,
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
     ],
     bootstrap: [AppComponent]
 })
