@@ -4,6 +4,7 @@ import { GameCardComponent } from './game-card/game-card.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { ThemeCardComponent } from './theme-card/theme-card.component';
+import { FileInputComponent } from './file-input/file-input.component';
 
 export const SHARED_COMPONENTS = [
     CloseableComponent,
@@ -11,5 +12,6 @@ export const SHARED_COMPONENTS = [
     GameCardComponent,
     LoadingOverlayComponent,
     SearchFieldComponent,
-    ThemeCardComponent
+    ThemeCardComponent,
+    FileInputComponent
 ];

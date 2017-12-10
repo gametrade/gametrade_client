@@ -1,6 +1,14 @@
+//#region Imports
+
+// Core
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
+// Models
 import { GameKind } from '../../models/game-kind';
+
+//#endregion
 
 const game_kinds: GameKind[] = [
     {

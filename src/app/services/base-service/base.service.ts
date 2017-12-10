@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Angular2TokenService } from 'angular2-token';
 import { Response } from '@angular/http/src/static_response';
 
-import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class BaseService {

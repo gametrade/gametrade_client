@@ -4,6 +4,7 @@ import { BaseService } from './base-service/base.service';
 import { UserService } from './user/user.service';
 import { ThemeService } from './theme/theme.service';
 import { GameKindService } from './game-kind/game-kind.service';
+import { UtilityService } from './utility/utility.service';
 
 //#endregion
 
@@ -12,5 +13,6 @@ export const SERVICES = [
     BaseService,
     UserService,
     ThemeService,
-    GameKindService
+    GameKindService,
+    UtilityService
 ];

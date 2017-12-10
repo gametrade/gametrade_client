@@ -8,14 +8,16 @@ export class GamePayload {
     players: FormControl = new FormControl(undefined);
     launch_date: FormControl = new FormControl(undefined);
     game_kind_id: FormControl = new FormControl(undefined, Validators.required);
-    category_id: FormControl = new FormControl(undefined, Validators.required);
+    theme_id: FormControl = new FormControl(undefined, Validators.required);
     user_id: number = undefined;
 }
 
+class Photo {
+    photo: string = undefined;
+}
+
 export class PhotoPayload {
-    photos_attributes: Array<{
-        photo: string
-    }>;
+    photos_attributes: Array<Photo> = new Array<Photo>();
 }
 
 // Model object used to display game information

@@ -1,0 +1,11 @@
+<span>
+    <input [multiple]="multiple" [accept]="accept" type="file" (change)="onNativeInputFileSelect($event)" #inputFile hidden />
+    <button type="button" mat-raised-button color="primary" (click)="selectFile()">
+        <mat-icon>file_upload</mat-icon>
+        <ng-content *ngIf="!fileCount || !showCount" select=".default"></ng-content>
+        <span *ngIf="fileCount && showCount">
+            <span>{{fileCount}}</span>
+            <ng-content select=".selected"></ng-content>
+        </span>
+    </button>
+</span>

@@ -14,6 +14,8 @@ import { ThemeService } from '../../../services/theme/theme.service';
 import { GameKindService } from '../../../services/game-kind/game-kind.service';
 import { GameService } from '../../../services/games/games.service';
 import { Router } from '@angular/router';
+import { UtilityService } from '../../../services/utility/utility.service';
+import { GametradeFile } from '../../../models/gametrade-file';
 
 //#endregion
 
@@ -27,9 +29,10 @@ export class NewGameComponent implements OnInit {
     new_game_form: FormGroup;
     game_id: number;
 
-    game_photos: PhotoPayload;
+    photo_payload: PhotoPayload = new PhotoPayload();
+    game_photos: GametradeFile[] = new Array<GametradeFile>();
 
-    categories: Theme[] = [];
+    themes: Theme[] = [];
     game_kinds: GameKind[] = [];
 
     constructor(
@@ -37,13 +40,14 @@ export class NewGameComponent implements OnInit {
         private gameService: GameService,
         private catService: ThemeService,
         private gkService: GameKindService,
+        private utilityService: UtilityService,
         private router: Router) {
         this.new_game_form = this.fb.group(new GamePayload);
     }
 
     ngOnInit() {
         this.catService.getTheme().subscribe(
-            (result: Theme[]) => this.categories = result
+            (result: Theme[]) => this.themes = result
         );
 
         this.gkService.getKind().subscribe(
@@ -63,9 +67,29 @@ export class NewGameComponent implements OnInit {
         }
     }
 
+    onFileSelect(event: FileList) {
+        this.utilityService.readFiles(event).subscribe(
+            (files: GametradeFile[]) => {
+                this.game_photos = files;
+
+                files.forEach(
+                    (file: GametradeFile) => {
+                        this.photo_payload.photos_attributes.push({ photo: file.data });
+                    }
+                );
+            }
+        );
+    }
+
+    removePhoto(photo: GametradeFile) {
+        this.game_photos.splice(this.game_photos.findIndex((curr: GametradeFile) => {
+            return Object.is(curr, photo);
+        }), 1);
+    }
+
     savePhotos() {
-        if (this.game_photos.photos_attributes.length > 0) {
-            this.gameService.includePhoto(this.game_photos, this.game_id).subscribe(
+        if (this.photo_payload.photos_attributes.length > 0) {
+            this.gameService.includePhoto(this.photo_payload, this.game_id).subscribe(
                 (result: any) => {
                     console.log();
                 }

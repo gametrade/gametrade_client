@@ -3,6 +3,8 @@
 //#region  Core Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
@@ -62,8 +64,9 @@ import { GametradeFooterComponent } from './components/gametrade-footer/gametrad
 //#endregion
 
 //#region Shared Components and Material
-import { SharedModule } from './shared/shared-components.module';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
+import { MATERIAL_MODULES } from './shared/material/shared-material';
+import { SHARED_COMPONENTS } from './shared/components/shared-components';
 
 //#endregion
 
@@ -85,12 +88,16 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
         ProfileComponent,
         ReservationComponent,
         ThemeComponent,
-        NewGameComponent
+        NewGameComponent,
+        SHARED_COMPONENTS
     ],
     imports: [
         BrowserModule,
-        SharedModule,
         HttpModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MATERIAL_MODULES,
         MatNativeDateModule,
         BrowserAnimationsModule,
         FlexLayoutModule,

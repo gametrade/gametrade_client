@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/from';
 
 // Services
