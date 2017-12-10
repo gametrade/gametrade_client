@@ -14,7 +14,7 @@ import {
     MatNativeDateModule
 } from '@angular/material';
 
-export let MATERIAL_MODULES = [
+export const MATERIAL_MODULES = [
     MatButtonModule,
     MatCardModule,
     MatInputModule,

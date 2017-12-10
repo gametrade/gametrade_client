@@ -3,33 +3,25 @@
 //#region  Core Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { MAT_DATE_LOCALE } from '@angular/material';
 
 //#endregion
 
 //#region Layout Modules
-import { Md2DatepickerModule, MdNativeDateModule } from 'md2';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
 
 //#region Style Modules
 import { StarRatingModule } from 'angular-star-rating';
-
-//#endregion
-
-//#region Material import
-import { MATERIAL_MODULES } from './shared/material/material';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 //#endregion
 
 //#region Services
 import { SERVICES } from './services/services';
+import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
 
@@ -43,6 +35,11 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyGamesComponent } from './components/games/my-games.component';
+import { GameDetailsComponent } from './components/games/game-details/game-details.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { ThemeComponent } from './components/theme/theme.component';
+import { NewGameComponent } from './components/games/new-game/new-game.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 //#endregion
 
@@ -54,7 +51,7 @@ import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 
 //#region Information Components
 import { MostRecentGamesComponent } from './components/most-recent-games/most-recent-games.component';
-import { RecommendedGamesComponent } from './components/recommended-games/recommended-games.component';
+import { ThemeListComponent } from './components/home/theme-list/theme-list.component';
 
 //#endregion
 
@@ -64,19 +61,11 @@ import { GametradeFooterComponent } from './components/gametrade-footer/gametrad
 
 //#endregion
 
-//#region Shared Components
-import { CloseableComponent } from './shared/components/closeable/closeable.component';
-import { GameCardComponent } from './shared/components/game-card/game-card.component';
-import { SearchFieldComponent } from './shared/components/search-field/search-field.component';
-import { GameDetailsComponent } from './components/games/game-details/game-details.component';
-import { LoadingOverlayComponent } from './shared/components/loading-overlay/loading-overlay.component';
-import { CustomImageComponent } from './shared/components/custom-image/custom-image.component';
-import { CategoryCardComponent } from './shared/components/category-card/category-card.component';
-import { CategoryListComponent } from './components/home/category-list/category-list.component';
-import { ProfileComponent } from './components/user/profile/profile.component';
-import { ReservationComponent } from './components/reservation/reservation.component';
-import { CategoryComponent } from './components/category/category.component';
-import { NewGameComponent } from './components/games/new-game/new-game.component';
+//#region Shared Components and Material
+import { SharedModule } from './shared/shared-components.module';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
+
+//#endregion
 
 //#endregion
 
@@ -91,33 +80,23 @@ import { NewGameComponent } from './components/games/new-game/new-game.component
         NotFoundComponent,
         GametradeFooterComponent,
         MostRecentGamesComponent,
-        RecommendedGamesComponent,
-        CloseableComponent,
-        GameCardComponent,
-        SearchFieldComponent,
         GameDetailsComponent,
-        LoadingOverlayComponent,
-        CustomImageComponent,
-        CategoryCardComponent,
-        CategoryListComponent,
+        ThemeListComponent,
         ProfileComponent,
         ReservationComponent,
-        CategoryComponent,
+        ThemeComponent,
         NewGameComponent
     ],
     imports: [
         BrowserModule,
-        CommonModule,
-        Md2DatepickerModule,
-        MdNativeDateModule,
+        SharedModule,
+        HttpModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
         AppRoutingModule,
-        HttpModule,
-        ReactiveFormsModule,
-        FormsModule,
         StarRatingModule.forRoot(),
-        MATERIAL_MODULES
+        InfiniteScrollModule
     ],
     entryComponents: [LoginComponent],
     providers: [

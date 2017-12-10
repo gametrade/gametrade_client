@@ -16,7 +16,7 @@ import { HomeComponent } from '../components/home/home.component';
 import { MyGamesComponent } from '../components/games/my-games.component';
 import { GameDetailsComponent } from '../components/games/game-details/game-details.component';
 import { ProfileComponent } from '../components/user/profile/profile.component';
-import { CategoryComponent } from '../components/category/category.component';
+import { ThemeComponent } from '../components/theme/theme.component';
 import { NewGameComponent } from '../components/games/new-game/new-game.component';
 
 //#endregion
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
             { path: 'new-game', component: NewGameComponent, canActivate: [Angular2TokenService] },
             { path: 'games/:id', component: GameDetailsComponent },
             { path: 'profile', component: ProfileComponent },
-            { path: 'category/:id', component: CategoryComponent },
+            { path: 'theme/:id', component: ThemeComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }
         ]
     },

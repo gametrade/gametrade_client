@@ -5,14 +5,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 // Models
-import { GamePayload, InsertedGame, PhotoPayload } from '../../../models/game';
-import { Category } from '../../../models/category';
+import { GamePayload, PhotoPayload } from '../../../models/game';
+import { Theme } from '../../../models/theme';
 import { GameKind } from '../../../models/game-kind';
 
 // Services
-import { CategoryService } from '../../../services/category/category.service';
+import { ThemeService } from '../../../services/theme/theme.service';
 import { GameKindService } from '../../../services/game-kind/game-kind.service';
 import { GameService } from '../../../services/games/games.service';
+import { Router } from '@angular/router';
 
 //#endregion
 
@@ -28,20 +29,21 @@ export class NewGameComponent implements OnInit {
 
     game_photos: PhotoPayload;
 
-    categories: Category[] = [];
+    categories: Theme[] = [];
     game_kinds: GameKind[] = [];
 
     constructor(
         private fb: FormBuilder,
         private gameService: GameService,
-        private catService: CategoryService,
-        private gkService: GameKindService) {
+        private catService: ThemeService,
+        private gkService: GameKindService,
+        private router: Router) {
         this.new_game_form = this.fb.group(new GamePayload);
     }
 
     ngOnInit() {
-        this.catService.getCategory().subscribe(
-            (result: Category[]) => this.categories = result
+        this.catService.getTheme().subscribe(
+            (result: Theme[]) => this.categories = result
         );
 
         this.gkService.getKind().subscribe(
@@ -54,8 +56,8 @@ export class NewGameComponent implements OnInit {
             const values = this.new_game_form.value;
 
             this.gameService.newGame(values).subscribe(
-                (result: InsertedGame) => {
-                    console.log(result);
+                (result: any) => {
+                    this.game_id = result.game.id;
                 }
             );
         }
@@ -63,11 +65,15 @@ export class NewGameComponent implements OnInit {
 
     savePhotos() {
         if (this.game_photos.photos_attributes.length > 0) {
-            this.gameService.patchPhoto(this.game_photos, this.game_id).subscribe(
+            this.gameService.includePhoto(this.game_photos, this.game_id).subscribe(
                 (result: any) => {
                     console.log();
                 }
             );
         }
+    }
+
+    goHome() {
+        this.router.navigate(['/home']);
     }
 }

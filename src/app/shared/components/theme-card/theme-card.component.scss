@@ -1,19 +1,18 @@
 @import '~styles.scss';
 
-.category-card {
+.theme-card {
     $size: 250px;
     background-color: white;
     height: $size * 0.75;
     width: $size;
     padding: 0;
     
-    .category-icon {
+    .theme-icon {
         width: $size;
         height: $size * .5;
     }
 
-    .category-name {
-        font-size: 2em;
+    .theme-name {
         text-align: center;
         text-transform: uppercase;
         margin: 0;

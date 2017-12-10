@@ -26,8 +26,8 @@
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
                     <mat-select placeholder="Categoria" formControlName="category_id">
-                        <mat-option *ngFor="let category of categories; let i = index" [value]="category.id || i">
-                            {{category.name}}
+                        <mat-option *ngFor="let theme of categories; let i = index" [value]="theme.id || i">
+                            {{theme.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -48,7 +48,13 @@
             </form>
         </mat-step>
 
-        <mat-step [optional]="true" label="Adicionar fotos">
+        <mat-step label="Adicionar fotos">
+            <p>Agora, só falta adicionar algumas fotos e estará pronto.</p>
+            <p>A primeira foto será usada com thumbnail nas buscas do seu jogo.</p>
+
+            <div fxFlex="100">
+                <button mat-button mdStepperNext (click)="savePhotos()">Salvar fotos</button>
+            </div>
         </mat-step>
 
         <mat-step label="Conclusão">
@@ -57,7 +63,7 @@
             <p>Caso alguém reserve, você será notificado por e-mail e poderá aprovar ou reprovar a solicitação.</p>
 
             <div>
-                <button mat-button>Voltar para o início.</button>
+                <button mat-button (click)="goHome()">Voltar para o início.</button>
             </div>
         </mat-step>
     </mat-horizontal-stepper>

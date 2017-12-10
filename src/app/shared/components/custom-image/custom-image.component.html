@@ -1,4 +1,4 @@
 <div class="image-container" mat-card-image [ngStyle]="{'padding-bottom': loaded ? '0' : '56.25%'}">
     <div class="placeholder" *ngIf="!loaded"></div>
-    <img [src]="src" [alt]="alt" [hidden]="!loaded" (load)="imageLoaded()">
+    <img *ngIf="src" [src]="src" [alt]="alt" [hidden]="!loaded" (load)="imageLoaded()">
 </div>

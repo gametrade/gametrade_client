@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoryCardComponent } from './category-card.component';
+import { ThemeListComponent } from './theme-list.component';
 
-describe('CategoryCardComponent', () => {
-  let component: CategoryCardComponent;
-  let fixture: ComponentFixture<CategoryCardComponent>;
+describe('ThemeListComponent', () => {
+  let component: ThemeListComponent;
+  let fixture: ComponentFixture<ThemeListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryCardComponent ]
+      declarations: [ ThemeListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoryCardComponent);
+    fixture = TestBed.createComponent(ThemeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

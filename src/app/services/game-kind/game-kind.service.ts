@@ -5,20 +5,33 @@ import { GameKind } from '../../models/game-kind';
 const game_kinds: GameKind[] = [
     {
         id: 1,
-        name: 'Cartas',
-        description: 'TODO'
+        name: 'Cartas'
     },
     {
         id: 2,
-        name: 'Tabuleiro',
-        description: 'TODO'
+        name: 'Tabuleiro'
     },
     {
         id: 3,
-        name: 'Miniaturas',
-        description: 'TODO'
+        name: 'Miniaturas'
+    },
+    {
+        id: 4,
+        name: 'RPG'
+    },
+    {
+        id: 5,
+        name: 'Dados'
+    },
+    {
+        id: 6,
+        name: 'Enigmas'
+    },
+    {
+        id: 7,
+        name: 'Acessórios'
     }
-]
+];
 
 @Injectable()
 export class GameKindService {
@@ -27,7 +40,7 @@ export class GameKindService {
 
     getKind(id?: number): Observable<GameKind[]> {
         return Observable.of(game_kinds.filter(
-            (category: GameKind) => id ? category.id === id : true
+            (theme: GameKind) => id ? theme.id === id : true
         ));
     }
 

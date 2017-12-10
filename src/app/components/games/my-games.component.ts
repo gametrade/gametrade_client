@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameService } from '../../services/games/games.service';
-import { Game, InsertedGame } from '../../models/game';
+import { Game } from '../../models/game';
 
 @Component({
     selector: 'gametrade-my-games',
