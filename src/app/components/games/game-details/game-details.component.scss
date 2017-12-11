@@ -13,8 +13,18 @@
     }
 }
 
-.owner {
-    padding: 8px;
+.container {
+    padding: 24px 96px;
 
-    @include box_shadow();
+    .game-info,
+    .reservation-info {
+        padding: 24px;
+        @include box_shadow();
+    }
+
+    .reservation-info {
+        button {
+            width: 100%;
+        }
+    }
 }

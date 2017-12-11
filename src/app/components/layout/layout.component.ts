@@ -1,7 +1,7 @@
 //#region Imports
 // Angular
 import { Component, OnInit } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 // RxJS
@@ -13,8 +13,11 @@ import 'rxjs/add/observable/from';
 
 // Services
 import { GameService } from '../../services/games/games.service';
+import { Angular2TokenService } from 'angular2-token';
+
+// Models
 import { Game } from '../../models/game';
-import { Router } from '@angular/router';
+import { BaseService } from '../../services/base-service/base.service';
 
 //#endregion
 
@@ -31,7 +34,11 @@ export class LayoutComponent implements OnInit {
     constructor(
         public tokenService: Angular2TokenService,
         private gameService: GameService,
-        private router: Router) { }
+        private baseService: BaseService,
+        private router: Router,
+        private route: ActivatedRoute) {
+            this.baseService.currentUser = this.tokenService.currentUserData;
+        }
 
     ngOnInit() {
         this.filteredOptions = this.searchText.valueChanges

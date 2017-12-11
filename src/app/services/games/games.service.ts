@@ -27,7 +27,10 @@ export class GameService {
     }
 
     getMostRecentGames(): Observable<Game[]> {
-        return this.baseService.GET(`games.json?limit=5`);
+        return this.baseService.GET(`games.json?limit=5`)
+            .map(
+                (result: any) => result.map(x => x.game)
+            );
     }
 
     getGame(id: string): Observable<Game[]> {

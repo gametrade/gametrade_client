@@ -11,19 +11,42 @@ import { LoginForm, User } from '../../models/user';
 // Services
 import { Angular2TokenService } from 'angular2-token';
 import { BaseService } from '../base-service/base.service';
+import { PhotoPayload } from '../../models/game';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class UserService {
 
     constructor(
         private baseService: BaseService) {
-        }
+    }
 
     signIn(value: LoginForm) {
         return this.baseService.signIn(value);
     }
 
+    getProfile() {
+        return this.baseService.GET(`users/${this.baseService.currentUser.id}.json`);
+    }
+
     updateProfile(value: User) {
-        return this.baseService.PUT('/user', value);
+        value.email = this.baseService.currentUser.email;
+        value.address_attributes['country'] = 'Brasil';
+
+        const payload = {
+            user: value
+        };
+
+        return this.baseService.PATCH(`users/${this.baseService.currentUser.id}.json`, payload);
+    }
+
+    savePhoto(photo: string) {
+        const payload = {
+            user: {
+                photo
+            }
+        };
+
+        return this.baseService.PATCH(`users/${this.baseService.currentUser.id}.json`, payload);
     }
 }

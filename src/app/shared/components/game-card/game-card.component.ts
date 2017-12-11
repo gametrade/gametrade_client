@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../../../models/game';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../../services/theme/theme.service';
+import { GameKindService } from '../../../services/game-kind/game-kind.service';
 
 @Component({
     selector: 'gametrade-game-card',
@@ -10,10 +12,13 @@ import { Router } from '@angular/router';
 export class GameCardComponent implements OnInit {
     @Input('game') game: Game;
 
-    constructor(private router: Router) { }
+    constructor(
+        private router: Router,
+        private themeService: ThemeService,
+        private gkService: GameKindService
+    ) { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     // Navigates to the game page
     readMore() {

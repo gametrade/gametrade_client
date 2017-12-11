@@ -34,15 +34,7 @@ export class AppComponent implements OnInit {
     //#endregion
 
     //#region OnInit
-    ngOnInit() {
-        if (this.tokenService.userSignedIn()) {
-            this.tokenService.validateToken().subscribe(
-                (response: Response) => {
-                    this.baseService.currentUser = this.tokenService.currentUserData;
-                }
-            );
-        }
-    }
+    ngOnInit() { }
 
     //#endregion
 }

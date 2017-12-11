@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import { TextMaskModule } from 'angular2-text-mask';
 
 //#endregion
 
@@ -102,6 +103,7 @@ import { SHARED_COMPONENTS } from './shared/components/shared-components';
         BrowserAnimationsModule,
         FlexLayoutModule,
         AppRoutingModule,
+        TextMaskModule,
         StarRatingModule.forRoot(),
         InfiniteScrollModule
     ],

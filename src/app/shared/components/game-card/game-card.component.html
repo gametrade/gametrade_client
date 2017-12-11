@@ -4,6 +4,9 @@
     <mat-card-content>
         <mat-card-title>{{game.name}}</mat-card-title>
 
+        <p>Tipo: {{game.game_kind?.name}}</p>
+        <p>Tema: {{game.theme?.name}}</p>
+
         <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
     </mat-card-content>
 </mat-card>

@@ -4,6 +4,7 @@ import { Response } from '@angular/http/src/static_response';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class BaseService {
@@ -12,7 +13,8 @@ export class BaseService {
     currentUser: any;
 
     constructor(
-        private tokenService: Angular2TokenService
+        private tokenService: Angular2TokenService,
+        private http: Http
     ) { }
 
     signIn(value: any) {
@@ -28,8 +30,19 @@ export class BaseService {
             });
     }
 
-    GET<T>(url: string, parameters?: string, options: any = null) {
+    GET<T>(url: string, parameters?: string, options: any = null, absolute: boolean = false) {
         this.isLoading = true;
+
+        if (absolute) {
+            return this.http.get(url, options)
+            .map(
+                (res: Response) => {
+                    this.isLoading = false;
+                    return res.json();
+                }
+            );
+        }
+
         return this.tokenService.get(`${url}`, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;

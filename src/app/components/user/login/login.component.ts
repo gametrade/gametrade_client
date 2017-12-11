@@ -24,13 +24,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private userService: UserService,
         private router: Router,
-        private formBuilder: FormBuilder) {
-        this.loginForm = this.formBuilder.group(
-            {
-                email: [null, Validators.compose([Validators.required, Validators.email])],
-                password: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
-            }
-        );
+        private fb: FormBuilder) {
+        this.loginForm = this.fb.group(new LoginForm());
     }
 
     ngOnInit() {
@@ -42,6 +37,7 @@ export class LoginComponent implements OnInit {
                 (res) => {
                     const url = localStorage.getItem('redirectTo') || '/home';
                     this.router.navigateByUrl(url);
+                    localStorage.removeItem('redirectTo');
                 },
                 (error: Error) => {
                     console.log(error);

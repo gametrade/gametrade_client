@@ -18,6 +18,7 @@ import { GameDetailsComponent } from '../components/games/game-details/game-deta
 import { ProfileComponent } from '../components/user/profile/profile.component';
 import { ThemeComponent } from '../components/theme/theme.component';
 import { NewGameComponent } from '../components/games/new-game/new-game.component';
+import { CurrentUserResolverService } from '../services/current-user-resolver/current-user-resolver.service';
 
 //#endregion
 
@@ -25,13 +26,12 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
     {
-        path: '', component: LayoutComponent, children: [
+        path: '', component: LayoutComponent, resolve: { currentUser: CurrentUserResolverService }, children: [
             { path: 'home', component: HomeComponent },
             { path: 'my-games', component: MyGamesComponent, canActivate: [Angular2TokenService] },
             { path: 'new-game', component: NewGameComponent, canActivate: [Angular2TokenService] },
+            { path: 'profile', component: ProfileComponent, canActivate: [Angular2TokenService] },
             { path: 'games/:id', component: GameDetailsComponent },
-            { path: 'profile', component: ProfileComponent },
-            { path: 'theme/:id', component: ThemeComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }
         ]
     },

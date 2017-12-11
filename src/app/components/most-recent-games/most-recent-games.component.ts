@@ -14,7 +14,7 @@ export class MostRecentGamesComponent implements OnInit {
 
     ngOnInit() {
         this.gameService.getMostRecentGames().subscribe(
-            (mostRecentGames: Array<Game>) => {
+            (mostRecentGames: any) => {
                 this.most_recent_games = mostRecentGames;
             },
             (error: Error) => {

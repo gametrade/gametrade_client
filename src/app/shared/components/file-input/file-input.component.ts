@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
 })
 export class FileInputComponent {
     @Input() accept: string;
-    @Input() multiple: boolean;
+    @Input() multiple = false;
     @Input() showCount = false;
     @Output() onFileSelect: EventEmitter<File[]> = new EventEmitter();
 

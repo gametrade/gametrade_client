@@ -30,8 +30,8 @@
             </div>
 
             <div class="user-area">
-                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink=''>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
-                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/games'>Meus jogos</a>
+                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/profile'>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
+                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/my-games'>Meus jogos</a>
                 <a fxFlex *ngIf='tokenService.userSignedIn()' (click)='signOut()'>Sair</a>
             </div>
         </div>

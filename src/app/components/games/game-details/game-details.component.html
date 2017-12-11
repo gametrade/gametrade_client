@@ -1,17 +1,40 @@
 <ng-container *ngIf="game">
     <div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}"></div>
 
-    <div class="container">
-        <h1 class="mat-headline underline">{{game.name}}</h1>
+    <div class="container" fxLayout>
+        <div class="game-info" fxFlex="70">
+            <h1 class="mat-headline underline">{{game.name}}</h1>
 
-        <div fxLayout='row' fxLayoutGap="16px">
-            <p class="may-body-1">Número de jogadores: {{game.players}}</p>
+            <div fxLayout='row' fxLayoutGap="16px">
+                <p class="may-body-1">Número de jogadores: {{game.players}}</p>
+            </div>
+
+            <p class='mat-body-1'>
+                {{game.description}}
+            </p>
+
+            <star-rating-comp *ngIf="game.rating" [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
         </div>
 
-        <p class='mat-body-1'>
-            {{game.description}}
-        </p>
+        <div class="reservation-info" fxFlex="30">
+            <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
 
-        <star-rating-comp *ngIf="game.rating" [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput [matDatepicker]="checkInPickerr" placeholder="Check-in">
+                    <mat-datepicker-toggle matSuffix [for]="checkInPickerr"></mat-datepicker-toggle>
+                    <mat-datepicker #checkInPickerr></mat-datepicker>
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput [matDatepicker]="checkOutPicker" placeholder="Checkout">
+                    <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkOutPicker></mat-datepicker>
+                </mat-form-field>
+
+                <div fxFlex="100">
+                    <button mat-raised-button color="accent" (click)="makeReservation()">Reservar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </ng-container>
