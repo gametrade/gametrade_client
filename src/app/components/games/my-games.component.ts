@@ -8,7 +8,8 @@ import { Game } from '../../models/game';
     styleUrls: ['./my-games.component.scss']
 })
 export class MyGamesComponent implements OnInit {
-    public games: Array<Game>;
+    public my_games: Game[];
+    public my_favs: Game[];
 
     constructor(private gameService: GameService, private cd: ChangeDetectorRef) { }
 
@@ -18,8 +19,8 @@ export class MyGamesComponent implements OnInit {
 
     getMyGames() {
         this.gameService.getMyGames().subscribe(
-            (games: Array<Game>) => {
-                this.games = games;
+            (games: any) => {
+                this.my_games = games;
             },
             (error: Error) => {
                 console.log(error);

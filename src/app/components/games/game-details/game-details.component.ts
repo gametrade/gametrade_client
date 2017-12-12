@@ -42,4 +42,6 @@ export class GameDetailsComponent implements OnInit {
             }
         );
     }
+
+    saveGame() { }
 }

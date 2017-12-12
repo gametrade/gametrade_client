@@ -1,8 +1,8 @@
 <mat-card class='game-card' (click)="readMore()">
-    <gametrade-custom-image [src]='game.thumbnail' [alt]='game.name'></gametrade-custom-image>
+    <gametrade-custom-image [src]='"via.placeholder.com/800x450"' [alt]='game.name'></gametrade-custom-image>
 
     <mat-card-content>
-        <mat-card-title>{{game.name}}</mat-card-title>
+        <mat-card-title class="truncate">{{game.name}}</mat-card-title>
 
         <p>Tipo: {{game.game_kind?.name}}</p>
         <p>Tema: {{game.theme?.name}}</p>

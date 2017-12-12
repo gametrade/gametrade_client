@@ -43,6 +43,12 @@ export class GameService {
     }
 
     includePhoto(photos: PhotoPayload, game_id: number) {
-        return this.baseService.PATCH(`games/${game_id}.json`, photos);
+        const payload = {
+            game: {
+                photos_attributes: photos.photos_attributes
+            }
+        };
+
+        return this.baseService.PATCH(`games/${game_id}.json`, payload);
     }
 }

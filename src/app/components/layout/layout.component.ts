@@ -56,7 +56,8 @@ export class LayoutComponent implements OnInit {
     }
 
     gameSelected(event: any) {
-        this.router.navigate(['games', event.option.value.game.id]);
+        this.searchText.reset();
+        this.router.navigate(['games', event.option.value.id]);
     }
 
     signOut() {

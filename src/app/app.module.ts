@@ -2,12 +2,15 @@
 
 //#region  Core Modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
+
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 //#endregion
 
@@ -111,7 +114,8 @@ import { SHARED_COMPONENTS } from './shared/components/shared-components';
     providers: [
         SERVICES,
         Angular2TokenService,
-        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+        {provide: LOCALE_ID, useValue: 'pt' }
     ],
     bootstrap: [AppComponent]
 })

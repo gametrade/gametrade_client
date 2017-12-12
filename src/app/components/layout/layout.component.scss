@@ -3,7 +3,7 @@
 @import '~styles.scss';
 
 .mat-toolbar.gt-toolbar {
-    background-color: $bg-color;
+    background-color: #FAFAFA;
     box-shadow: 0 1px 0 rgba(0, 0, 0, .34);
     color: $primary-color;
     padding: 0 $gutter-3;
@@ -104,4 +104,6 @@
     position: relative;
     top: 64px;
     width: 100%;
+    height: calc(100% - 64px);
+    overflow-y: auto;
 }

@@ -1,15 +1,24 @@
+<gametrade-loading-overlay></gametrade-loading-overlay>
+
 <ng-container *ngIf="game">
-    <div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}"></div>
+    <div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}">
+        <button mat-raised-button (click)="saveGame()">
+                <mat-icon>favorite</mat-icon>
+                Salvar
+        </button>
+    </div>
 
-    <div class="container" fxLayout>
-        <div class="game-info" fxFlex="70">
-            <h1 class="mat-headline underline">{{game.name}}</h1>
+    <div class="container" fxLayout fxLayoutWrap fxLayoutAlign="start start">
+        <h1 class="mat-headline underline-inverse" fxFlex="100"><span>{{game.name}}</span> <small>{{game.game_kind?.name}} - {{game.theme?.name}}</small></h1>
 
-            <div fxLayout='row' fxLayoutGap="16px">
-                <p class="may-body-1">Número de jogadores: {{game.players}}</p>
+        <div class="game-info" fxFlex="calc(70% - 16px)">
+
+            <div>
+                <p style="margin: 0; line-height: 1.5;" class="may-body-1">Número de jogadores: {{game.players}}</p>
+                <small>Data de lançamento: {{game.launch_date | date:'dd/MM/y'}}</small>
             </div>
 
-            <p class='mat-body-1'>
+            <p class='mat-body-1' style="word-wrap: break-word; margin-bottom: 0; white-space: pre-line;">
                 {{game.description}}
             </p>
 
@@ -17,6 +26,10 @@
         </div>
 
         <div class="reservation-info" fxFlex="30">
+            <h3 style="margin: 0">R$ {{(game.price || 0) | number:'1.2-2'}} <small>por dia</small></h3>
+
+            <div class="separator"></div>
+
             <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
@@ -24,7 +37,7 @@
                     <mat-datepicker-toggle matSuffix [for]="checkInPickerr"></mat-datepicker-toggle>
                     <mat-datepicker #checkInPickerr></mat-datepicker>
                 </mat-form-field>
-                
+
                 <mat-form-field fxFlex="calc(50% - 16px)">
                     <input matInput [matDatepicker]="checkOutPicker" placeholder="Checkout">
                     <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>

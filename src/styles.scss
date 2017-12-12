@@ -3,6 +3,7 @@
 @import "~angular-star-rating/assets/scss/star-rating";
 
 
+
 /* ************************************************************************************************************************************** */
 
 // Reset and Base settings
@@ -101,10 +102,16 @@ a:visited {
     }
 }
 
+.truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .underline {
     box-shadow: 0 1px 3px 2px rgba(black, .14);
     display: inline-block;
-    background: #009688;
+    background: #26A69A;
     padding: 8px;
     color: white;
     border-bottom: 3px solid #80CBC4;
@@ -114,6 +121,13 @@ a:visited {
     @extend .underline;
 
     display: block;
+}
+
+.underline-inverse {
+    @extend .underline;
+
+    background-color: #fff;
+    color: $primary-color;
 }
 
 .captioned-headline {

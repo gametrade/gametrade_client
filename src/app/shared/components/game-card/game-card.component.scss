@@ -1,7 +1,7 @@
 @import '~styles.scss';
 
 .game-card {
-    background-color: transparent;
+    background-color: white;
     
     &.mat-card:not([class*=mat-elevation-z]) {
         box-shadow: 0 0 1px rgba(black, .44);

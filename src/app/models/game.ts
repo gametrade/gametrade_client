@@ -1,14 +1,14 @@
 import { User } from './user';
-import { FormControl; FormGroup; Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 // Payload used to post a NEW game
 export class GamePayload {
-    name: FormControl = new FormControl(undefined; Validators.required);
-    description: FormControl = new FormControl(undefined; Validators.required);
+    name: FormControl = new FormControl(undefined, Validators.required);
+    description: FormControl = new FormControl(undefined, Validators.required);
     players: FormControl = new FormControl(undefined);
     launch_date: FormControl = new FormControl(undefined);
-    game_kind_id: FormControl = new FormControl(undefined; Validators.required);
-    theme_id: FormControl = new FormControl(undefined; Validators.required);
+    game_kind_id: FormControl = new FormControl(undefined, Validators.required);
+    theme_id: FormControl = new FormControl(undefined, Validators.required);
     user_id: number = undefined;
 }
 
@@ -30,19 +30,20 @@ export class Game {
     players: 8;
     user_id: 40;
     game_kind: {
-        id: number;
-        name: string;
-        created_at: string;
-        updated_at: string;
+        id: number,
+        name: string,
+        created_at: string,
+        updated_at: string
     };
     theme: {
-        id: number;
-        name: string;
-        created_at: string;
-        updated_at: string;
+        id: number,
+        name: string,
+        created_at: string,
+        updated_at: string
     };
     price: null;
     created_at: string;
     updated_at: string;
-    photos: []
+    photos: any[];
+    rating: any;
 }

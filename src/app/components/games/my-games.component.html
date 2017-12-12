@@ -1,7 +1,43 @@
 <div class='container'>
-    <h2>Lista de jogos</h2>
-    
-    <p *ngFor='let game of games'>
-        {{game.name}} - {{game.type}}
-    </p>
+    <h2 class="mat-headline underline">
+        Meus jogos
+    </h2>
+
+    <div *ngIf="my_games?.length > 0" class='my-games-container' fxLayout='column' fxLayout.gt-sm='row' fxLayoutGap.gt-sm='16px' fxLayoutWrap.gt-sm>
+        <mat-card *ngFor='let game of my_games' fxFlex.gt-sm='calc(20% - 16px)' class="my-game">
+            <mat-card-title>game.name</mat-card-title>
+
+            <mat-card-content>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="empty">
+        <h3>Você ainda não tem nenhum jogo adicionado.</h3>
+        <h3>Para adicionar, clique <a routerLink="/new-game">aqui</a>.</h3>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="mat-headline underline">
+        Meus favoritos
+    </h2>
+
+    <div *ngIf="my_favs?.length > 0" class='my-favs-container' fxLayout='column' fxLayout.gt-sm='row' fxLayoutGap.gt-sm='16px' fxLayoutWrap.gt-sm>
+        <mat-card *ngFor='let game of my_favs' fxFlex.gt-sm='calc(20% - 16px)' class="my-game">
+            <mat-card-title>game.name</mat-card-title>
+
+            <mat-card-content>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="empty">
+        <h3>Você ainda não salvou nenhum jogo como favorito.</h3>
+        <h3>Para salvar, clique na opção 'SALVAR', no canto superior direito na tela de reserva.</h3>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 //#region Imports
 
 // Core
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 // Models
@@ -16,6 +16,7 @@ import { GameService } from '../../../services/games/games.service';
 import { Router } from '@angular/router';
 import { UtilityService } from '../../../services/utility/utility.service';
 import { GametradeFile } from '../../../models/gametrade-file';
+import { Observable } from 'rxjs/Observable';
 
 //#endregion
 
@@ -46,13 +47,13 @@ export class NewGameComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.catService.getTheme().subscribe(
-            (result: Theme[]) => this.themes = result
-        );
-
-        this.gkService.getKind().subscribe(
-            (result: GameKind[]) => this.game_kinds = result
-        );
+        Observable.forkJoin(
+            this.catService.getTheme(),
+            this.gkService.getKind()
+        ).subscribe(([themes, kinds]) => {
+            this.themes = themes;
+            this.game_kinds = kinds;
+        });
     }
 
     saveGame() {
