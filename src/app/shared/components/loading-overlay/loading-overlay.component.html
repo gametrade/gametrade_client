@@ -1,5 +1,9 @@
 <div class="overlay" *ngIf="baseService.isLoading">
-    <div class="spinner-container">
-        <mat-spinner strokeWidth='5'></mat-spinner>        
+    <div class="spinner-container" *ngIf="mode === 'spinner'">
+        <mat-spinner strokeWidth='5'></mat-spinner>
+    </div>
+
+    <div class="progress-container" *ngIf="mode === 'bar'">
+        <mat-progress-bar style="top: 64px; height: 3px" mode="indeterminate"></mat-progress-bar>
     </div>
 </div>

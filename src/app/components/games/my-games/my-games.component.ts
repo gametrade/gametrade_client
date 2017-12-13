@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { GameService } from '../../services/games/games.service';
-import { Game } from '../../models/game';
+import { GameService } from '../../../services/games/games.service';
+import { Game } from '../../../models/game';
 
 @Component({
     selector: 'gametrade-my-games',
@@ -19,12 +19,8 @@ export class MyGamesComponent implements OnInit {
 
     getMyGames() {
         this.gameService.getMyGames().subscribe(
-            (games: any) => {
-                this.my_games = games;
-            },
-            (error: Error) => {
-                console.log(error);
-            }
+            (games: any) => { this.my_games = games || []; },
+            (error: Error) => { console.log(error); }
         );
     }
 }

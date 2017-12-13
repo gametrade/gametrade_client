@@ -40,7 +40,7 @@ import { AppRoutingModule } from './routes/app.routing';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { MyGamesComponent } from './components/games/my-games.component';
+import { MyGamesComponent } from './components/games/my-games/my-games.component';
 import { GameDetailsComponent } from './components/games/game-details/game-details.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ThemeComponent } from './components/theme/theme.component';
@@ -71,6 +71,7 @@ import { GametradeFooterComponent } from './components/gametrade-footer/gametrad
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
 import { MATERIAL_MODULES } from './shared/material/shared-material';
 import { SHARED_COMPONENTS } from './shared/components/shared-components';
+import { GamesComponent } from './components/games/games.component';
 
 //#endregion
 
@@ -93,7 +94,8 @@ import { SHARED_COMPONENTS } from './shared/components/shared-components';
         ReservationComponent,
         ThemeComponent,
         NewGameComponent,
-        SHARED_COMPONENTS
+        SHARED_COMPONENTS,
+        GamesComponent
     ],
     imports: [
         BrowserModule,
@@ -115,7 +117,7 @@ import { SHARED_COMPONENTS } from './shared/components/shared-components';
         SERVICES,
         Angular2TokenService,
         { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-        {provide: LOCALE_ID, useValue: 'pt' }
+        { provide: LOCALE_ID, useValue: 'pt' }
     ],
     bootstrap: [AppComponent]
 })

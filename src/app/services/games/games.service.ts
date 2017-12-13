@@ -22,19 +22,23 @@ export class GameService {
         return this.baseService.GET(`my_games.json`);
     }
 
-    getGames(name: string): Observable<Game[]> {
-        return this.baseService.GET(`games.json?q[name_cont]=${name}`);
+    getGames(name: string, page?: string, kind?: string, theme?: string, players?: string, launch_date?: string): Observable<Game[]> {
+        let url = `games.json?q[name_cont]=${name}`;
+
+        if (kind) { url = url.concat(`&q[game_kind_id_eq]=${kind}`); }
+        if (theme) { url = url.concat(`&q[theme_id_eq]=${theme}`); }
+        if (players) { url = url.concat(`&q[players_eq]=${players}`); }
+        if (launch_date) { url = url.concat(`&q[launch_date_eq]=${launch_date}`); }
+
+        return this.baseService.GET(url).map((result: any) => result.map(x => x.game));
     }
 
     getMostRecentGames(): Observable<Game[]> {
-        return this.baseService.GET(`games.json?limit=5`)
-            .map(
-                (result: any) => result.map(x => x.game)
-            );
+        return this.baseService.GET(`games.json?limit=5`).map((result: any) => result.map(x => x.game));
     }
 
     getGame(id: string): Observable<Game[]> {
-        return this.baseService.GET(`games/${id}.json`);
+        return this.baseService.GET(`games/${id}.json`).map(result => result.game);
     }
 
     newGame(newGame: GamePayload): Observable<any> {

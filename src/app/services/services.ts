@@ -6,6 +6,7 @@ import { ThemeService } from './theme/theme.service';
 import { GameKindService } from './game-kind/game-kind.service';
 import { UtilityService } from './utility/utility.service';
 import { CurrentUserResolverService } from './current-user-resolver/current-user-resolver.service';
+import { ScrollerService } from './scroller/scroller.service';
 
 //#endregion
 
@@ -16,5 +17,6 @@ export const SERVICES = [
     ThemeService,
     GameKindService,
     UtilityService,
-    CurrentUserResolverService
+    CurrentUserResolverService,
+    ScrollerService
 ];

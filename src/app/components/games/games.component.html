@@ -1,0 +1,45 @@
+<div class="container">
+
+    <div *ngIf="games?.length > 0" fxLayout fxLayoutWrap fxLayoutGap="16px">
+        <h2 fxFlex="100">
+            Resultados da busca por '{{paramName}}'
+        </h2>
+
+        <div class="filters" fxFlex="calc(20% - 16px)">
+            <h4>Filtros</h4>
+
+            <form [formGroup]="filters">
+                <mat-form-field>
+                    <input matInput placeholder="Tipo" formControlName="kind">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Tema" formControlName="theme">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Número de jogadores" formControlName="players">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="launchDatePicker" placeholder="Data de lançamento" formControlName="launch_date">
+                    <mat-datepicker-toggle matSuffix [for]="launchDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #launchDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <button mat-button (click)="searchWithParameters()">Buscar</button>
+            </form>
+        </div>
+
+        <div class="games" fxFlex="calc(80% - 16px)">
+            <gametrade-game-card *ngFor='let game of games' [game]='game'>
+            </gametrade-game-card>
+        </div>
+
+    </div>
+
+
+    <div class="empty" *ngIf="games?.length === 0">
+        <h3>Puxa vida, ainda não temos jogos com esse nome.</h3>
+    </div>
+</div>

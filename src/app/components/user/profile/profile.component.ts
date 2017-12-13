@@ -15,6 +15,7 @@ import { UtilityService } from '../../../services/utility/utility.service';
 import { User } from '../../../models/user';
 import { GametradeFile } from '../../../models/gametrade-file';
 import { BaseService } from '../../../services/base-service/base.service';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
 
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit {
     photo: string;
     mask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
     profile_form: FormGroup;
+    newProfile: boolean;
 
     stateOptions = [
         'AC',
@@ -65,19 +67,22 @@ export class ProfileComponent implements OnInit {
         private utilityService: UtilityService,
         private userService: UserService,
         public baseService: BaseService,
+        public snackBar: MatSnackBar,
         private fb: FormBuilder
     ) {
         this.profile_form = this.fb.group(new User());
     }
 
     ngOnInit() {
+        this.newProfile = !!localStorage.getItem('newProfile') || false;
+
         this.filteredOptions = this.profile_form.get('address_attributes.state').valueChanges
             .startWith(null)
             .map(val => val ? this.filter(val) : this.stateOptions.slice());
 
         this.userService.getProfile().subscribe(
             (result: any) => {
-                result.user.address_attributes = {...result.user.address};
+                result.user.address_attributes = { ...result.user.address };
 
                 delete result.user.address;
 
@@ -127,7 +132,11 @@ export class ProfileComponent implements OnInit {
         if (this.photo) {
             this.userService.savePhoto(this.photo).subscribe(
                 (result: any) => {
-                    this.userService.getProfile().subscribe();
+                    this.baseService.validateUser();
+
+                    this.snackBar.open('Foto atualizada com sucesso!', null, {
+                        duration: 2000
+                    });
                 }
             );
         }
@@ -137,7 +146,15 @@ export class ProfileComponent implements OnInit {
         if (this.profile_form.valid && this.profile_form.dirty) {
             this.userService.updateProfile(this.profile_form.value).subscribe(
                 (result: any) => {
-                    console.log(result);
+                    this.baseService.validateUser();
+
+                    this.snackBar.open('Perfil atualizado com sucesso!', null, {
+                        duration: 2000
+                    });
+
+                    if (this.newProfile) {
+                        localStorage.removeItem('newProfile');
+                    }
                 }
             );
         }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 // Models
-import { LoginForm, User } from '../../models/user';
+import { LoginForm, User, SignUpForm } from '../../models/user';
 
 // Services
 import { Angular2TokenService } from 'angular2-token';
@@ -18,11 +18,16 @@ import { FormGroup } from '@angular/forms';
 export class UserService {
 
     constructor(
-        private baseService: BaseService) {
+        private baseService: BaseService,
+    ) {
     }
 
     signIn(value: LoginForm) {
         return this.baseService.signIn(value);
+    }
+
+    signUp(value: SignUpForm) {
+        return this.baseService.signUp(value);
     }
 
     getProfile() {

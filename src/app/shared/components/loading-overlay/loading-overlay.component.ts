@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BaseService } from '../../../services/base-service/base.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { BaseService } from '../../../services/base-service/base.service';
     styleUrls: ['./loading-overlay.component.scss']
 })
 export class LoadingOverlayComponent implements OnInit {
+
+    @Input() mode = 'spinner';
 
     constructor(
         public baseService: BaseService

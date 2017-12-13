@@ -13,12 +13,13 @@ import { SignUpComponent } from '../components/user/sign-up/sign-up.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { HomeComponent } from '../components/home/home.component';
-import { MyGamesComponent } from '../components/games/my-games.component';
+import { MyGamesComponent } from '../components/games/my-games/my-games.component';
 import { GameDetailsComponent } from '../components/games/game-details/game-details.component';
 import { ProfileComponent } from '../components/user/profile/profile.component';
 import { ThemeComponent } from '../components/theme/theme.component';
 import { NewGameComponent } from '../components/games/new-game/new-game.component';
 import { CurrentUserResolverService } from '../services/current-user-resolver/current-user-resolver.service';
+import { GamesComponent } from '../components/games/games.component';
 
 //#endregion
 
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
             { path: 'new-game', component: NewGameComponent, canActivate: [Angular2TokenService] },
             { path: 'profile', component: ProfileComponent, canActivate: [Angular2TokenService] },
             { path: 'games/:id', component: GameDetailsComponent },
+            { path: 'games', component: GamesComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }
         ]
     },

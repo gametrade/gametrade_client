@@ -10,7 +10,7 @@
             <mat-icon>
                 <i class="material-icons">search</i>
             </mat-icon>
-            <input type="text" [formControl]="searchText" [matAutocomplete]="auto" placeholder="Tente 'Arcadia'">
+            <input type="text" [formControl]="searchText" [matAutocomplete]="auto" placeholder="Tente 'Arcadia'" (keyup.enter)="searchGame()">
 
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="gameSelected($event)">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option.game">
@@ -22,22 +22,27 @@
         <div class="space"></div>
 
         <div class='actions' fxLayout='row' fxLayoutAlign='space-around center' fxHide.lt-sm='true'>
-            <a fxFlex routerLink='/help'>Ajuda</a>
-
             <div class="anonymous-area">
                 <a fxFlex *ngIf='!tokenService.userSignedIn()' routerLink='/sign-up'>Cadastre-se</a>
                 <a fxFlex *ngIf='!tokenService.userSignedIn()' routerLink='/login'>Entrar</a>
             </div>
 
-            <div class="user-area">
-                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/profile'>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
-                <a fxFlex *ngIf='tokenService.userSignedIn()' routerLink='/my-games'>Meus jogos</a>
-                <a fxFlex *ngIf='tokenService.userSignedIn()' (click)='signOut()'>Sair</a>
+            <div class="user-area" *ngIf='tokenService.userSignedIn()'>
+                <a fxFlex routerLink='/new-game'>Novo jogo</a>
+                <a fxFlex routerLink='/profile'>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
+                <a fxFlex routerLink='/my-games'>Meus jogos</a>
+                <a fxFlex (click)='signOut()'>Sair</a>
             </div>
         </div>
     </mat-toolbar>
 
-    <div class="main-content">
+    <gametrade-loading-overlay mode="bar"></gametrade-loading-overlay>
+
+    <div class="main-content"  infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" [scrollWindow]="false" (scrolled)="onScroll()">
         <router-outlet></router-outlet>
     </div>
+
+    <a routerLink="/profile" *ngIf="newProfile" mat-mini-fab color="warn" style="font-size: 20px; position: fixed; bottom: 24px; right: 24px;" matTooltip="Você precisa concluir o seu perfil" matTooltipPosition="left">
+        <mat-icon>warning</mat-icon>
+    </a>
 </ng-container>

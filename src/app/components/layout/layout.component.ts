@@ -18,6 +18,7 @@ import { Angular2TokenService } from 'angular2-token';
 // Models
 import { Game } from '../../models/game';
 import { BaseService } from '../../services/base-service/base.service';
+import { ScrollerService } from '../../services/scroller/scroller.service';
 
 //#endregion
 
@@ -30,17 +31,21 @@ export class LayoutComponent implements OnInit {
 
     searchText: FormControl = new FormControl();
     filteredOptions: any;
+    newProfile: boolean;
 
     constructor(
         public tokenService: Angular2TokenService,
         private gameService: GameService,
-        private baseService: BaseService,
+        public baseService: BaseService,
         private router: Router,
+        private scroller: ScrollerService,
         private route: ActivatedRoute) {
-            this.baseService.currentUser = this.tokenService.currentUserData;
-        }
+        this.baseService.currentUser = this.tokenService.currentUserData;
+    }
 
     ngOnInit() {
+        this.newProfile = !!localStorage.getItem('newProfile') || false;
+
         this.filteredOptions = this.searchText.valueChanges
             .startWith(null)
             .debounceTime(500)
@@ -48,7 +53,9 @@ export class LayoutComponent implements OnInit {
     }
 
     filter(val: string) {
-        return val ? this.getGames(val) : Observable.from([]);
+        if (val) { val = val.trim(); }
+
+        return val ? this.getGames(val) : Observable.of([]);
     }
 
     getGames(name: string) {
@@ -56,12 +63,28 @@ export class LayoutComponent implements OnInit {
     }
 
     gameSelected(event: any) {
-        this.searchText.reset();
+        this.searchText.patchValue('');
         this.router.navigate(['games', event.option.value.id]);
     }
 
     signOut() {
         this.tokenService.signOut();
         this.router.navigate(['home']);
+    }
+
+    searchGame() {
+        if (this.searchText.dirty) {
+            const value = this.searchText.value.trim();
+
+            if (!value) { return null; }
+
+            this.searchText.patchValue('');
+
+            this.router.navigate(['games'], { queryParams: { name: value } });
+        }
+    }
+
+    onScroll() {
+        this.scroller.onScroll();
     }
 }

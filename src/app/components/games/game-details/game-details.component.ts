@@ -2,6 +2,7 @@
 // Core
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { Game } from '../../../models/game';
@@ -19,15 +20,34 @@ import { GameService } from '../../../services/games/games.service';
 export class GameDetailsComponent implements OnInit {
 
     //#region Properties
-    public game: Game;
+    game: Game;
+    total: number;
+
+    dates: FormGroup;
+    tomorrow = new Date();
+    minCheckOut = new Date();
 
     //#endregion
 
     //#region Constructor
     constructor(
         private route: ActivatedRoute,
-        private gameService: GameService
-    ) { }
+        private gameService: GameService,
+        private fb: FormBuilder
+    ) {
+        this.tomorrow = this.theDayAfter(this.tomorrow);
+
+        this.dates = fb.group({
+            checkIn: ['', Validators.required],
+            checkOut: ['', Validators.required]
+        });
+
+        this.dates.get('checkIn').valueChanges.subscribe(
+            (value: any) => {
+                this.minCheckOut = this.theDayAfter(new Date(value));
+            }
+        );
+    }
 
     //#endregion
 
@@ -36,7 +56,7 @@ export class GameDetailsComponent implements OnInit {
             param => {
                 this.gameService.getGame(param.id).subscribe(
                     (game: any) => {
-                        this.game = game.game;
+                        this.game = game;
                     }
                 );
             }
@@ -44,4 +64,16 @@ export class GameDetailsComponent implements OnInit {
     }
 
     saveGame() { }
+
+    makeReservation() {
+        if (this.dates.valid && this.dates.dirty) {
+            // this.
+        }
+    }
+
+    theDayAfter(date: Date) {
+        date.setDate(date.getDate() + 1);
+
+        return date;
+    }
 }

@@ -1,0 +1,18 @@
+@import '~styles.scss';
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, calc(25% - 16px));
+    justify-content: space-between;
+
+    gametrade-game-card {
+        margin-bottom: 16px;
+    }
+}
+
+.filters {
+    height: 100%;
+    background-color: $accent-color;
+    color: white;
+    padding: 8px;
+}

@@ -2,18 +2,18 @@
 
 .game-card {
     background-color: white;
-    
+
     &.mat-card:not([class*=mat-elevation-z]) {
         box-shadow: 0 0 1px rgba(black, .44);
-        
+
         &:hover {
             border: none;
             background-color: #FFF;
             border-radius: 3px;
             cursor: pointer;
-            
+
             @include box_shadow(2);
-    
+
             .mat-card-image {
                 border-top-left-radius: 3px;
                 border-top-right-radius: 3px;
@@ -41,6 +41,10 @@
     display: inline-block;
 
     .star-container {
-        margin: 0;
+        margin: 0 8px;
+
+        .star {
+            width: 16px;
+        }
     }
 }

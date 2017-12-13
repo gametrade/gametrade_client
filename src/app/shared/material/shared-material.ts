@@ -5,6 +5,7 @@ import {
     MatToolbarModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatIconModule,
     MatStepperModule,
     MatSelectModule,
@@ -12,7 +13,9 @@ import {
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatTooltipModule
 } from '@angular/material';
 
 export const MATERIAL_MODULES = [
@@ -22,6 +25,7 @@ export const MATERIAL_MODULES = [
     MatToolbarModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatIconModule,
     MatStepperModule,
     MatSelectModule,
@@ -29,5 +33,7 @@ export const MATERIAL_MODULES = [
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatTooltipModule
 ];

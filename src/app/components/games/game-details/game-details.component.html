@@ -1,5 +1,3 @@
-<gametrade-loading-overlay></gametrade-loading-overlay>
-
 <ng-container *ngIf="game">
     <div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}">
         <button mat-raised-button (click)="saveGame()">
@@ -30,19 +28,23 @@
 
             <div class="separator"></div>
 
-            <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
+            <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap" [formGroup]="dates">
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
-                    <input matInput [matDatepicker]="checkInPickerr" placeholder="Check-in">
+                    <input matInput [min]="tomorrow" [matDatepicker]="checkInPickerr" placeholder="Check-in" formControlName="checkIn">
                     <mat-datepicker-toggle matSuffix [for]="checkInPickerr"></mat-datepicker-toggle>
                     <mat-datepicker #checkInPickerr></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
-                    <input matInput [matDatepicker]="checkOutPicker" placeholder="Checkout">
+                    <input matInput [min]="minCheckOut" [matDatepicker]="checkOutPicker" placeholder="Checkout" formControlName="checkOut">
                     <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
                     <mat-datepicker #checkOutPicker></mat-datepicker>
                 </mat-form-field>
+
+                <div fxFlex="100">
+                    <p>Total: {{total}}  </p>
+                </div>
 
                 <div fxFlex="100">
                     <button mat-raised-button color="accent" (click)="makeReservation()">Reservar</button>

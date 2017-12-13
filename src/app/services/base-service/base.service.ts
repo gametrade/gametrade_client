@@ -19,6 +19,7 @@ export class BaseService {
 
     signIn(value: any) {
         this.isLoading = true;
+
         return this.tokenService.signIn(value)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
@@ -30,17 +31,39 @@ export class BaseService {
             });
     }
 
+    signUp(value: any) {
+        this.isLoading = true;
+
+        return this.tokenService.registerAccount({
+            email: value.email,
+            password: value.passwords.password,
+            passwordConfirmation: value.passwords.passwordConfirmation
+        })
+            .catch((error: any, caught: Observable<Response>) => {
+                this.isLoading = false;
+                return error;
+            })
+            .map((response: Response) => {
+                this.isLoading = false;
+                return response;
+            });
+    }
+
+    validateUser() {
+        this.tokenService.validateToken();
+    }
+
     GET<T>(url: string, parameters?: string, options: any = null, absolute: boolean = false) {
         this.isLoading = true;
 
         if (absolute) {
             return this.http.get(url, options)
-            .map(
+                .map(
                 (res: Response) => {
                     this.isLoading = false;
                     return res.json();
                 }
-            );
+                );
         }
 
         return this.tokenService.get(`${url}`, options)
@@ -56,6 +79,7 @@ export class BaseService {
 
     POST<T>(url: string, body: any, options: any = null) {
         this.isLoading = true;
+
         return this.tokenService.post(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
@@ -69,6 +93,7 @@ export class BaseService {
 
     DELETE(url: string, options: any = null) {
         this.isLoading = true;
+
         return this.tokenService.delete(`${url}`, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
@@ -82,6 +107,7 @@ export class BaseService {
 
     PUT(url: string, body: any, options: any = null) {
         this.isLoading = true;
+
         return this.tokenService.put(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
@@ -95,6 +121,7 @@ export class BaseService {
 
     PATCH(url: string, body: any, options: any = null) {
         this.isLoading = true;
+
         return this.tokenService.patch(`${url}`, body, options)
             .catch((error: any, caught: Observable<Response>) => {
                 this.isLoading = false;
