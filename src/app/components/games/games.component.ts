@@ -11,6 +11,8 @@ import { GameService } from '../../services/games/games.service';
 // Models
 import { Game } from '../../models/game';
 import { ScrollerService } from '../../services/scroller/scroller.service';
+import { GameKindService } from '../../services/game-kind/game-kind.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 //#endregion
 
@@ -25,6 +27,9 @@ export class GamesComponent implements OnInit {
 
     filters: FormGroup;
 
+    kinds: any;
+    themes: any;
+
     paramName: string;
     games: Game[];
     page = 0;
@@ -33,7 +38,9 @@ export class GamesComponent implements OnInit {
         private gameService: GameService,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private scroller: ScrollerService
+        private scroller: ScrollerService,
+        private gkSerivice: GameKindService,
+        private themeService: ThemeService
     ) {
         this.filters = fb.group({
             kind: '',
@@ -47,14 +54,8 @@ export class GamesComponent implements OnInit {
         this.route.queryParams
             .subscribe((params: any) => {
                 this.paramName = params.name;
-
-                this.gameService.getGames(params.name).subscribe(
-                    (result: any) => {
-                        this.allGames = result;
-                        this.games = [];
-                        this.getGames();
-                    }
-                );
+                this.games = [];
+                this.getGames();
             });
 
         this.scroller.hasScrolled.subscribe(
@@ -65,19 +66,32 @@ export class GamesComponent implements OnInit {
                 }
             }
         );
+
+        this.gkSerivice.getKinds().subscribe(
+            (result: any) => this.kinds = result || []
+        );
+
+        this.themeService.getThemes().subscribe(
+            (result: any) => this.themes = result || []
+        );
     }
 
     getGames() {
-        this.games = this.games.concat(this.allGames.slice(this.page, 12));
+        const value = this.filters.value;
+
+        this.gameService.getGames(this.paramName, this.page, value.kind, value.theme, value.players, value.launch_date).subscribe(
+            (result: any) => {
+                this.games = this.games.concat(result);
+            }
+        );
     }
 
     searchWithParameters() {
-        const value = this.filters.value;
+        if (!this.filters.dirty) { return null; }
 
-        this.gameService.getGames(this.paramName, null, value.kind, value.theme, value.players, value.launch_date).subscribe(
-            (result: Game[]) => {
-                this.games = result;
-            }
-        );
+        this.games = [];
+        this.page = 0;
+
+        this.getGames();
     }
 }

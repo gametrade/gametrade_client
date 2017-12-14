@@ -36,10 +36,12 @@ export class NewGameComponent implements OnInit {
     themes: Theme[] = [];
     game_kinds: GameKind[] = [];
 
+    // mask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
+
     constructor(
         private fb: FormBuilder,
         private gameService: GameService,
-        private catService: ThemeService,
+        private themeService: ThemeService,
         private gkService: GameKindService,
         private utilityService: UtilityService,
         private router: Router) {
@@ -48,8 +50,8 @@ export class NewGameComponent implements OnInit {
 
     ngOnInit() {
         Observable.forkJoin(
-            this.catService.getTheme(),
-            this.gkService.getKind()
+            this.themeService.getThemes(),
+            this.gkService.getKinds()
         ).subscribe(([themes, kinds]) => {
             this.themes = themes;
             this.game_kinds = kinds;

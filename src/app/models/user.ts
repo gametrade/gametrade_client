@@ -2,6 +2,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 
 export class User {
     uid: string;
+    id: string;
     name: FormControl = new FormControl(undefined);
     surname: FormControl = new FormControl(undefined);
     photo: FormControl = new FormControl(undefined);

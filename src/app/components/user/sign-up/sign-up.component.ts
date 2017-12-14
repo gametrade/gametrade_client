@@ -12,6 +12,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { SignUpForm } from '../../../models/user';
 import { ErrorsList } from '../../../models/errors';
 import { UserService } from '../../../services/user/user.service';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
 
@@ -38,7 +39,8 @@ export class SignUpComponent implements OnInit {
     constructor(
         private userService: UserService,
         private router: Router,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,
+        private snack: MatSnackBar) {
         this.signUpForm = this.formBuilder.group({
             email: [null, Validators.compose([Validators.required, Validators.email])],
             passwords: this.formBuilder.group({
@@ -68,7 +70,11 @@ export class SignUpComponent implements OnInit {
                     localStorage.setItem('newProfile', 'true');
 
                     this.router.navigateByUrl('/profile');
-                });
+                },
+                (error: any) => {
+                    this.snack.open('Não foi possível cadastrar, tente novamente.');
+                }
+            );
         }
     }
 

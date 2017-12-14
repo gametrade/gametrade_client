@@ -30,8 +30,8 @@ export class UserService {
         return this.baseService.signUp(value);
     }
 
-    getProfile() {
-        return this.baseService.GET(`users/${this.baseService.currentUser.id}.json`);
+    getProfile(user?: number) {
+        return this.baseService.GET(`users/${user || this.baseService.currentUser.id}.json`).map(result => result.user);
     }
 
     updateProfile(value: User) {

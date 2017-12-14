@@ -82,11 +82,11 @@ export class ProfileComponent implements OnInit {
 
         this.userService.getProfile().subscribe(
             (result: any) => {
-                result.user.address_attributes = { ...result.user.address };
+                result.address_attributes = { ...result.address };
 
-                delete result.user.address;
+                delete result.address;
 
-                this.profile_form.patchValue(result.user);
+                this.profile_form.patchValue(result);
             }
         );
     }

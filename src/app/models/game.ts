@@ -10,6 +10,7 @@ export class GamePayload {
     game_kind_id: FormControl = new FormControl(undefined, Validators.required);
     theme_id: FormControl = new FormControl(undefined, Validators.required);
     user_id: number = undefined;
+    price: number = undefined;
 }
 
 class Photo {
@@ -27,8 +28,8 @@ export class Game {
     description: string;
     launch_date: string;
     lifetime: string;
-    players: 8;
-    user_id: 40;
+    players: number;
+    user: User;
     game_kind: {
         id: number,
         name: string,
@@ -41,7 +42,7 @@ export class Game {
         created_at: string,
         updated_at: string
     };
-    price: null;
+    price: number;
     created_at: string;
     updated_at: string;
     photos: any[];

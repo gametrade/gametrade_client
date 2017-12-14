@@ -11,6 +11,7 @@ import { GameKindService } from '../../../services/game-kind/game-kind.service';
 })
 export class GameCardComponent implements OnInit {
     @Input('game') game: Game;
+    thumbnail: string;
 
     constructor(
         private router: Router,
@@ -18,7 +19,11 @@ export class GameCardComponent implements OnInit {
         private gkService: GameKindService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        if (this.game.photos && this.game.photos.length > 0) {
+            this.thumbnail = this.game.photos[0].photo;
+        }
+    }
 
     // Navigates to the game page
     readMore() {

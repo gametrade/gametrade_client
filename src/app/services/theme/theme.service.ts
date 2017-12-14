@@ -1,42 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Theme } from '../../models/theme';
 import { Observable } from 'rxjs/Observable';
-
-const categories: Theme[] = [
-    {
-        id: 1,
-        name: 'Civilizações e mitologia'
-    },
-    {
-        id: 2,
-        name: 'Monstros e criaturas'
-    },
-    {
-        id: 3,
-        name: 'Medieval e fantasia'
-    },
-    {
-        id: 4,
-        name: 'Zumbis'
-    },
-    {
-        id: 5,
-        name: 'Contemporâneos'
-    },
-    {
-        id: 6,
-        name: 'Ficção Científica'
-    }
-];
+import { BaseService } from '../base-service/base.service';
 
 @Injectable()
 export class ThemeService {
 
-    constructor() { }
+    constructor(
+        private baseService: BaseService
+    ) { }
 
-    getTheme(id?: number): Observable<Theme[]> {
-        return Observable.of(categories.filter(
-            (theme: Theme) => id ? theme.id === id : true
-        ));
+    getThemes(): Observable<Theme[]> {
+        return this.baseService.GET('themes.json').map(
+            (result: any) => result.map(theme => theme.theme)
+        );
     }
 }

@@ -12,6 +12,11 @@ import { TextMaskModule } from 'angular2-text-mask';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
+import 'hammerjs';
+import 'mousetrap';
+import { ModalGalleryModule } from 'angular-modal-gallery';
+
+
 //#endregion
 
 //#region Layout Modules
@@ -72,6 +77,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
 import { MATERIAL_MODULES } from './shared/material/shared-material';
 import { SHARED_COMPONENTS } from './shared/components/shared-components';
 import { GamesComponent } from './components/games/games.component';
+import { FindComponent } from './components/user/find/find.component';
 
 //#endregion
 
@@ -95,7 +101,8 @@ import { GamesComponent } from './components/games/games.component';
         ThemeComponent,
         NewGameComponent,
         SHARED_COMPONENTS,
-        GamesComponent
+        GamesComponent,
+        FindComponent
     ],
     imports: [
         BrowserModule,
@@ -110,6 +117,7 @@ import { GamesComponent } from './components/games/games.component';
         AppRoutingModule,
         TextMaskModule,
         StarRatingModule.forRoot(),
+        ModalGalleryModule.forRoot(),
         InfiniteScrollModule
     ],
     entryComponents: [LoginComponent],

@@ -1,7 +1,6 @@
 @import '~styles.scss';
 
 .block-image {
-    background-image: url(http://via.placeholder.com/800x450);
     background-size: cover !important;
     background-position: center !important;
     box-shadow: 0 1px 5px -1px rgba($light-gray, .80);
@@ -49,6 +48,25 @@
     .game-info {
         border-top: $border-top;
         margin-right: 16px;
+        position: relative;
+
+        .owner {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            text-align: right;
+
+            a {
+                border-bottom: 3px solid $primary-color;
+                padding: 2px 8px;
+                transition: all .275s;
+
+                &:hover {
+                    background-color: $primary-color;
+                    color: #FFF;
+                }
+            }
+        }
     }
 
     .reservation-info {

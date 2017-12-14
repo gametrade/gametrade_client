@@ -9,19 +9,23 @@
             <h4>Filtros</h4>
 
             <form [formGroup]="filters">
-                <mat-form-field>
-                    <input matInput placeholder="Tipo" formControlName="kind">
+                <mat-form-field color="accent">
+                    <mat-select formControlName="kind" placeholder="Tipo">
+                        <mat-option *ngFor="let kind of kinds" [value]="kind.id">{{kind.name}}</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <input matInput placeholder="Tema" formControlName="theme">
+                <mat-form-field color="accent">
+                    <mat-select formControlName="theme" placeholder="Tema">
+                        <mat-option *ngFor="let theme of themes" [value]="theme.id">{{theme.name}}</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field color="accent">
                     <input matInput placeholder="Número de jogadores" formControlName="players">
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field color="accent">
                     <input matInput [matDatepicker]="launchDatePicker" placeholder="Data de lançamento" formControlName="launch_date">
                     <mat-datepicker-toggle matSuffix [for]="launchDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #launchDatePicker></mat-datepicker>

@@ -20,6 +20,7 @@ import { ThemeComponent } from '../components/theme/theme.component';
 import { NewGameComponent } from '../components/games/new-game/new-game.component';
 import { CurrentUserResolverService } from '../services/current-user-resolver/current-user-resolver.service';
 import { GamesComponent } from '../components/games/games.component';
+import { FindComponent } from '../components/user/find/find.component';
 
 //#endregion
 
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
             { path: 'my-games', component: MyGamesComponent, canActivate: [Angular2TokenService] },
             { path: 'new-game', component: NewGameComponent, canActivate: [Angular2TokenService] },
             { path: 'profile', component: ProfileComponent, canActivate: [Angular2TokenService] },
+            { path: 'profile/:id', component: FindComponent },
             { path: 'games/:id', component: GameDetailsComponent },
             { path: 'games', component: GamesComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }

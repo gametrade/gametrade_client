@@ -1,6 +1,6 @@
 <ng-container *ngIf="game">
-    <div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}">
-        <button mat-raised-button (click)="saveGame()">
+    <div class="block-image" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')'} ">
+        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner">
                 <mat-icon>favorite</mat-icon>
                 Salvar
         </button>
@@ -16,6 +16,10 @@
                 <small>Data de lançamento: {{game.launch_date | date:'dd/MM/y'}}</small>
             </div>
 
+            <div class="owner">
+                <a [routerLink]="'/profile/' + game.user.id">{{game.user.name}} {{game.user.surname}}</a>
+            </div>
+
             <p class='mat-body-1' style="word-wrap: break-word; margin-bottom: 0; white-space: pre-line;">
                 {{game.description}}
             </p>
@@ -23,7 +27,7 @@
             <star-rating-comp *ngIf="game.rating" [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
         </div>
 
-        <div class="reservation-info" fxFlex="30">
+        <div class="reservation-info" fxFlex="30" *ngIf="!isOwner">
             <h3 style="margin: 0">R$ {{(game.price || 0) | number:'1.2-2'}} <small>por dia</small></h3>
 
             <div class="separator"></div>
@@ -43,13 +47,17 @@
                 </mat-form-field>
 
                 <div fxFlex="100">
-                    <p>Total: {{total}}  </p>
+                    <p>Total: R$ {{total | number:'1.2-2'}}</p>
                 </div>
 
                 <div fxFlex="100">
                     <button mat-raised-button color="accent" (click)="makeReservation()">Reservar</button>
                 </div>
             </form>
+        </div>
+
+        <div class="reservation-info" fxFlex="30" *ngIf="isOwner">
+            <h4>Ora ora, parece que este jogo já é seu.</h4>
         </div>
     </div>
 </ng-container>

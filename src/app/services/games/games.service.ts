@@ -22,9 +22,10 @@ export class GameService {
         return this.baseService.GET(`my_games.json`);
     }
 
-    getGames(name: string, page?: string, kind?: string, theme?: string, players?: string, launch_date?: string): Observable<Game[]> {
+    getGames(name: string, page?: number, kind?: string, theme?: string, players?: string, launch_date?: string): Observable<Game[]> {
         let url = `games.json?q[name_cont]=${name}`;
 
+        if (page) { url = url.concat(`&page=${page}&per_page=12`); }
         if (kind) { url = url.concat(`&q[game_kind_id_eq]=${kind}`); }
         if (theme) { url = url.concat(`&q[theme_id_eq]=${theme}`); }
         if (players) { url = url.concat(`&q[players_eq]=${players}`); }
@@ -34,7 +35,7 @@ export class GameService {
     }
 
     getMostRecentGames(): Observable<Game[]> {
-        return this.baseService.GET(`games.json?limit=5`).map((result: any) => result.map(x => x.game));
+        return this.baseService.GET(`games.json?page=1&per_page=5`).map((result: any) => result.map(x => x.game));
     }
 
     getGame(id: string): Observable<Game[]> {
@@ -54,5 +55,21 @@ export class GameService {
         };
 
         return this.baseService.PATCH(`games/${game_id}.json`, payload);
+    }
+
+    setFavorite(game_id: number) {
+        const payload = {
+            game_id
+        };
+
+        return this.baseService.POST(`wishlists.json`, payload);
+    }
+
+    removeFavorite(game_id: number) {
+        return this.baseService.DELETE(`wishlists/${game_id}.json`);
+    }
+
+    getFavorites() {
+        return this.baseService.GET('wishlists');
     }
 }

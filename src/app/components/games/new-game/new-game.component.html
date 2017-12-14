@@ -37,6 +37,10 @@
                 </mat-form-field>
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput placeholder="Preço" formControlName="price">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
                     <input matInput [matDatepicker]="picker" placeholder="Data de lançamento" formControlName="launch_date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -52,18 +56,18 @@
             <div fxFlex="100" fxLayout fxLayoutWrap>
                 <p fxFlex="100">Agora, só falta adicionar algumas fotos e estará pronto.</p>
                 <p fxFlex="100">A primeira foto será usada com thumbnail nas buscas do seu jogo.</p>
-    
+
                 <gametrade-file-input (onFileSelect)="onFileSelect($event)" [accept]="'image/*'" multiple="true">
                     <span class="default">Escolha as fotos</span>
                 </gametrade-file-input>
-    
+
                 <mat-list *ngIf="game_photos?.length > 0" fxFlex="100">
                     <mat-list-item *ngFor="let photo of game_photos">
                         <h3 matLine>{{photo.fileName}}</h3>
                         <mat-icon (click)="removePhoto(photo)" matListIcon>remove</mat-icon>
                     </mat-list-item>
                 </mat-list>
-    
+
                 <div fxFlex="100" style="margin-top: 8px">
                     <button mat-button matStepperNext (click)="savePhotos()">Salvar fotos</button>
                 </div>

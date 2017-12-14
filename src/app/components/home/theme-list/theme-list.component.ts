@@ -24,12 +24,6 @@ export class ThemeListComponent implements OnInit {
         private categoryService: ThemeService
     ) { }
 
-    ngOnInit() {
-        this.categoryService.getTheme().subscribe(
-            (categories: Theme[]) => {
-                this.categoryList = categories;
-            }
-        );
-    }
+    ngOnInit() { }
 
 }

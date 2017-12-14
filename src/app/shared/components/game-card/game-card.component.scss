@@ -34,17 +34,39 @@
     .actions {
         padding: $gutter-1;
     }
+
+    mat-card-footer {
+        span {
+            position: absolute;
+            right: 8px;
+
+            a {
+                color: $primary-color;
+                transition: all .275s;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
 }
 
-:host /deep/ .rating {
-    outline: none;
-    display: inline-block;
+:host /deep/ {
+    img {
+        height: 105px;
+    }
+    
+    .rating {
+        outline: none;
+        display: inline-block;
 
-    .star-container {
-        margin: 0 8px;
+        .star-container {
+            margin: 0 8px;
 
-        .star {
-            width: 16px;
+            .star {
+                width: 16px;
+            }
         }
     }
 }
