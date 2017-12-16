@@ -14,10 +14,14 @@
     <gametrade-closeable (onClose)='closeInfo()'></gametrade-closeable>
 </div>
 
-<gametrade-recommended-games *ngIf="tokenService.currentUserData"></gametrade-recommended-games>
+<!-- <ng-container *ngIf="tokenService.currentUserData">
+    <gametrade-recommended-games></gametrade-recommended-games>
+    
+    <div class="separator"></div>
+</ng-container> -->
+
+<gametrade-most-recent-games></gametrade-most-recent-games>
 
 <div class="separator"></div>
 
-<gametrade-most-accessed-games></gametrade-most-accessed-games>
-
-<div class="separator"></div>
+<gametrade-nearby></gametrade-nearby>

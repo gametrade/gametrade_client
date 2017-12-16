@@ -1,0 +1,37 @@
+@import '~styles.scss';
+
+.new-game-form {
+
+    margin: 0 auto;
+    width: 50%;
+
+    mat-horizontal-stepper {
+        border-top: 3px solid #009688;
+        box-shadow: 0 1px 5px 2px $alpha-black;
+    }
+}
+
+:host /deep/ {
+    .mat-list .mat-list-item .mat-list-item-content,
+    .mat-list .mat-list-item .mat-list-text,
+    {
+        padding: 0;
+    }
+
+    .mat-list-item-content {
+        mat-icon.mat-list-icon {
+            transition: background-color .275s;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+
+            &:hover {
+                background-color: $alpha-black;
+            }
+        }
+    }
+
+    .mat-step-header:hover {
+        background-color: transparent;
+    }
+}

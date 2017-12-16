@@ -1,6 +1,20 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+//#region Imports
+
+// Core
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
+// Services
 import { GameService } from '../../services/games/games.service';
-import { Game, InsertedGame } from '../../models/game';
+
+// Models
+import { Game } from '../../models/game';
+import { ScrollerService } from '../../services/scroller/scroller.service';
+import { GameKindService } from '../../services/game-kind/game-kind.service';
+import { ThemeService } from '../../services/theme/theme.service';
+
+//#endregion
 
 @Component({
     selector: 'gametrade-games',
@@ -8,34 +22,78 @@ import { Game, InsertedGame } from '../../models/game';
     styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-    public games: Array<Game>;
 
-    constructor(private gameService: GameService, private cd: ChangeDetectorRef) { }
+    private allGames: Game[];
 
-    ngOnInit() {
-        this.getMyGames();
+    filters: FormGroup;
+
+    kinds: any;
+    themes: any;
+
+    paramName: string;
+    hasNew: boolean = true;
+    games: Game[];
+    page = 1;
+
+    constructor(
+        private gameService: GameService,
+        private route: ActivatedRoute,
+        private fb: FormBuilder,
+        private scroller: ScrollerService,
+        private gkSerivice: GameKindService,
+        private themeService: ThemeService
+    ) {
+        this.filters = fb.group({
+            kind: '',
+            theme: '',
+            players: '',
+            launch_date: ''
+        });
     }
 
-    getMyGames() {
-        this.gameService.getMyGames().subscribe(
-            (games: Array<Game>) => {
-                this.games = games;
-            },
-            (error: Error) => {
-                console.log(error);
+    ngOnInit() {
+        this.route.queryParams
+            .subscribe((params: any) => {
+                this.paramName = params.name;
+                this.games = [];
+                this.getGames();
+            });
+
+        this.scroller.hasScrolled.subscribe(
+            (result: boolean) => {
+                if (result && this.hasNew) {
+                    this.page++;
+                    this.getGames();
+                }
+            }
+        );
+
+        this.gkSerivice.getKinds().subscribe(
+            (result: any) => this.kinds = result || []
+        );
+
+        this.themeService.getThemes().subscribe(
+            (result: any) => this.themes = result || []
+        );
+    }
+
+    getGames() {
+        const value = this.filters.value;
+
+        this.gameService.getGames(this.paramName, this.page, value.kind, value.theme, value.players, value.launch_date).subscribe(
+            (result: any) => {
+                if (result.length < 12) { this.hasNew = false; }
+                this.games = this.games.concat(result);
             }
         );
     }
 
-    newGame() {
-       this.gameService.newGame().subscribe(
-           (insertedGame: InsertedGame) => {
-               console.log(insertedGame);
-           },
-           (error: Error) => {
-               console.log(error);
-           }
-       );
-        return null;
+    searchWithParameters() {
+        if (!this.filters.dirty) { return null; }
+
+        this.games = [];
+        this.page = 0;
+
+        this.getGames();
     }
 }

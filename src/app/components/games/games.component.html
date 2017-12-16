@@ -1,9 +1,49 @@
-<div class='container'>
-    <h2>Lista de jogos</h2>
-    
-    <p *ngFor='let game of games'>
-        {{game.name}} - {{game.type}}
-    </p>
-    
-    <button mat-raised-button color='primary' (click)='newGame()'>Novo jogo</button>
+<div class="container">
+
+    <div *ngIf="games?.length > 0" fxLayout fxLayoutWrap fxLayoutGap="16px">
+        <h2 fxFlex="100">
+            Resultados da busca por '{{paramName}}'
+        </h2>
+
+        <div class="filters" fxFlex="calc(20% - 16px)">
+            <h4>Filtros</h4>
+
+            <form [formGroup]="filters">
+                <mat-form-field color="accent">
+                    <mat-select formControlName="kind" placeholder="Tipo">
+                        <mat-option *ngFor="let kind of kinds" [value]="kind.id">{{kind.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field color="accent">
+                    <mat-select formControlName="theme" placeholder="Tema">
+                        <mat-option *ngFor="let theme of themes" [value]="theme.id">{{theme.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field color="accent">
+                    <input matInput placeholder="Número de jogadores" formControlName="players">
+                </mat-form-field>
+
+                <mat-form-field color="accent">
+                    <input matInput [matDatepicker]="launchDatePicker" placeholder="Data de lançamento" formControlName="launch_date">
+                    <mat-datepicker-toggle matSuffix [for]="launchDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #launchDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <button mat-button (click)="searchWithParameters()">Buscar</button>
+            </form>
+        </div>
+
+        <div class="games" fxFlex="calc(80% - 16px)">
+            <gametrade-game-card *ngFor='let game of games' [game]='game'>
+            </gametrade-game-card>
+        </div>
+
+    </div>
+
+
+    <div class="empty" *ngIf="games?.length === 0">
+        <h3>Puxa vida, ainda não temos jogos com esse nome.</h3>
+    </div>
 </div>

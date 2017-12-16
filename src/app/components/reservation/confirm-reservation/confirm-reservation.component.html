@@ -1,0 +1,24 @@
+<div class="container" fxLayout fxLayoutAlign="center start" style="height: 100%">
+    <mat-card fxFlex="50" *ngIf="reservation" class="confirm-reservation">
+        <mat-card-title>Confirmar reserva</mat-card-title>
+
+        <mat-card-content>
+            <h4>Jogo:</h4>
+            <p>{{reservation.game.name}}</p>
+
+            <h4>Datas escolhidas</h4>
+            
+            <div class="dates" fxLayout fxLayoutWrap>
+                <p fxFlex="100">{{reservation.startDate | date:'dd/MM/y'}}</p>
+                <p fxFlex="100">{{reservation.endDate | date:'dd/MM/y'}}</p>
+            </div>
+
+            <h4>Total: R$ {{total | number:'1.2-2'}}</h4>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button routerLink="/games/{{reservation.game.id}}">Voltar</button>
+            <button mat-button color="primary" (click)="confirmReservation()">Confirmar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,15 @@
+@import '~styles.scss';
+
+.confirm-reservation {
+    border-top: $border-top;
+
+    h4 {
+        margin: 8px 0;
+    }
+
+    p {
+        margin: 0;
+        margin-left: 8px;
+        line-height: 1.5;
+    }
+}

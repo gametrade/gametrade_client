@@ -2,33 +2,37 @@
 
 //#region  Core Modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import { TextMaskModule } from 'angular2-text-mask';
+
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
+import 'hammerjs';
+import 'mousetrap';
+import { ModalGalleryModule } from 'angular-modal-gallery';
+
 
 //#endregion
 
 //#region Layout Modules
-import { Md2DatepickerModule, MdNativeDateModule } from 'md2';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
 
 //#region Style Modules
 import { StarRatingModule } from 'angular-star-rating';
-
-//#endregion
-
-//#region Material import
-import { MATERIAL_MODULES } from './shared/material/material';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 //#endregion
 
 //#region Services
 import { SERVICES } from './services/services';
+import { Angular2TokenService } from 'angular2-token';
 
 //#endregion
 
@@ -41,7 +45,12 @@ import { AppRoutingModule } from './routes/app.routing';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { GamesComponent } from './components/games/games.component';
+import { MyGamesComponent } from './components/games/my-games/my-games.component';
+import { GameDetailsComponent } from './components/games/game-details/game-details.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { ThemeComponent } from './components/theme/theme.component';
+import { NewGameComponent } from './components/games/new-game/new-game.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 //#endregion
 
@@ -52,8 +61,8 @@ import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 //#endregion
 
 //#region Information Components
-import { MostAccessedGamesComponent } from './components/most-accessed-games/most-accessed-games.component';
-import { RecommendedGamesComponent } from './components/recommended-games/recommended-games.component';
+import { MostRecentGamesComponent } from './components/most-recent-games/most-recent-games.component';
+import { ThemeListComponent } from './components/home/theme-list/theme-list.component';
 
 //#endregion
 
@@ -63,13 +72,17 @@ import { GametradeFooterComponent } from './components/gametrade-footer/gametrad
 
 //#endregion
 
-//#region Shared Components
-import { CloseableComponent } from './shared/components/closeable/closeable.component';
-import { GameCardComponent } from './shared/components/game-card/game-card.component';
-import { SearchFieldComponent } from './shared/components/search-field/search-field.component';
-import { GameDetailsComponent } from './components/games/game-details/game-details.component';
-import { LoadingOverlayComponent } from './shared/components/loading-overlay/loading-overlay.component';
-import { CustomImageComponent } from './shared/components/custom-image/custom-image.component';
+//#region Shared Components and Material
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
+import { MATERIAL_MODULES } from './shared/material/shared-material';
+import { SHARED_COMPONENTS } from './shared/components/shared-components';
+import { GamesComponent } from './components/games/games.component';
+import { FindComponent } from './components/user/find/find.component';
+import { ConfirmReservationComponent } from './components/reservation/confirm-reservation/confirm-reservation.component';
+import { NearbyComponent } from './components/games/nearby/nearby.component';
+import { SuccessComponent } from './components/reservation/success/success.component';
+
+//#endregion
 
 //#endregion
 
@@ -80,36 +93,45 @@ import { CustomImageComponent } from './shared/components/custom-image/custom-im
         LoginComponent,
         SignUpComponent,
         HomeComponent,
-        GamesComponent,
+        MyGamesComponent,
         NotFoundComponent,
         GametradeFooterComponent,
-        MostAccessedGamesComponent,
-        RecommendedGamesComponent,
-        CloseableComponent,
-        GameCardComponent,
-        SearchFieldComponent,
+        MostRecentGamesComponent,
         GameDetailsComponent,
-        LoadingOverlayComponent,
-        CustomImageComponent
+        ThemeListComponent,
+        ProfileComponent,
+        ReservationComponent,
+        ThemeComponent,
+        NewGameComponent,
+        SHARED_COMPONENTS,
+        GamesComponent,
+        FindComponent,
+        ConfirmReservationComponent,
+        NearbyComponent,
+        SuccessComponent
     ],
     imports: [
         BrowserModule,
+        HttpModule,
         CommonModule,
-        Md2DatepickerModule,
-        MdNativeDateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MATERIAL_MODULES,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
         AppRoutingModule,
-        HttpModule,
-        ReactiveFormsModule,
-        FormsModule,
+        TextMaskModule,
         StarRatingModule.forRoot(),
-        MATERIAL_MODULES
+        ModalGalleryModule.forRoot(),
+        InfiniteScrollModule
     ],
     entryComponents: [LoginComponent],
     providers: [
         SERVICES,
-        Angular2TokenService
+        Angular2TokenService,
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+        { provide: LOCALE_ID, useValue: 'pt' }
     ],
     bootstrap: [AppComponent]
 })

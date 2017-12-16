@@ -1,0 +1,44 @@
+<div class='container'>
+
+    <h2 class="mat-headline underline">
+        Meus jogos
+    </h2>
+
+    <div *ngIf="my_games?.length > 0" class='my-games-container'>
+        <mat-card *ngFor='let game of my_games' class="my-game">
+            <mat-card-title class="truncate">{{game.name}}</mat-card-title>
+
+            <mat-card-content>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="empty" *ngIf="my_games?.length === 0">
+        <h3>Você ainda não tem nenhum jogo adicionado.</h3>
+        <h3>Para adicionar, clique <a routerLink="/new-game">aqui</a>.</h3>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="mat-headline underline">
+        Meus favoritos
+    </h2>
+
+    <div *ngIf="my_favs?.length > 0" class='my-favs-container'>
+        <mat-card *ngFor='let game of my_favs' class="my-game">
+            <mat-card-title>{{game.name}}</mat-card-title>
+
+            <mat-card-content>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="empty" *ngIf="my_favs?.length === 0">
+        <h3>Você ainda não salvou nenhum jogo como favorito.</h3>
+        <h3>Para salvar, clique na opção 'Salvar', no canto superior direito na tela de reserva.</h3>
+    </div>
+</div>

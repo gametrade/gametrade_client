@@ -1,226 +1,120 @@
 //#region Imports
+
 // Core
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 // Services
-import { Angular2TokenService } from 'angular2-token';
+import { BaseService } from '../base-service/base.service';
 
 // Models
-import { Game, InsertedGame } from '../../models/game';
+import { Game, GamePayload, PhotoPayload } from '../../models/game';
+import { Subject } from 'rxjs/Subject';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
-
-const games: Game[] = [
-    <Game>{
-        id: '1',
-        name: 'Arcadia',
-        players: [4, 8],
-        owner: {
-            name: 'Jorge',
-            email: 'jorgeta@bololo.com',
-            photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-        },
-        rating: 4.43,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/nature/'
-    },
-    <Game>{
-        id: '2',
-        name: 'Krosmaster',
-        players: [3, 6],
-        owner: {
-            name: 'Erik',
-            email: 'jorgeta@bololo.com',
-            photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-        },
-        rating: 4.83,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/transport/'
-    },
-    <Game>{
-        id: '3',
-        name: 'Truco do Odinha',
-        players: [2, 4],
-        owner: {
-            name: 'Odair',
-            email: 'jorgeta@bololo.com',
-            photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-        },
-        rating: 4.93,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/nightlife/'
-    },
-    <Game>{
-        id: '4',
-        name: 'Banco imobiliário',
-        players: [2, 8],
-        owner: {
-            name: 'Caioba',
-            email: 'jorgeta@bololo.com',
-            photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-        },
-        rating: 5.03,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-        thumbnail: 'http://lorempixel.com/800/450/people/'
-    }
-];
 
 @Injectable()
 export class GameService {
 
-    constructor(private tokenHttp: Angular2TokenService) { }
+    nearby_games: Observable<Game[]>;
+    private nearbySubject: Subject<Game[]>;
 
-    getMyGames(): Observable<Array<Game>> {
-        return Observable.of(games);
+    constructor(private baseService: BaseService, private snack: MatSnackBar) {
+        this.nearbySubject = new Subject<Game[]>();
+        this.nearby_games = this.nearbySubject.asObservable();
     }
 
-    getGames(name: string): Observable<Game[]> {
-        return Observable.of(games).map(
-            (gameList: Game[]) =>
-                gameList.filter((game: Game) =>
-                    game.name.includes(name))
+    getMyGames(): Observable<Game[]> {
+        return this.baseService.GET(`my_games.json`).map((result: any) => result.map(x => x.game));
+    }
+
+    getGames(name: string, page?: number, kind?: string, theme?: string, players?: string, launch_date?: string): Observable<Game[]> {
+        let url = `games.json?q[name_cont]=${name}`;
+
+        if (page) { url = url.concat(`&page=${page}&per_page=12`); }
+        if (kind) { url = url.concat(`&q[game_kind_id_eq]=${kind}`); }
+        if (theme) { url = url.concat(`&q[theme_id_eq]=${theme}`); }
+        if (players) { url = url.concat(`&q[players_eq]=${players}`); }
+        if (launch_date) { url = url.concat(`&q[launch_date_eq]=${launch_date}`); }
+
+        return this.baseService.GET(url).map((result: any) => result.map(x => x.game));
+    }
+
+    getMostRecentGames(): Observable<Game[]> {
+        return this.baseService.GET(`games.json?page=1&per_page=5`).map((result: any) => result.map(x => x.game));
+    }
+
+    getGame(id: string): Observable<Game[]> {
+        return this.baseService.GET(`games/${id}.json`).map(result => result.game);
+    }
+
+    newGame(newGame: GamePayload): Observable<any> {
+        newGame.user_id = this.baseService.currentUser.id;
+        return this.baseService.POST('games.json', newGame);
+    }
+
+    includePhoto(photos: PhotoPayload, game_id: number) {
+        const payload = {
+            game: {
+                photos_attributes: photos.photos_attributes
+            }
+        };
+
+        return this.baseService.PATCH(`games/${game_id}.json`, payload);
+    }
+
+    setFavorite(game_id: number) {
+        const payload = {
+            game_id
+        };
+
+        return this.baseService.POST(`wishlists.json`, payload);
+    }
+
+    removeFavorite(game_id: number) {
+        return this.baseService.DELETE(`wishlists/${game_id}.json`);
+    }
+
+    getFavorites() {
+        return this.baseService.GET('wishlists.json').map(
+            (result: any) => {
+                return result.map(x => x.wishlist.game);
+            }
         );
     }
 
-    getRecommendedGames(): Observable<Array<Game>> {
-        return Observable.of(
-            [
-                <Game>{
-                    id: '1',
-                    name: 'Arcadia',
-                    players: [4, 8],
-                    owner: {
-                        name: 'Jorge',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.43,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '2',
-                    name: 'Krosmaster',
-                    players: [3, 6],
-                    owner: {
-                        name: 'Erik',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.83,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '3',
-                    name: 'Truco do Odinha',
-                    players: [2, 4],
-                    owner: {
-                        name: 'Odair',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.93,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '4',
-                    name: 'Banco imobiliário',
-                    players: [2, 8],
-                    owner: {
-                        name: 'Caioba',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 3.27,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                }
-            ]
-        );
-    }
+    getNearby() {
+        // return this.baseService.currentLocation.switchMap(
+        //     (coords: Coordinates) => {
+        //         const params = `lat=${coords.latitude}&lng=${coords.longitude}&range=10000`;
 
-    getMostAccessedGames(): Observable<Array<Game>> {
-        return Observable.of(
-            [
-                <Game>{
-                    id: '1',
-                    name: 'Arcadia',
-                    players: [4, 8],
-                    owner: {
-                        name: 'Jorge',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.43,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '2',
-                    name: 'Krosmaster',
-                    players: [3, 6],
-                    owner: {
-                        name: 'Erik',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.83,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '3',
-                    name: 'Truco do Odinha',
-                    players: [2, 4],
-                    owner: {
-                        name: 'Odair',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 4.93,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                },
-                <Game>{
-                    id: '4',
-                    name: 'Banco imobiliário',
-                    players: [2, 8],
-                    owner: {
-                        name: 'Caioba',
-                        email: 'jorgeta@bololo.com',
-                        photo: 'https://s3.amazonaws.com/uifaces/faces/twitter/sokaniwaal/128.jpg'
-                    },
-                    rating: 3.03,
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam tempor sem quis nisl rutrum, eget ullamcorper nunc tempor. Praesent aliquet.`,
-                    thumbnail: 'http://lorempixel.com/800/450/nature/'
-                }
-            ]
-        );
-    }
+        //         return this.baseService.GET(`games/nearby.json?${params}`);
+        //     }
+        // );
+        const observable = new Subject<Coordinates>();
 
-    getGame(id: string): Observable<Game> {
-        return Observable.of(games.find((game: Game) => game.id === id));
-    }
+        navigator.geolocation.getCurrentPosition(
+            (pos: Position) => {
+                const coords = pos.coords;
 
-    newGame(): Observable<InsertedGame> {
-        return Observable.of(
-            <InsertedGame>{ id: '999' }
+                const params = `lat=${coords.latitude}&lng=${coords.longitude}&range=10000`;
+
+                this.baseService.GET(`games/nearby.json?${params}`).subscribe(
+                    (gamesResult: Game[]) => {
+                        const games = gamesResult.slice(0, 5);
+
+                        Observable.forkJoin(
+                            gamesResult.map((game: any) => this.getGame(game.game.id.toString()))
+                        ).subscribe(
+                            (result: any) => {
+                                this.nearbySubject.next(result.slice(0, 5));
+                            });
+                    }
+                );
+            }
         );
     }
 }

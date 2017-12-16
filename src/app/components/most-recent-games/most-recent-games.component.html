@@ -1,0 +1,10 @@
+<div class='container'>
+    <h2 class='mat-headline underline'>Jogos mais recentes</h2>
+
+    <a class="more" mat-button color="primary" [routerLink]="['/games']" [queryParams]="{name: ''}">Ver todos</a>
+
+    <div class='most-recent-container' fxLayout='column' fxLayout.gt-sm='row' fxLayoutGap.gt-sm='16px' fxLayoutWrap.gt-sm>
+        <gametrade-game-card *ngFor='let game of most_recent_games' [game]='game' fxFlex.gt-sm='calc(20% - 16px)'>
+        </gametrade-game-card>
+    </div>
+</div>

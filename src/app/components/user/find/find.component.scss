@@ -1,0 +1,36 @@
+@import '~styles.scss';
+
+.profile {
+    background-color: white;
+    border-top: $border-top;
+
+    padding: 24px;
+
+    @include box_shadow();
+
+    .profile-content {
+        color: $primary-color;
+
+        h4 {
+            margin: 8px 0;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1.5;
+            margin-left: 8px;
+        }
+
+        a {
+            color: $accent-color;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+:host /deep/ .avatar img {
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 1px $alpha-black;
+    width: 100%;
+}

@@ -1,18 +1,63 @@
-<div class="block-image" [ngStyle]="{background: 'url(' + game.thumbnail + ')'}"></div>
-
-<div class="container">
-    <h1 class="underline">{{game.name}}</h1>
-
-    <div fxLayout='row' fxLayoutGap="16px">
-
-        <div class="owner" fxFlex="calc(40% - 8px)">
-            <p class="mat-headline">{{game.owner.name}}</p>
-        </div>
+<ng-container *ngIf="game">
+    <div class="block-image" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')'} ">
+        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner && baseService.currentUser">
+                <mat-icon>favorite</mat-icon>
+                Salvar
+        </button>
     </div>
 
-    <p class='mat-body-1'>
-        {{game.description}}
-    </p>
+    <div class="container" fxLayout fxLayoutWrap fxLayoutAlign="start start">
+        <h1 class="mat-headline underline-inverse" fxFlex="100"><span>{{game.name}}</span> <small>{{game.game_kind?.name}} - {{game.theme?.name}}</small></h1>
 
-    <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
-</div>
+        <div class="game-info" fxFlex="calc(70% - 16px)">
+
+            <div>
+                <p style="margin: 0; line-height: 1.5;" class="may-body-1">Número de jogadores: {{game.players}}</p>
+                <small>Data de lançamento: {{game.launch_date | date:'dd/MM/y'}}</small>
+            </div>
+
+            <div class="owner">
+                <a [routerLink]="'/profile/' + game.user.id">{{game.user.name}} {{game.user.surname}}</a>
+            </div>
+
+            <p class='mat-body-1' style="word-wrap: break-word; margin-bottom: 0; white-space: pre-line;">
+                {{game.description}}
+            </p>
+
+            <star-rating-comp *ngIf="game.rating" [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+        </div>
+
+        <div class="reservation-info" fxFlex="30" *ngIf="!isOwner">
+            <h3 style="margin: 0">R$ {{(game.price || 0) | number:'1.2-2'}} <small>por dia</small></h3>
+
+            <div class="separator"></div>
+
+            <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap" [formGroup]="dates">
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput [min]="tomorrow" [matDatepicker]="startDatePicker" placeholder="Data inicial" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput [min]="minEndDate" [matDatepicker]="endDatePicker" placeholder="Data final" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <div fxFlex="100" *ngIf="total">
+                    <p>Total: R$ {{total | number:'1.2-2'}}</p>
+                </div>
+
+                <div fxFlex="100">
+                    <button mat-raised-button color="accent" [disabled]="!dates.get('startDate').dirty || !dates.get('endDate').dirty" (click)="makeReservation()">Reservar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="reservation-info" fxFlex="30" *ngIf="isOwner">
+            <h4>Ora ora, parece que este jogo já é seu.</h4>
+        </div>
+    </div>
+</ng-container>

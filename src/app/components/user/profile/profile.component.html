@@ -1,0 +1,77 @@
+<div class="container" fxLayout fxLayoutAlign="start start" fxLayoutGap="24px">
+    <mat-card class="photo-container" fxFlex="calc(25% - 24px)">
+        <mat-card-content fxLayoutWrap>
+
+            <div class="image-wrapper">
+                <img class="user-photo" [src]="baseService.currentUser?.photo" alt="Imagem do usuário">
+            </div>
+
+            <gametrade-file-input fxFlex="100" (onFileSelect)="onFileSelect($event)" [accept]="'image/*'">
+                <span class="default">Escolha a foto</span>
+            </gametrade-file-input>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="profile-form" fxFlex="calc(75% - 24px)">
+        <h2 class="mat-headline underline-block">
+            Editando perfil
+        </h2>
+
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="profile_form" fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
+                    <mat-form-field fxFlex="calc(40% - 16px)" hintLabel="Recomendamos definir o nome apenas uma vez.">
+                        <input matInput placeholder="Nome" formControlName="name">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="calc(60% - 16px)">
+                        <input matInput placeholder="Sobrenome" formControlName="surname">
+                    </mat-form-field>
+
+                    <div class="separator"></div>
+
+                    <div formGroupName="address_attributes" fxLayout fxLayoutWrap fxLayoutGap="16px">
+                        <p fxFlex="100">Endereço</p>
+
+                        <mat-form-field fxFlex="calc(10% - 16px)">
+                            <input matInput placeholder="CEP" formControlName="zip_code" (blur)="changeCEP()" [textMask]="{mask: mask}">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(10% - 16px)">
+                            <input matInput placeholder="Estado" formControlName="state" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let state of filteredOptions | async" [value]="state">
+                                    {{ state }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(80% - 16px)">
+                            <input matInput placeholder="Cidade" formControlName="city">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(50% - 16px)">
+                            <input matInput placeholder="Logradouro" formControlName="street">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(50% - 16px)">
+                            <input matInput placeholder="Bairro" formControlName="neighborhood">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(25% - 16px)">
+                            <input matInput placeholder="Número" formControlName="number">
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="calc(25% - 16px)">
+                            <input matInput placeholder="Complemento" formControlName="complement">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="100">
+                        <button mat-button (click)="saveProfile()">Salvar perfil</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

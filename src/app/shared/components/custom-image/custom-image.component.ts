@@ -14,6 +14,9 @@ export class CustomImageComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        if (this.src) {
+            this.src = this.src.concat('?' + new Date().toString());
+        }
     }
 
     imageLoaded() {

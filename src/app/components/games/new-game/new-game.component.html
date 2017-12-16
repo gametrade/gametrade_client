@@ -1,0 +1,87 @@
+<div class="container new-game-form">
+    <h2 class="mat-headline underline-block">
+        Vamos cadastrar um novo jogo?
+    </h2>
+
+    <mat-horizontal-stepper>
+        <mat-step label="Informações básicas">
+            <form [formGroup]="new_game_form" fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap">
+
+                <mat-form-field fxFlex="100">
+                    <input matInput placeholder="Nome" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100" floatLabel="always">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput placeholder="Descreva o jogo, suas características, estado de conservação." cols="30" rows="5" formControlName="description"></textarea>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <mat-select placeholder="Tipo" formControlName="game_kind_id">
+                        <mat-option *ngFor="let kind of game_kinds; let i = index" [value]="kind.id || i">
+                            {{kind.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <mat-select placeholder="Temas" formControlName="theme_id">
+                        <mat-option *ngFor="let theme of themes; let i = index" [value]="theme.id || i">
+                            {{theme.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput placeholder="Número de jogadores" formControlName="players">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput placeholder="Preço" formControlName="price">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="calc(50% - 16px)">
+                    <input matInput [matDatepicker]="picker" placeholder="Data de lançamento" formControlName="launch_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <div fxFlex="100">
+                    <button mat-button matStepperNext (click)="saveGame()">Salvar e adicionar fotos</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step label="Adicionar fotos">
+            <div fxFlex="100" fxLayout fxLayoutWrap>
+                <p fxFlex="100">Agora, só falta adicionar algumas fotos e estará pronto.</p>
+                <p fxFlex="100">A primeira foto será usada com thumbnail nas buscas do seu jogo.</p>
+
+                <gametrade-file-input (onFileSelect)="onFileSelect($event)" [accept]="'image/*'" multiple="true">
+                    <span class="default">Escolha as fotos</span>
+                </gametrade-file-input>
+
+                <mat-list *ngIf="game_photos?.length > 0" fxFlex="100">
+                    <mat-list-item *ngFor="let photo of game_photos">
+                        <h3 matLine>{{photo.fileName}}</h3>
+                        <mat-icon (click)="removePhoto(photo)" matListIcon>remove</mat-icon>
+                    </mat-list-item>
+                </mat-list>
+
+                <div fxFlex="100" style="margin-top: 8px">
+                    <button mat-button matStepperNext (click)="savePhotos()">Salvar fotos</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step label="Conclusão">
+            <p>Pronto, agora é só esperar alguém reservar.</p>
+
+            <p>Caso alguém reserve, você será notificado por e-mail e poderá aprovar ou reprovar a solicitação.</p>
+
+            <div>
+                <button mat-button (click)="goHome()">Voltar para o início.</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

@@ -9,6 +9,7 @@ import { LoginForm } from '../../../models/user';
 
 // Services
 import { UserService } from '../../../services/user/user.service';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
 
@@ -24,13 +25,9 @@ export class LoginComponent implements OnInit {
     constructor(
         private userService: UserService,
         private router: Router,
-        private formBuilder: FormBuilder) {
-        this.loginForm = this.formBuilder.group(
-            {
-                email: [null, Validators.compose([Validators.required, Validators.email])],
-                password: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
-            }
-        );
+        private fb: FormBuilder,
+        private snack: MatSnackBar) {
+        this.loginForm = this.fb.group(new LoginForm());
     }
 
     ngOnInit() {
@@ -42,9 +39,12 @@ export class LoginComponent implements OnInit {
                 (res) => {
                     const url = localStorage.getItem('redirectTo') || '/home';
                     this.router.navigateByUrl(url);
+                    localStorage.removeItem('redirectTo');
                 },
                 (error: Error) => {
-                    console.log(error);
+                    this.snack.open('Houve uma falha, tente novamente.', null, {
+                        duration: 2000
+                    });
                 }
             );
         }

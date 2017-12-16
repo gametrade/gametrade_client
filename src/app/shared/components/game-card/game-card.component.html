@@ -1,9 +1,16 @@
 <mat-card class='game-card' (click)="readMore()">
-    <gametrade-custom-image [src]='game.thumbnail' [alt]='game.name'></gametrade-custom-image>
+    <gametrade-custom-image [src]='thumbnail' [alt]='game.name'></gametrade-custom-image>
 
     <mat-card-content>
-        <mat-card-title>{{game.name}}</mat-card-title>
+        <mat-card-title class="truncate">{{game.name}}</mat-card-title>
 
-        <star-rating-comp [starType]="'svg'" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+        <p>Tipo: {{game.game_kind?.name}}</p>
+        <p>Tema: {{game.theme?.name}}</p>
     </mat-card-content>
+
+    <mat-card-footer>
+        <star-rating-comp [starType]="'svg'" size="small" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
+
+        <span class="truncate" style="width: 45%; text-align: right;"><a [routerLink]="['/profile', game.user.id]">{{game.user.name}}</a></span>
+    </mat-card-footer>
 </mat-card>

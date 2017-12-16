@@ -1,0 +1,26 @@
+<div class="container" *ngIf="user">
+    <h2 class="mat-headline underline-block">
+        {{user.name}} {{user.surname}}
+    </h2>
+
+    <div class="profile" fxLayout fxLayoutGap="16px">
+        <div class="avatar" fxFlex="calc(20% - 16px)">
+            <img [src]="user.photo">
+        </div>
+
+        <div class="profile-content" fxFlex="calc(80% - 16px)">
+            <h4>E-mail para contanto:</h4>
+            <p><a target="_blank" [href]="'mailto:' + user.email" matTooltip="Ao clicar, você será enviado para o seu gerenciador de e-mail.">{{user.email}}</a></p>
+            
+            <h4>Endereço:</h4>
+            <div class="address">
+                <p>{{user.address.street}}, {{user.address.number}} <small *ngIf="user.address.complement as comp"> - {{comp}}</small></p>
+                <p>{{user.address.city}}, {{user.address.state}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!user">
+    <h3>Usuário não encontrado</h3>
+</div>

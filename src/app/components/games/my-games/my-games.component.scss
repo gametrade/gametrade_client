@@ -1,0 +1,13 @@
+@import '~styles.scss';
+;
+
+.my-favs-container,
+.my-games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, calc(20% - 16px));
+    justify-content: space-between;
+
+    mat-card {
+        margin-bottom: 16px;
+    }
+}

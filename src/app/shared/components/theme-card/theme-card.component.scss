@@ -1,0 +1,20 @@
+@import '~styles.scss';
+
+.theme-card {
+    $size: 250px;
+    background-color: white;
+    height: $size * 0.75;
+    width: $size;
+    padding: 0;
+    
+    .theme-icon {
+        width: $size;
+        height: $size * .5;
+    }
+
+    .theme-name {
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+    }
+}

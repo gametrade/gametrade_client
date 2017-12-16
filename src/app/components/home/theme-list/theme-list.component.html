@@ -1,0 +1,8 @@
+<div class="container" *ngIf="categoryList?.length > 0">
+    <h2 class="mat-headline underline">Categorias</h2>
+
+    <div class="theme-container" fxLayout='column' fxLayout.gt-sm='row' fxLayoutWrap.gt-sm fxLayoutAlign.gt-sm='start' fxLayoutGap='24px' fxLayoutGap.gt-sm='16px'>
+        <gametrade-theme-card *ngFor="let theme of categoryList" [theme]="theme" fxFlex.gt-sm='calc(25% - (16px * 2))'>
+        </gametrade-theme-card>
+    </div>
+</div>

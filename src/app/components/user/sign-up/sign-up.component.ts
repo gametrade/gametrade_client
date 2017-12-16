@@ -1,4 +1,5 @@
 //#region Imports;
+
 // Core
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,6 +11,8 @@ import { Angular2TokenService } from 'angular2-token';
 // Models
 import { SignUpForm } from '../../../models/user';
 import { ErrorsList } from '../../../models/errors';
+import { UserService } from '../../../services/user/user.service';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
 
@@ -34,9 +37,10 @@ export class SignUpComponent implements OnInit {
 
     //#region Constructor
     constructor(
-        private tokenService: Angular2TokenService,
+        private userService: UserService,
         private router: Router,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,
+        private snack: MatSnackBar) {
         this.signUpForm = this.formBuilder.group({
             email: [null, Validators.compose([Validators.required, Validators.email])],
             passwords: this.formBuilder.group({
@@ -61,20 +65,18 @@ export class SignUpComponent implements OnInit {
     // Method responsible for submiting the valid form
     onSubmit({ value, valid }: { value: SignUpForm, valid: boolean }) {
         if (valid) {
-            this.tokenService
-                .registerAccount({
-                    email: value.email,
-                    password: value.passwords.password,
-                    passwordConfirmation: value.passwords.passwordConfirmation
-                })
-                .subscribe(
+            this.userService.signUp(value).subscribe(
                 (res) => {
-                    const url = localStorage.getItem('redirectTo') || '/home';
-                    this.router.navigateByUrl(url);
+                    localStorage.setItem('newProfile', 'true');
+
+                    this.router.navigateByUrl('/profile');
                 },
-                (error: Error) => {
-                    console.log(error);
-                });
+                (error: any) => {
+                    this.snack.open('Não foi possível cadastrar, tente novamente.', null, {
+                        duration: 2000
+                    });
+                }
+            );
         }
     }
 

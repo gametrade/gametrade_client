@@ -1,0 +1,77 @@
+<div class="container">
+    <h2 class="mat-headline underline">
+        Minhas reservas
+    </h2>
+
+    <div *ngIf="my_reservations?.length > 0" class="reservations grid">
+        <mat-card *ngFor="let reservation of my_reservations">
+            <mat-card-title>
+                <a routerLink="/games/{{reservation.game.id}}.json">{{reservation.game.name}}</a>
+            </mat-card-title>
+
+            <mat-card-content>
+                <h4>Início</h4>
+
+                <div class="dates" fxLayout fxLayoutWrap>
+                    <p fxFlex="100">Início: {{reservation.start_date | date:'dd/MM/y'}}</p>
+                    <p fxFlex="100">Fim: {{reservation.end_date | date:'dd/MM/y'}}</p>
+                </div>
+
+                <h4>Total:</h4>
+                <p>R$ {{reservation.value | number:'1.2-2'}}</p>
+
+                <h4>Status:</h4>
+                <p>{{reservation.status}}</p>
+            </mat-card-content>
+
+            <mat-card-actions *ngIf="reservation.status === 'Pendente'">
+                <button mat-raised-button color="warn" (click)="cancelReservation(reservation)">Cancelar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="empty" *ngIf="my_reservations?.length === 0">
+        <h3>Você ainda não tem nenhuma reserva.</h3>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="mat-headline underline">
+        Solicitações
+    </h2>
+
+    <div *ngIf="my_requests?.length > 0" class="requests grid">
+        <mat-card *ngFor="let request of my_requests">
+            <mat-card-title>
+                <a routerLink="/games/{{request.game.id}}.json">{{request.game.name}}</a>
+            </mat-card-title>
+
+            <mat-card-content>
+                <h4>Início</h4>
+
+                <div class="dates" fxLayout fxLayoutWrap>
+                    <p fxFlex="100">Início: {{request.start_date | date:'dd/MM/y'}}</p>
+                    <p fxFlex="100">Fim: {{request.end_date | date:'dd/MM/y'}}</p>
+                </div>
+
+                <h4>Total:</h4>
+                <p>R$ {{request.value | number:'1.2-2'}}</p>
+
+                <h4>Usuário</h4>
+                <p><a [routerLink]="['/profile', request.user.id]">{{request.user.name}}</a></p>
+
+                <h4>Status:</h4>
+                <p>{{request.status}}</p>
+            </mat-card-content>
+
+            <mat-card-actions *ngIf="request.status === 'Pendente'">
+                <button mat-raised-button color="primary" (click)="approveReservation(request)">Aprovar</button>
+                <button mat-button (click)="rejectReservation()">Rejeitar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="empty" *ngIf="my_requests?.length === 0">
+        <h3>Você ainda não tem nenhuma solicitação pendente.</h3>
+    </div>
+</div>
