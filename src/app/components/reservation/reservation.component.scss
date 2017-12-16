@@ -2,7 +2,9 @@
 
 .reservations,
 .requests {
-    border-top: $border-top;
+    mat-card {
+        border-top: $border-top;
+    }
 
     h4 {
         margin: 8px 0;

@@ -41,6 +41,10 @@ export class LayoutComponent implements OnInit {
         private scroller: ScrollerService,
         private route: ActivatedRoute) {
         this.baseService.currentUser = this.tokenService.currentUserData;
+
+        if (this.baseService.currentUser && this.baseService.currentUser.photo) {
+            this.baseService.currentUser.photo = this.baseService.currentUser.photo.concat(`?${Math.random().toString()}`);
+        }
     }
 
     ngOnInit() {

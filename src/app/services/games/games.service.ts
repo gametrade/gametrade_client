@@ -11,13 +11,21 @@ import { BaseService } from '../base-service/base.service';
 
 // Models
 import { Game, GamePayload, PhotoPayload } from '../../models/game';
+import { Subject } from 'rxjs/Subject';
+import { MatSnackBar } from '@angular/material';
 
 //#endregion
 
 @Injectable()
 export class GameService {
 
-    constructor(private baseService: BaseService) { }
+    nearby_games: Observable<Game[]>;
+    private nearbySubject: Subject<Game[]>;
+
+    constructor(private baseService: BaseService, private snack: MatSnackBar) {
+        this.nearbySubject = new Subject<Game[]>();
+        this.nearby_games = this.nearbySubject.asObservable();
+    }
 
     getMyGames(): Observable<Game[]> {
         return this.baseService.GET(`my_games.json`).map((result: any) => result.map(x => x.game));
@@ -79,13 +87,34 @@ export class GameService {
     }
 
     getNearby() {
-        if (!this.baseService.currentLocation) {
-            // throw new Error('Não existe localização.');
-            return Observable.throw(new Error('Não existe localização'));
-        }
+        // return this.baseService.currentLocation.switchMap(
+        //     (coords: Coordinates) => {
+        //         const params = `lat=${coords.latitude}&lng=${coords.longitude}&range=10000`;
 
-        const params = `lat=${this.baseService.currentLocation.latitude}&lng=${this.baseService.currentLocation.longitude}&range=10000`;
+        //         return this.baseService.GET(`games/nearby.json?${params}`);
+        //     }
+        // );
+        const observable = new Subject<Coordinates>();
 
-        return this.baseService.GET(`games/nearby.json?${params}`);
+        navigator.geolocation.getCurrentPosition(
+            (pos: Position) => {
+                const coords = pos.coords;
+
+                const params = `lat=${coords.latitude}&lng=${coords.longitude}&range=10000`;
+
+                this.baseService.GET(`games/nearby.json?${params}`).subscribe(
+                    (gamesResult: Game[]) => {
+                        const games = gamesResult.slice(0, 5);
+
+                        Observable.forkJoin(
+                            gamesResult.map((game: any) => this.getGame(game.game.id.toString()))
+                        ).subscribe(
+                            (result: any) => {
+                                this.nearbySubject.next(result.slice(0, 5));
+                            });
+                    }
+                );
+            }
+        );
     }
 }

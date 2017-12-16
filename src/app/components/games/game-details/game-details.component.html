@@ -1,6 +1,6 @@
 <ng-container *ngIf="game">
     <div class="block-image" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')'} ">
-        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner || baseService.currentUser">
+        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner && baseService.currentUser">
                 <mat-icon>favorite</mat-icon>
                 Salvar
         </button>

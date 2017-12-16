@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
         this.tokenService.init({
             apiPath: 'https://afternoon-sands-74647.herokuapp.com',
             signInRedirect: '/login',
-            signInStoredUrlStorageKey: 'redirectTo' ,
+            signInStoredUrlStorageKey: 'redirectTo',
             globalOptions: {
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         navigator.geolocation.getCurrentPosition(
             (position: Position) => {
-                this.baseService.currentLocation = position.coords;
+                this.baseService.setLocation(position.coords);
             }
         );
     }

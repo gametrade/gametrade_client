@@ -20,8 +20,28 @@ export class ReservationComponent implements OnInit {
     ngOnInit() {
         this.reservationService.getReservations().subscribe(
             (result: any) => {
-                this.my_reservations = result.my_reservations;
-                this.my_requests = result.my_requests;
+                this.my_reservations = result.my_reservations.map(res => {
+                    if (res.reservation.status === 'cancelled') {
+                        res.reservation.status = 'Cancelada';
+                    } else if (res.reservation.status === 'pending') {
+                        res.reservation.status = 'Pendente';
+                    } else if (res.reservation.status === 'approved') {
+                        res.reservation.status = 'Aprovada';
+                    }
+
+                    return res.reservation;
+                });
+                this.my_requests = result.my_requests.map(res => {
+                    if (res.reservation.status === 'cancelled') {
+                        res.reservation.status = 'Cancelada';
+                    } else if (res.reservation.status === 'pending') {
+                        res.reservation.status = 'Pendente';
+                    } else if (res.reservation.status === 'approved') {
+                        res.reservation.status = 'Aprovada';
+                    }
+
+                    return res.reservation;
+                });
             },
             (error: any) => {
                 this.snack.open('Não foi possível carregar suas reservas.', null, {

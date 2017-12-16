@@ -31,6 +31,7 @@ export class GamesComponent implements OnInit {
     themes: any;
 
     paramName: string;
+    hasNew: boolean = true;
     games: Game[];
     page = 1;
 
@@ -60,7 +61,7 @@ export class GamesComponent implements OnInit {
 
         this.scroller.hasScrolled.subscribe(
             (result: boolean) => {
-                if (result) {
+                if (result && this.hasNew) {
                     this.page++;
                     this.getGames();
                 }
@@ -81,6 +82,7 @@ export class GamesComponent implements OnInit {
 
         this.gameService.getGames(this.paramName, this.page, value.kind, value.theme, value.players, value.launch_date).subscribe(
             (result: any) => {
+                if (result.length < 12) { this.hasNew = false; }
                 this.games = this.games.concat(result);
             }
         );

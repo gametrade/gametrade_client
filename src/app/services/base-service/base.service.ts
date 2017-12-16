@@ -5,18 +5,29 @@ import { Response } from '@angular/http/src/static_response';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { Http } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class BaseService {
 
     isLoading = false;
     currentUser: any;
-    currentLocation: Coordinates;
+
+    currentLocation: Observable<Coordinates>;
+    private locationSubject: Subject<Coordinates>;
 
     constructor(
         private tokenService: Angular2TokenService,
         private http: Http
-    ) { }
+    ) {
+        this.locationSubject = new Subject<Coordinates>();
+
+        this.currentLocation = this.locationSubject.asObservable();
+    }
+
+    setLocation(coords: Coordinates) {
+        this.locationSubject.next(coords);
+    }
 
     signIn(value: any) {
         this.isLoading = true;

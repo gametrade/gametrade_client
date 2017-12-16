@@ -3,6 +3,7 @@ import { Game } from '../../../models/game';
 import { GameService } from '../../../services/games/games.service';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { BaseService } from '../../../services/base-service/base.service';
 
 @Component({
     selector: 'gametrade-nearby',
@@ -19,16 +20,10 @@ export class NearbyComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.gameService.getNearby().subscribe(
+        this.gameService.getNearby();
+        this.gameService.nearby_games.subscribe(
             (gamesResult: Game[]) => {
-                const games = gamesResult.slice(0, 5);
-
-                Observable.forkJoin(
-                    gamesResult.map((game: any) => this.gameService.getGame(game.game.id.toString()))
-                ).subscribe(
-                    (result: any) => {
-                        this.nearby_games = result.slice(0, 5);
-                    });
+                        this.nearby_games = gamesResult;
             },
             (error: Error) => {
                 this.snack.open(error.message, null, {

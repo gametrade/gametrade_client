@@ -79,7 +79,7 @@ export class GameDetailsComponent implements OnInit {
                 this.gameService.getGame(param.id).subscribe(
                     (game: any) => {
                         if (game.photos && game.photos.length > 0) {
-                            this.thumbnail = game.photos[0].photo;
+                            this.thumbnail = game.photos[0].photo + `?${Math.random().toString()}`;
                         }
 
                         if (this.baseService.currentUser && game.user.id === this.baseService.currentUser.id) {

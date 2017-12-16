@@ -23,6 +23,7 @@ import { GamesComponent } from '../components/games/games.component';
 import { FindComponent } from '../components/user/find/find.component';
 import { ConfirmReservationComponent } from '../components/reservation/confirm-reservation/confirm-reservation.component';
 import { ReservationComponent } from '../components/reservation/reservation.component';
+import { SuccessComponent } from '../components/reservation/success/success.component';
 
 //#endregion
 
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
             { path: 'games/:id', component: GameDetailsComponent },
             { path: 'reservations', component: ReservationComponent },
             { path: 'confirm-reservation', component: ConfirmReservationComponent, canActivate: [Angular2TokenService] },
+            { path: 'success-reservation', component: SuccessComponent },
             { path: 'games', component: GamesComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }
         ]

@@ -22,6 +22,9 @@ export class FindComponent implements OnInit {
             .subscribe((params: any) => {
                 this.userService.getProfile(+params['id']).subscribe(
                     (result: any) => {
+                        if (result.photo) {
+                            result.photo = result.photo.concat(`?${Math.random().toString()}`);
+                        }
                         this.user = result;
                     }
                 );

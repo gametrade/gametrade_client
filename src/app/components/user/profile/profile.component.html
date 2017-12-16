@@ -3,7 +3,7 @@
         <mat-card-content fxLayoutWrap>
 
             <div class="image-wrapper">
-                <img class="user-photo" [src]="baseService.currentUser?.photo || 'https://via.placeholder.com/300x300'" alt="Imagem do usuário">
+                <img class="user-photo" [src]="baseService.currentUser?.photo" alt="Imagem do usuário">
             </div>
 
             <gametrade-file-input fxFlex="100" (onFileSelect)="onFileSelect($event)" [accept]="'image/*'">
