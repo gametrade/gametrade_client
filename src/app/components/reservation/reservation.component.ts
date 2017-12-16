@@ -22,22 +22,28 @@ export class ReservationComponent implements OnInit {
             (result: any) => {
                 this.my_reservations = result.my_reservations.map(res => {
                     if (res.reservation.status === 'cancelled') {
-                        res.reservation.status = 'Cancelada';
+                        res.reservation.status = 'cancelada';
                     } else if (res.reservation.status === 'pending') {
-                        res.reservation.status = 'Pendente';
-                    } else if (res.reservation.status === 'approved') {
-                        res.reservation.status = 'Aprovada';
+                        res.reservation.status = 'pendente';
+                    } else if (res.reservation.status === 'confirmed') {
+                        res.reservation.status = 'aprovada';
+                    } else if (res.reservation.status === 'rejected') {
+                        res.reservation.status = 'rejeitada';
+                    } else if (res.reservation.status === 'reserved') {
+                        res.reservation.status = 'aprovada';
                     }
 
                     return res.reservation;
                 });
                 this.my_requests = result.my_requests.map(res => {
                     if (res.reservation.status === 'cancelled') {
-                        res.reservation.status = 'Cancelada';
+                        res.reservation.status = 'cancelada';
                     } else if (res.reservation.status === 'pending') {
-                        res.reservation.status = 'Pendente';
-                    } else if (res.reservation.status === 'approved') {
-                        res.reservation.status = 'Aprovada';
+                        res.reservation.status = 'pendente';
+                    } else if (res.reservation.status === 'confirmed') {
+                        res.reservation.status = 'aprovada';
+                    } else if (res.reservation.status === 'rejected') {
+                        res.reservation.status = 'rejeitada';
                     }
 
                     return res.reservation;

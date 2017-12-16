@@ -21,7 +21,7 @@
                 <p>R$ {{reservation.value | number:'1.2-2'}}</p>
 
                 <h4>Status:</h4>
-                <p>{{reservation.status}}</p>
+                <p [ngClass]="reservation.status">{{reservation.status}}</p>
             </mat-card-content>
 
             <mat-card-actions *ngIf="reservation.status === 'Pendente'">
@@ -61,7 +61,7 @@
                 <p><a [routerLink]="['/profile', request.user.id]">{{request.user.name}}</a></p>
 
                 <h4>Status:</h4>
-                <p>{{request.status}}</p>
+                <p [ngClass]="request.status">{{request.status}}</p>
             </mat-card-content>
 
             <mat-card-actions *ngIf="request.status === 'Pendente'">
