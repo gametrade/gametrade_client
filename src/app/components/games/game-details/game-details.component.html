@@ -1,6 +1,6 @@
 <ng-container *ngIf="game">
     <div class="block-image" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')'} ">
-        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner">
+        <button mat-raised-button (click)="toggleFavorite()" *ngIf="!isOwner || baseService.currentUser">
                 <mat-icon>favorite</mat-icon>
                 Salvar
         </button>
@@ -35,23 +35,23 @@
             <form fxLayout="row" fxLayoutGap="16px" fxLayoutWrap="wrap" [formGroup]="dates">
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
-                    <input matInput [min]="tomorrow" [matDatepicker]="checkInPickerr" placeholder="Check-in" formControlName="checkIn">
-                    <mat-datepicker-toggle matSuffix [for]="checkInPickerr"></mat-datepicker-toggle>
-                    <mat-datepicker #checkInPickerr></mat-datepicker>
+                    <input matInput [min]="tomorrow" [matDatepicker]="startDatePicker" placeholder="Data inicial" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="calc(50% - 16px)">
-                    <input matInput [min]="minCheckOut" [matDatepicker]="checkOutPicker" placeholder="Checkout" formControlName="checkOut">
-                    <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #checkOutPicker></mat-datepicker>
+                    <input matInput [min]="minEndDate" [matDatepicker]="endDatePicker" placeholder="Data final" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
                 </mat-form-field>
 
-                <div fxFlex="100">
+                <div fxFlex="100" *ngIf="total">
                     <p>Total: R$ {{total | number:'1.2-2'}}</p>
                 </div>
 
                 <div fxFlex="100">
-                    <button mat-raised-button color="accent" (click)="makeReservation()">Reservar</button>
+                    <button mat-raised-button color="accent" [disabled]="!dates.get('startDate').dirty || !dates.get('endDate').dirty" (click)="makeReservation()">Reservar</button>
                 </div>
             </form>
         </div>

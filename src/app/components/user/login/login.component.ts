@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
                     localStorage.removeItem('redirectTo');
                 },
                 (error: Error) => {
-                    this.snack.open('Houve uma falha, tente novamente.');
+                    this.snack.open('Houve uma falha, tente novamente.', null, {
+                        duration: 2000
+                    });
                 }
             );
         }

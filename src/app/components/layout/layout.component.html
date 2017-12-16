@@ -29,6 +29,7 @@
 
             <div class="user-area" *ngIf='tokenService.userSignedIn()'>
                 <a fxFlex routerLink='/new-game'>Novo jogo</a>
+                <a fxFlex routerLink='/reservations'>Reservas</a>
                 <a fxFlex routerLink='/profile'>Olá, {{tokenService.currentUserData?.name || tokenService.currentUserData?.email.split('@')[0]}}</a>
                 <a fxFlex routerLink='/my-games'>Meus jogos</a>
                 <a fxFlex (click)='signOut()'>Sair</a>

@@ -1,7 +1,7 @@
 //#region Imports
 // Core
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Models
@@ -13,6 +13,8 @@ import { GameService } from '../../../services/games/games.service';
 // Material
 import { MatSnackBar } from '@angular/material';
 import { BaseService } from '../../../services/base-service/base.service';
+import { ReservationService } from '../../../services/reservation/reservation.service';
+import { Reservation } from '../../../models/reservation';
 
 //#endregion
 
@@ -33,7 +35,7 @@ export class GameDetailsComponent implements OnInit {
 
     dates: FormGroup;
     tomorrow = new Date();
-    minCheckOut = new Date();
+    minEndDate = new Date();
 
     //#endregion
 
@@ -43,28 +45,27 @@ export class GameDetailsComponent implements OnInit {
         private gameService: GameService,
         private fb: FormBuilder,
         private snack: MatSnackBar,
-        private baseService: BaseService
+        public baseService: BaseService,
+        private reservationService: ReservationService,
+        private router: Router
     ) {
         this.tomorrow = this.theDayAfter(this.tomorrow);
 
         this.dates = fb.group({
-            checkIn: ['', Validators.required],
-            checkOut: ['', Validators.required]
+            startDate: ['', Validators.required],
+            endDate: ['', Validators.required]
         });
 
-        this.dates.get('checkIn').valueChanges.subscribe(
+        this.dates.controls.startDate.valueChanges.subscribe(
             (value: any) => {
-                this.minCheckOut = this.theDayAfter(new Date(value));
+                this.minEndDate = this.theDayAfter(new Date(value));
             }
         );
 
         this.dates.valueChanges.subscribe(
             (result: any) => {
-                if (result.checkIn && result.checkOut) {
-                    const timeDiff = Math.abs(result.checkOut.getTime() - result.checkIn.getTime());
-                    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-                    this.total = (this.game.price || 1) * diffDays;
+                if (result.startDate && result.endDate) {
+                    this.total = (this.game.price || 1) * this.getDays(result.startDate, result.endDate);
                 }
             }
         );
@@ -81,7 +82,9 @@ export class GameDetailsComponent implements OnInit {
                             this.thumbnail = game.photos[0].photo;
                         }
 
-                        if (game.user.id === this.baseService.currentUser.id) { this.isOwner = true; }
+                        if (this.baseService.currentUser && game.user.id === this.baseService.currentUser.id) {
+                            this.isOwner = true;
+                        }
 
                         this.game = game;
                     }
@@ -94,19 +97,27 @@ export class GameDetailsComponent implements OnInit {
         if (!this.isFavorite) {
             this.gameService.setFavorite(this.game.id).subscribe(
                 (result: any) => {
-                    this.snack.open(`${this.game.name} adicionado aos seus favoritos.`);
+                    this.snack.open(`${this.game.name} adicionado aos seus favoritos.`, null, {
+                        duration: 2000
+                    });
                 },
                 (error: any) => {
-                    this.snack.open(`Não foi possível adicionar ${this.game.name} aos seus favoritos.`);
+                    this.snack.open(`Não foi possível adicionar ${this.game.name} aos seus favoritos.`, null, {
+                        duration: 2000
+                    });
                 }
             );
         } else {
             this.gameService.removeFavorite(this.game.id).subscribe(
                 (result: any) => {
-                    this.snack.open(`${this.game.name} removido dos seus favoritos.`);
+                    this.snack.open(`${this.game.name} removido dos seus favoritos.`, null, {
+                        duration: 2000
+                    });
                 },
                 (error: any) => {
-                    this.snack.open(`Não foi possível remover ${this.game.name} dos seus favoritos.`);
+                    this.snack.open(`Não foi possível remover ${this.game.name} dos seus favoritos.`, null, {
+                        duration: 2000
+                    });
                 }
             );
         }
@@ -114,7 +125,17 @@ export class GameDetailsComponent implements OnInit {
 
     makeReservation() {
         if (this.dates.valid && this.dates.dirty) {
-            // this.
+            const value = this.dates.value;
+
+            const reservation: Reservation = {
+                game: this.game,
+                startDate: value.startDate,
+                endDate: value.endDate,
+                totalDays: this.getDays(value.startDate, value.endDate)
+            };
+
+            this.reservationService.setGame(reservation);
+            this.router.navigateByUrl('/confirm-reservation');
         }
     }
 
@@ -122,5 +143,10 @@ export class GameDetailsComponent implements OnInit {
         date.setDate(date.getDate() + 1);
 
         return date;
+    }
+
+    private getDays = (initialDate: Date, endDate: Date) => {
+        const timeDiff = Math.abs(endDate.getTime() - initialDate.getTime());
+        return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
 }

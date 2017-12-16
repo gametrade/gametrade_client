@@ -34,7 +34,13 @@ export class AppComponent implements OnInit {
     //#endregion
 
     //#region OnInit
-    ngOnInit() { }
+    ngOnInit() {
+        navigator.geolocation.getCurrentPosition(
+            (position: Position) => {
+                this.baseService.currentLocation = position.coords;
+            }
+        );
+    }
 
     //#endregion
 }

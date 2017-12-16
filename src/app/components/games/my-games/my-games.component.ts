@@ -14,7 +14,6 @@ export class MyGamesComponent implements OnInit {
 
     constructor(
         private gameService: GameService,
-        private cd: ChangeDetectorRef,
         private snack: MatSnackBar
     ) { }
 
@@ -30,7 +29,11 @@ export class MyGamesComponent implements OnInit {
 
         this.gameService.getFavorites().subscribe(
             (games: any) => { this.my_favs = games; },
-            (error: Error) => { this.snack.open('Não foi possível carregar os favoritos'); }
+            (error: Error) => {
+                this.snack.open('Não foi possível carregar os favoritos', null, {
+                    duration: 2000
+                });
+            }
         );
     }
 }

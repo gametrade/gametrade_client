@@ -4,6 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 // Services
 import { BaseService } from '../base-service/base.service';
@@ -19,7 +20,7 @@ export class GameService {
     constructor(private baseService: BaseService) { }
 
     getMyGames(): Observable<Game[]> {
-        return this.baseService.GET(`my_games.json`);
+        return this.baseService.GET(`my_games.json`).map((result: any) => result.map(x => x.game));
     }
 
     getGames(name: string, page?: number, kind?: string, theme?: string, players?: string, launch_date?: string): Observable<Game[]> {
@@ -70,6 +71,21 @@ export class GameService {
     }
 
     getFavorites() {
-        return this.baseService.GET('wishlists');
+        return this.baseService.GET('wishlists.json').map(
+            (result: any) => {
+                return result.map(x => x.wishlist.game);
+            }
+        );
+    }
+
+    getNearby() {
+        if (!this.baseService.currentLocation) {
+            // throw new Error('Não existe localização.');
+            return Observable.throw(new Error('Não existe localização'));
+        }
+
+        const params = `lat=${this.baseService.currentLocation.latitude}&lng=${this.baseService.currentLocation.longitude}&range=10000`;
+
+        return this.baseService.GET(`games/nearby.json?${params}`);
     }
 }

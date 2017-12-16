@@ -8,12 +8,6 @@
 
     @include box_shadow();
 
-    .avatar {
-        :host /deep/ img {
-            border-radius: 4px;
-        }
-    }
-
     .profile-content {
         color: $primary-color;
 
@@ -43,4 +37,5 @@
 :host /deep/ .avatar img {
     border-radius: 4px;
     box-shadow: 0 1px 3px 1px $alpha-black;
+    width: 100%;
 }

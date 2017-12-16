@@ -72,7 +72,9 @@ export class SignUpComponent implements OnInit {
                     this.router.navigateByUrl('/profile');
                 },
                 (error: any) => {
-                    this.snack.open('Não foi possível cadastrar, tente novamente.');
+                    this.snack.open('Não foi possível cadastrar, tente novamente.', null, {
+                        duration: 2000
+                    });
                 }
             );
         }

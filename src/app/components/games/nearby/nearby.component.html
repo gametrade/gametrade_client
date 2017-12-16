@@ -1,0 +1,12 @@
+<div class='container'>
+    <h2 class='mat-headline underline'>Jogos próximos à você</h2>
+
+    <div class='nearby-container' fxLayout='column' fxLayout.gt-sm='row' fxLayoutGap.gt-sm='16px' fxLayoutWrap.gt-sm *ngIf="nearby_games?.length > 0">
+        <gametrade-game-card *ngFor='let game of nearby_games' [game]='game' fxFlex.gt-sm='calc(20% - 16px)'>
+        </gametrade-game-card>
+    </div>
+
+    <div class="empty" *ngIf="nearby_games?.length === 0">
+        Puxa vida, não existem jogos próximos à você.
+    </div>
+</div>

@@ -21,6 +21,8 @@ import { NewGameComponent } from '../components/games/new-game/new-game.componen
 import { CurrentUserResolverService } from '../services/current-user-resolver/current-user-resolver.service';
 import { GamesComponent } from '../components/games/games.component';
 import { FindComponent } from '../components/user/find/find.component';
+import { ConfirmReservationComponent } from '../components/reservation/confirm-reservation/confirm-reservation.component';
+import { ReservationComponent } from '../components/reservation/reservation.component';
 
 //#endregion
 
@@ -35,6 +37,8 @@ const appRoutes: Routes = [
             { path: 'profile', component: ProfileComponent, canActivate: [Angular2TokenService] },
             { path: 'profile/:id', component: FindComponent },
             { path: 'games/:id', component: GameDetailsComponent },
+            { path: 'reservations', component: ReservationComponent },
+            { path: 'confirm-reservation', component: ConfirmReservationComponent, canActivate: [Angular2TokenService] },
             { path: 'games', component: GamesComponent },
             { path: '', pathMatch: 'full', redirectTo: '/home' }
         ]

@@ -6,11 +6,11 @@
 
     <div *ngIf="my_games?.length > 0" class='my-games-container'>
         <mat-card *ngFor='let game of my_games' class="my-game">
-            <mat-card-title class="truncate">{{game.game.name}}</mat-card-title>
+            <mat-card-title class="truncate">{{game.name}}</mat-card-title>
 
             <mat-card-content>
-                <p>Tipo: {{game.game.game_kind?.name}}</p>
-                <p>Tema: {{game.game.theme?.name}}</p>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
             </mat-card-content>
         </mat-card>
     </div>
@@ -28,11 +28,11 @@
 
     <div *ngIf="my_favs?.length > 0" class='my-favs-container'>
         <mat-card *ngFor='let game of my_favs' class="my-game">
-            <mat-card-title>game.game.name</mat-card-title>
+            <mat-card-title>{{game.name}}</mat-card-title>
 
             <mat-card-content>
-                <p>Tipo: {{game.game.game_kind?.name}}</p>
-                <p>Tema: {{game.game.theme?.name}}</p>
+                <p>Tipo: {{game.game_kind?.name}}</p>
+                <p>Tema: {{game.theme?.name}}</p>
             </mat-card-content>
         </mat-card>
     </div>

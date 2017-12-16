@@ -1,10 +1,6 @@
 @import '~styles.scss';
 
 .photo-container {
-    width: calc(25% - 72px);
-    position: absolute;
-    margin: 24px;
-    
     .image-wrapper {
         display: inline-block;
 
@@ -12,9 +8,4 @@
             width: 100%; 
         }
     }
-}
-
-.profile-form {
-    margin: 0 auto;
-    width: 50%;
 }

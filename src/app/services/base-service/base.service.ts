@@ -11,6 +11,7 @@ export class BaseService {
 
     isLoading = false;
     currentUser: any;
+    currentLocation: Coordinates;
 
     constructor(
         private tokenService: Angular2TokenService,

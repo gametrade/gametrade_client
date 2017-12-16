@@ -78,6 +78,8 @@ import { MATERIAL_MODULES } from './shared/material/shared-material';
 import { SHARED_COMPONENTS } from './shared/components/shared-components';
 import { GamesComponent } from './components/games/games.component';
 import { FindComponent } from './components/user/find/find.component';
+import { ConfirmReservationComponent } from './components/reservation/confirm-reservation/confirm-reservation.component';
+import { NearbyComponent } from './components/games/nearby/nearby.component';
 
 //#endregion
 
@@ -102,7 +104,9 @@ import { FindComponent } from './components/user/find/find.component';
         NewGameComponent,
         SHARED_COMPONENTS,
         GamesComponent,
-        FindComponent
+        FindComponent,
+        ConfirmReservationComponent,
+        NearbyComponent
     ],
     imports: [
         BrowserModule,
