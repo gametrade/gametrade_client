@@ -3,18 +3,29 @@
         Minhas reservas
     </h2>
 
-    <div *ngIf="my_reservations?.length > 0">
+    <div *ngIf="my_reservations?.length > 0" class="reservations">
         <mat-card *ngFor="let reservation of my_reservations">
             <mat-card-title>
-                <!-- {{reservation}} -->
+                <a routerLink="/games/{{reservation.game.id}}.json">{{reservation.game.name}}</a>
             </mat-card-title>
 
             <mat-card-content>
+                <h4>Datas escolhidas</h4>
 
+                <div class="dates" fxLayout fxLayoutWrap>
+                    <p fxFlex="100">{{reservation.start_date | date:'dd/MM/y'}}</p>
+                    <p fxFlex="100">{{reservation.end_date | date:'dd/MM/y'}}</p>
+                </div>
+
+                <h4>Proprietário:</h4>
+                <p>{{reservation.user.name}}</p>
+
+                <h4>Total:</h4>
+                <p>{{reservation.value}}</p>
             </mat-card-content>
 
             <mat-card-actions>
-                <!-- <button mat-button (click)="cancelReservation(reservation)">Cancelar</button> -->
+                <button mat-button (click)="cancelReservation(reservation)">Cancelar</button>
             </mat-card-actions>
         </mat-card>
     </div>
@@ -29,7 +40,7 @@
         Solicitações
     </h2>
 
-    <div *ngIf="my_requests?.length > 0">
+    <div *ngIf="my_requests?.length > 0" class="requests">
         <mat-card *ngFor="let request of my_requests">
             <mat-card-title>
                 <!-- {{reservation}} -->

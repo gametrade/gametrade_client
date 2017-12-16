@@ -32,7 +32,7 @@ export class GamesComponent implements OnInit {
 
     paramName: string;
     games: Game[];
-    page = 0;
+    page = 1;
 
     constructor(
         private gameService: GameService,

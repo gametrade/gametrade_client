@@ -30,4 +30,37 @@ export class ReservationComponent implements OnInit {
             }
         );
     }
+
+    approveReservation(reservation: any) {
+        this.reservationService.approveReservation(reservation.id).subscribe(
+            (result: any) => {
+                this.snack.open('Reserva aprovada com sucesso.', null, { duration: 2000 });
+            },
+            (error: any) => {
+                this.snack.open('Nao foi possível aprovar a reserva.', null, { duration: 2000 });
+            }
+        );
+    }
+
+    rejectReservation(reservation: any) {
+        this.reservationService.rejectReservation(reservation.id).subscribe(
+            (result: any) => {
+                this.snack.open('Reserva rejeitada com sucesso.', null, { duration: 2000 });
+            },
+            (error: any) => {
+                this.snack.open('Nao foi possível rejeitar a reserva.', null, { duration: 2000 });
+            }
+        );
+    }
+
+    cancelReservation(reservation: any) {
+        this.reservationService.cancelReservation(reservation.id).subscribe(
+            (result: any) => {
+                this.snack.open('Reserva cancelada com sucesso.', null, { duration: 2000 });
+            },
+            (error: any) => {
+                this.snack.open('Nao foi possível cancelar a reserva.', null, { duration: 2000 });
+            }
+        );
+    }
 }

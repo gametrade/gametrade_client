@@ -17,11 +17,11 @@ export class ReservationService {
 
     getReservations() {
         return this.baseService.GET(`reservations.json`)
-        .catch(
+            .catch(
             (err: any, caught: Observable<any>) => {
                 return Observable.throw('Não foi possível carregar suas reservas.');
             }
-        );
+            );
     }
 
     setGame = (reservation: Reservation) => this.reservation = reservation;
@@ -41,7 +41,15 @@ export class ReservationService {
         return this.baseService.POST('reservations.json', payload);
     }
 
-    approveReservation() {
-        return;
+    approveReservation(reservation_id: number) {
+        return this.baseService.POST(`reservations/${reservation_id}/confirm.json`, {});
+    }
+
+    rejectReservation(reservation_id: number) {
+        return this.baseService.POST(`reservations/${reservation_id}/reject.json`, {});
+    }
+
+    cancelReservation(reservation_id: number) {
+        return this.baseService.POST(`reservations/${reservation_id}/cancel.json`, {});
     }
 }

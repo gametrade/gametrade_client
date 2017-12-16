@@ -11,25 +11,20 @@
     .profile-content {
         color: $primary-color;
 
+        h4 {
+            margin: 8px 0;
+        }
+
         p {
-            margin-top: 0;
+            margin: 0;
+            line-height: 1.5;
+            margin-left: 8px;
         }
 
         a {
             color: $accent-color;
             cursor: pointer;
             text-decoration: underline;
-        }
-
-        .address {
-            p {
-                margin: 0;
-                line-height: 1.5;
-
-                &:not(:first-child) {
-                    margin-left: 16px;
-                }
-            }
         }
     }
 }

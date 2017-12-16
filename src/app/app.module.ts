@@ -80,6 +80,7 @@ import { GamesComponent } from './components/games/games.component';
 import { FindComponent } from './components/user/find/find.component';
 import { ConfirmReservationComponent } from './components/reservation/confirm-reservation/confirm-reservation.component';
 import { NearbyComponent } from './components/games/nearby/nearby.component';
+import { SuccessComponent } from './components/reservation/success/success.component';
 
 //#endregion
 
@@ -106,7 +107,8 @@ import { NearbyComponent } from './components/games/nearby/nearby.component';
         GamesComponent,
         FindComponent,
         ConfirmReservationComponent,
-        NearbyComponent
+        NearbyComponent,
+        SuccessComponent
     ],
     imports: [
         BrowserModule,

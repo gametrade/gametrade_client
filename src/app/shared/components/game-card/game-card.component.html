@@ -11,6 +11,6 @@
     <mat-card-footer>
         <star-rating-comp [starType]="'svg'" size="small" [readOnly]="true" [showHalfStars]="true" [rating]="game.rating"></star-rating-comp>
 
-        <span><a [routerLink]="['/profile', game.user.id]">{{game.user.name}}</a></span>
+        <span class="truncate" style="width: 45%; text-align: right;"><a [routerLink]="['/profile', game.user.id]">{{game.user.name}}</a></span>
     </mat-card-footer>
 </mat-card>

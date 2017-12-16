@@ -3,6 +3,7 @@ import { ReservationService } from '../../../services/reservation/reservation.se
 import { Game } from '../../../models/game';
 import { Reservation } from '../../../models/reservation';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'gametrade-confirm-reservation',
@@ -17,7 +18,8 @@ export class ConfirmReservationComponent implements OnInit {
 
     constructor(
         private reservationService: ReservationService,
-        private snack: MatSnackBar
+        private snack: MatSnackBar,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -31,7 +33,7 @@ export class ConfirmReservationComponent implements OnInit {
     confirmReservation() {
         this.reservationService.postReservation().subscribe(
             (result: any) => {
-                console.log(result);
+                this.router.navigateByUrl('/success-reservation');
             },
             (error: any) => {
                 this.snack.open('Não foi possível realizar a reserva.', null, {

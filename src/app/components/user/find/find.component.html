@@ -9,10 +9,11 @@
         </div>
 
         <div class="profile-content" fxFlex="calc(80% - 16px)">
-            <p>E-mail para contanto: <a target="_blank" [href]="'mailto:' + user.email" matTooltip="Ao clicar, você será enviado para o seu gerenciador de e-mail.">{{user.email}}</a></p>
-
+            <h4>E-mail para contanto:</h4>
+            <p><a target="_blank" [href]="'mailto:' + user.email" matTooltip="Ao clicar, você será enviado para o seu gerenciador de e-mail.">{{user.email}}</a></p>
+            
+            <h4>Endereço:</h4>
             <div class="address">
-                <p>Endereço:</p>
                 <p>{{user.address.street}}, {{user.address.number}} <small *ngIf="user.address.complement as comp"> - {{comp}}</small></p>
                 <p>{{user.address.city}}, {{user.address.state}}</p>
             </div>
